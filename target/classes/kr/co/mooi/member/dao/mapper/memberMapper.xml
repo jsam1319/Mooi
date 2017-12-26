@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="kr.co.mooi.member.dao.MemberDao">
+
+       <insert id="insert" parameterType="Member" useGeneratedKeys="true" keyProperty="memberNo">
+        INSERT INTO member
+            (
+                id,
+                password,
+                email,
+                address,
+                name,
+                postcode,
+                hp,
+                public_key,
+               	private_key
+            )
+            VALUES 
+            (
+                #{id},
+                #{password},
+                #{email},
+                #{address},
+                #{name},
+                #{postcode},
+                #{hp},
+                #{publicKey},
+                #{privateKey}
+            )
+    </insert>
+    
+    <select id="listAll" resultType="Member">
+        SELECT  member_no    AS     "memberNo",
+                id,
+                password,    
+                email,        
+                address,        
+                name,        
+                postcode,    
+                phone,        
+                regdate,
+                age,
+                gender,
+                app_token     AS  "appToken",
+                session_id	  AS  "sessionId",
+                session_limit AS  "sessionLimit",
+                private_encoded	AS	"privateEncoded",
+                public_encoded	AS	"publicEncoded"
+        FROM member
+    </select>
+    
+    <select id="select" resultType="Member">
+        SELECT  member_no AS memberNo,
+        		id,
+                password,
+                email,
+                address,
+                name,
+                postcode,
+                hp,
+                public_key AS publicKey,
+               	private_key AS privateKey
+        FROM member
+        WHERE member_no = #{value}
+    </select>
+    
+     <select id="selectById" resultType="Member">
+        SELECT  member_no AS memberNo,
+        		id,
+                password,
+                email,
+                address,
+                name,
+                postcode,
+                hp,
+                public_key AS publicKey,
+               	private_key AS privateKey
+        FROM member
+        WHERE id = #{value}
+    </select>
+    
+    <select id="selectToken" resultType="String">
+        SELECT  app_token
+        FROM member
+        WHERE member_no = #{value}
+    </select>
+    
+    <update id="update" parameterType="Member">
+        UPDATE  member 
+        SET     password = #{password},
+                email = #{email},
+                address = #{address},
+                name = #{name},
+                postcode = #{postcode},
+                phone = #{phone}	
+    </update>
+    
+    <delete id="delete" parameterType="String">
+        DELETE FROM member 
+        WHERE  id = #{value} 
+    </delete>
+    
+     <select id="isMember" parameterType="Member" resultType="Member">
+                 SELECT  member_no AS memberNo,
+        		id,
+                password,
+                email,
+                address,
+                name,
+                postcode,
+                hp,
+                public_key AS publicKey,
+               	private_key AS privateKey
+        FROM member
+        WHERE id = #{id} 
+        AND password = #{password}
+    </select> 
+    
+     <select id="readLogin" parameterType="string" resultType="Member">
+        SELECT  member_no,
+        		id,
+                password
+        FROM   member
+        WHERE  session_id = #{value} 
+               AND session_limit > SYSDATE
+    </select> 
+    
+    <update id="updateLogin" parameterType="Member">
+        UPDATE member
+        SET    session_id = #{sessionId}, 
+               session_limit = #{sessionLimit} 
+        WHERE  id = #{id}
+    </update>
+    
+    <update id="updateToken" parameterType="Member">
+        UPDATE member
+        SET    app_token = #{appToken} 
+        WHERE  member_no = #{memberNo} 
+    </update>
+    
+    <select id="isId" parameterType="String" resultType="String">
+    	SELECT id
+		FROM   member 
+		WHERE  id = #{value} 
+    </select>
+    
+   
+    
+    <select id="selectOrderInfo" parameterType="int" resultType="Member">
+    	SELECT NAME, 
+		       address, 
+		       postcode, 
+		       phone 
+		FROM   member 
+		WHERE  member_no = #{memberNo}
+    </select>
+    
+    <select id="selectName" parameterType="int" resultType="String">
+    	SELECT name
+		FROM   member 
+		WHERE  member_no = #{memberNo}
+    </select>
+        
+</mapper>
