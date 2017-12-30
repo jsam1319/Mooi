@@ -26,32 +26,17 @@
        <beans:property name="maxUploadSize" value="10485760"></beans:property>
    </beans:bean>
 	
-	<!-- <interceptors>
+	<!-- 인터셉터 객체 생성 -->
+    <beans:bean id="autoLoginInterceptor" class="kr.co.mooi.member.interceptor.AutoLoginInterceptor">
+    </beans:bean>
+    <!-- Interceptor 설정 -->
+    <interceptors>
         <interceptor>
-            <mapping path="/member/login"/>
-            <mapping path="/member/regist"/>
-            <beans:bean id="loginInterceptor" class="kr.or.kosta.semicolon.common.interceptor.LoginInterceptor" />
+            <mapping path="/**"/>
+            <beans:ref bean="autoLoginInterceptor"/>
         </interceptor>
-        <interceptor>
-				<mapping path="/require/insert" />
-				<mapping path="/goods/insert" />
-				<mapping path="/member/size" />
-				<mapping path="/member/mypage" />
-				<mapping path="/admin/**" />
-				<mapping path="/orders/**" />
-				<mapping path="/gwish/**" />
-				<mapping path="/product/gpurchase/**" />
-				<mapping path="/after/**" />
-				<mapping path="/qna/**" />
-				<mapping path="/chart/**" />
-				<beans:bean id="authorityInterceptor" class="kr.or.kosta.semicolon.common.interceptor.AuthorityInterceptor"/>
-		</interceptor>
-		<interceptor>
-			<mapping path="/"/>
-			<beans:bean id="autoLoginInterceptor" class="kr.or.kosta.semicolon.common.interceptor.AutoLoginInterceptor"/>
-		</interceptor>
-    </interceptors>  -->
-	
+    </interceptors>
+     	
 	<context:component-scan base-package="kr.co.mooi" />
 	
 

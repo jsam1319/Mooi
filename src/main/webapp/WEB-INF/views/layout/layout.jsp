@@ -34,6 +34,15 @@
 <title><decorator:title default="::Mooi - 쥬얼리 쇼핑몰" /></title>
 <decorator:head />
 
+<style>
+.submenu_img {
+	width : 100%;
+	height : 100%;
+}
+
+
+</style>
+
 </head>
 <<body>
 
@@ -94,8 +103,27 @@
 
                         <div class="right-entries">
                             <a class="header-functionality-entry open-search-popup" href="#"><i class="fa fa-search"></i><span>Search</span></a>
-                            <a class="header-functionality-entry" href="#"><i class="fa fa-copy"></i><span>Compare</span></a>
-                            <a class="header-functionality-entry" href="#"><i class="fa fa-heart-o"></i><span>Wishlist</span></a>
+							<c:choose>
+								<c:when test="${login != null}">
+									<a class="header-functionality-entry" href="/member/logout"><i class="fa fa-copy"></i><span>Logout</span></a>
+								</c:when>
+								<c:otherwise>
+									<a class="header-functionality-entry" href="/member/loginForm"><i class="fa fa-copy"></i><span>Login</span></a>
+								</c:otherwise>
+							</c:choose>                            
+                            
+                            <c:choose>
+								<c:when test="${login == -1}">
+									<a class="header-functionality-entry" href="/admin/"><i class="fa fa-copy"></i><span>Admin</span></a>
+								</c:when>
+								<c:when test="${login > 1}">
+									<a class="header-functionality-entry" href="/mypage"><i class="fa fa-copy"></i><span>My Page</span></a>
+								</c:when>
+								<c:otherwise>
+									<a class="header-functionality-entry" href="/member/registForm"><i class="fa fa-copy"></i><span>Regist</span></a>
+								</c:otherwise>
+							</c:choose> 
+                            
                             <a class="header-functionality-entry open-cart-popup" href="#"><i class="fa fa-shopping-cart"></i><span>My Cart</span> <b>$255,99</b></a>
                         </div>
 
@@ -110,15 +138,15 @@
                         <div class="nav-overflow">
                             <nav>
                                 <ul>
-                                                                        <li class="full-width">
-                                        <a href="#" class="active">Home</a><i class="fa fa-chevron-down"></i>
+                                 <li class="full-width">
+                                        <a href="#" class="active">Products</a><i class="fa fa-chevron-down"></i>
                                         <div class="submenu">
                                             <div class="full-width-menu-items-right">
                                                 <div class="menu-slider-arrows">
                                                     <a class="left"><i class="fa fa-chevron-left"></i></a>
                                                     <a class="right"><i class="fa fa-chevron-right"></i></a>
                                                 </div>
-                                                <div class="submenu-list-title"><a href="#">Reccomended Products</a><span class="toggle-list-button"></span></div>
+                                                <div class="submenu-list-title"><a href="#">추천 상품</a><span class="toggle-list-button"></span></div>
                                                 <div class="menu-slider-out">
                                                     <div class="menu-slider-in">
                                                         <div class="menu-slider-entry">
@@ -216,38 +244,21 @@
                                             </div>
                                             <div class="full-width-menu-items-left">
                                                 <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="submenu-list-title"><a href="index-wide.html">Homepages <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
+                                                    <div class="col-lg-4">
+                                                        <div class="submenu-list-title"><a href="index-wide.html">Products <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
                                                         <ul class="list-type-1 toggle-list-container">
-                                                            <li><a href="index-wide.html"><i class="fa fa-angle-right"></i>Mango - Wide Header</a></li>
-                                                            <li><a href="index-electronic.html"><i class="fa fa-angle-right"></i>Mango - Electronic</a></li>
-                                                            <li><a href="index-everything.html"><i class="fa fa-angle-right"></i>Mango - Everything</a></li>
-                                                            <li><a href="index-fullwidthheader.html"><i class="fa fa-angle-right"></i>Mango - Fullwidth Header</a></li>
-                                                            <li><a href="index-food.html"><i class="fa fa-angle-right"></i>Mango - Food</a></li>
-                                                            <li><a href="index-underwear.html"><i class="fa fa-angle-right"></i>Mango - Underwear</a></li>
-                                                            <li><a href="index-bags.html"><i class="fa fa-angle-right"></i>Mango - Bags</a></li>
-                                                            <li><a href="index-fullwidth-noslider.html"><i class="fa fa-angle-right"></i>Mango - Fullwidth No Slider</a></li>
-                                                            <li><a href="index-lookbook.html"><i class="fa fa-angle-right"></i>Mango - Lookbook</a></li>
-                                                            <li><a href="index-wine-left.html"><i class="fa fa-angle-right"></i>Mango - Wine</a></li>
-                                                            <li><a href="index-fullwidth.html"><i class="fa fa-angle-right"></i>Mango - Fullwidth</a></li>
-                                                            <li><a href="index-fullwidth-left.html"><i class="fa fa-angle-right"></i>Mango - Fullwidth Left Sidebar</a></li>
+                                                       		<li><a name="menu" href="#"><i class="fa fa-angle-right"></i>EARRING</a></li>
+                                                            <li><a name="menu" href="#"><i class="fa fa-angle-right"></i>PIERCING</a></li>
+                                                            <li><a name="menu" href="#"><i class="fa fa-angle-right"></i>NECKLACE</a></li>
+                                                            <li><a name="menu" href="#"><i class="fa fa-angle-right"></i>BRACELET</a></li>
+                                                            <li><a name="menu" href="#"><i class="fa fa-angle-right"></i>RING</a></li>
+                                                            <li><a name="menu" href="#"><i class="fa fa-angle-right"></i>HAIR-ITEM</a></li>
+                                                            <li><a name="menu" href="#"><i class="fa fa-angle-right"></i>ETC</a></li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="submenu-list-title"><a href="index-wide.html">Homepages <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
-                                                        <ul class="list-type-1 toggle-list-container">
-                                                            <li><a href="index-parallax.html"><i class="fa fa-angle-right"></i>Mango - Parallax</a></li>
-                                                            <li><a href="index-grid.html"><i class="fa fa-angle-right"></i>Mango - Grid Light</a></li>
-                                                            <li><a href="index-leftsidebar.html"><i class="fa fa-angle-right"></i>Mango - Grid Left Sidebar</a></li>
-                                                            <li><a href="index-minimal.html"><i class="fa fa-angle-right"></i>Mango - Minimal</a></li>
-                                                            <li><a href="index-toys.html"><i class="fa fa-angle-right"></i>Mango - Toys</a></li>
-                                                            <li><a href="index-furniture.html"><i class="fa fa-angle-right"></i>Mango - Furniture</a></li>
-                                                            <li><a href="index-jewellery.html"><i class="fa fa-angle-right"></i>Mango - Jewellery</a></li>
-                                                            <li><a href="index-mini.html"><i class="fa fa-angle-right"></i>Mango - Mini</a></li>
-                                                            <li><a href="index-presentation.html"><i class="fa fa-angle-right"></i>Mango - Presentation</a></li>
-                                                            <li><a href="index-parallax-fullwidth.html"><i class="fa fa-angle-right"></i>Mango - Parallax Fullwidth</a></li>
-                                                            <li><a href="index-parallax-boxed.html"><i class="fa fa-angle-right"></i>Mango - Parallax Boxed</a></li>
-                                                        </ul>
+                                                    
+                                                    <div class="col-lg-8">
+                                                      <img class="submenu_img" src="/resources/img/menu/ETC.jpg" alt="" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -255,83 +266,6 @@
                                                 <div class="submenu-links-line-container">
                                                     <div class="cell-view">
                                                         <div class="line-links"><b>Quicklinks:</b>  <a href="#">Blazers</a>, <a href="#">Jackets</a>, <a href="#">Shoes</a>, <a href="#">Bags</a>, <a href="#">Special offers</a>, <a href="#">Sales and discounts</a></div>
-                                                    </div>
-                                                    <div class="cell-view">
-                                                        <div class="red-message"><b>-20% sale only this week. Donât miss buy something!</b></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="full-width-columns">
-                                        <a href="#">Pages</a><i class="fa fa-chevron-down"></i>
-                                        <div class="submenu">
-                                            <div class="product-column-entry">
-                                                <div class="image"><img alt="" src="/resources/img/product-menu-2.jpg"></div>
-                                                <div class="submenu-list-title"><a href="contact.html">Contact Us</a><span class="toggle-list-button"></span></div>
-                                                <div class="description toggle-list-container">
-                                                    <ul class="list-type-1">
-                                                        <li><a href="contact.html"><i class="fa fa-angle-right"></i>Contact Us 1</a></li>
-                                                        <li><a href="contact-2.html"><i class="fa fa-angle-right"></i>Contact Us 2</a></li>
-                                                        <li><a href="contact-3.html"><i class="fa fa-angle-right"></i>Contact Us 3</a></li>
-                                                        <li><a href="contact-4.html"><i class="fa fa-angle-right"></i>Contact Us 4</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="hot-mark">hot</div>
-                                            </div>
-                                            <div class="product-column-entry">
-                                                <div class="image"><img alt="" src="/resources/img/product-menu-4.jpg"></div>
-                                                <div class="submenu-list-title"><a href="about-1.html">About Us</a><span class="toggle-list-button"></span></div>
-                                                <div class="description toggle-list-container">
-                                                    <ul class="list-type-1">
-                                                        <li><a href="about-1.html"><i class="fa fa-angle-right"></i>About Us Fullwidth 1</a></li>
-                                                        <li><a href="about-2.html"><i class="fa fa-angle-right"></i>About Us Fullwidth 2</a></li>
-                                                        <li><a href="about-3.html"><i class="fa fa-angle-right"></i>About Us Fullwidth 3</a></li>
-                                                        <li><a href="about-4.html"><i class="fa fa-angle-right"></i>About Us Sidebar 1</a></li>
-                                                        <li><a href="about-5.html"><i class="fa fa-angle-right"></i>About Us Sidebar 2</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="hot-mark yellow">sale</div>
-                                            </div>
-                                            <div class="product-column-entry">
-                                                <div class="image"><img alt="" src="/resources/img/product-menu-3.jpg"></div>
-                                                <div class="submenu-list-title"><a href="cart.html">Cart</a><span class="toggle-list-button"></span></div>
-                                                <div class="description toggle-list-container">
-                                                    <ul class="list-type-1">
-                                                        <li><a href="cart.html"><i class="fa fa-angle-right"></i>Cart</a></li>
-                                                        <li><a href="cart-traditional.html"><i class="fa fa-angle-right"></i>Cart Traditional</a></li>
-                                                        <li><a href="checkout.html"><i class="fa fa-angle-right"></i>Checkout</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product-column-entry">
-                                                <div class="image"><img alt="" src="/resources/img/product-menu-5.jpg"></div>
-                                                <div class="submenu-list-title"><a href="teaser-background.html">Coming Soon</a><span class="toggle-list-button"></span></div>
-                                                <div class="description toggle-list-container">
-                                                    <ul class="list-type-1">
-                                                        <li><a href="teaser-background.html"><i class="fa fa-angle-right"></i>Coming Soon 1</a></li>
-                                                        <li><a href="teaser-background-2.html"><i class="fa fa-angle-right"></i>Coming Soon 2</a></li>
-                                                        <li><a href="teaser-simple.html"><i class="fa fa-angle-right"></i>Coming Soon 3</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="hot-mark">hot</div>
-                                            </div>
-                                            <div class="product-column-entry">
-                                                <div class="image"><img alt="" src="/resources/img/product-menu-2.jpg"></div>
-                                                <div class="submenu-list-title"><a href="shop.html">Products</a><span class="toggle-list-button"></span></div>
-                                                <div class="description toggle-list-container">
-                                                    <ul class="list-type-1">
-                                                        <li><a href="shop.html"><i class="fa fa-angle-right"></i>Shop</a></li>
-                                                        <li><a href="product.html"><i class="fa fa-angle-right"></i>Product</a></li>
-                                                        <li><a href="product-nosidebar.html"><i class="fa fa-angle-right"></i>No Sidebar</a></li>
-                                                        <li><a href="product-tabnosidebar.html"><i class="fa fa-angle-right"></i>Tab No Sidebar</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="submenu-links-line">
-                                                <div class="submenu-links-line-container">
-                                                    <div class="cell-view">
-                                                        <div class="line-links"><b>Quicklinks:</b>  <a href="shop.html">Blazers</a>, <a href="shop.html">Jackets</a>, <a href="shop.html">Shoes</a>, <a href="shop.html">Bags</a>, <a href="shop.html">Special offers</a>, <a href="shop.html">Sales and discounts</a></div>
                                                     </div>
                                                     <div class="cell-view">
                                                         <div class="red-message"><b>-20% sale only this week. Donât miss buy something!</b></div>
@@ -351,35 +285,7 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    <li class="column-1">
-                                        <a href="portfolio-default.html">Portfolio</a><i class="fa fa-chevron-down"></i>
-                                        <div class="submenu">
-                                            <div class="full-width-menu-items-left">
-                                                <img class="submenu-background" src="/resources/img/product-menu-7.jpg" alt="" />
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="submenu-list-title"><a href="portfolio-default.html">Our Portfolio</a><span class="toggle-list-button"></span></div>
-                                                        <ul class="list-type-1 toggle-list-container">
-                                                            <li><a href="portfolio-default.html"><i class="fa fa-angle-right"></i>Portfolio Default</a></li>
-                                                            <li><a href="portfolio-simple.html"><i class="fa fa-angle-right"></i>Portfolio Simple</a></li>
-                                                            <li><a href="portfolio-custom.html"><i class="fa fa-angle-right"></i>Portfolio Custom</a></li>
-                                                            <li><a href="portfolio-customfullwidth.html"><i class="fa fa-angle-right"></i>Fullwidth Custom</a></li>
-                                                            <li><a href="portfolio-simplefullwidth.html"><i class="fa fa-angle-right"></i>Fullwidth Simple</a></li>
-                                                            <li><a href="project-default.html"><i class="fa fa-angle-right"></i>Project Default</a></li>
-                                                            <li><a href="project-fullwidth.html"><i class="fa fa-angle-right"></i>Project Fullwidth</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="submenu-links-line">
-                                                <div class="submenu-links-line-container">
-                                                    <div class="cell-view">
-                                                        <div class="line-links"><b>Quicklinks:</b>  <a href="shop.html">Blazers</a>, <a href="shop.html">Jackets</a>, <a href="shop.html">Shoes</a>, <a href="shop.html">Bags</a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                   
                                     <li class="column-1">
                                         <a href="blog.html">Blog</a><i class="fa fa-chevron-down"></i>
                                         <div class="submenu">
@@ -758,6 +664,18 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
+    
+<script>
+$(document).ready(function() {
+	$("a[name='menu']").mouseover(function(event) {
+		var imgName = $(this).text();
+		$(".submenu_img").attr("src", "/resources/img/menu/" + imgName + ".jpg");
+		console.log(imgName);
+	})
+})
+
+</script>    
+       
 </body>
 </html>

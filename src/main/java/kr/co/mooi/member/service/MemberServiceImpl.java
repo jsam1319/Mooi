@@ -1,13 +1,15 @@
 package kr.co.mooi.member.service;
 
+import java.security.Key;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
 import kr.co.mooi.member.dao.MemberDao;
 import kr.co.mooi.member.domain.Member;
-import kr.co.mooi.member.util.RSAKeySet;
 import kr.co.mooi.member.util.RSAUtil;
+import kr.co.mooi.member.util.SHA256Util;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -16,23 +18,26 @@ public class MemberServiceImpl implements MemberService {
 	MemberDao memberDao;
 	
 	@Override
-	public int login(Member member) throws Exception {
-		// TODO Auto-generated method stub
-		RSAKeySet keySet = new RSAKeySet(member.getPublicKey(), member.getPrivateKey());
+	public Member login(Member member, Key privateKey) throws Exception {
+		member.setPassword(RSAUtil.decrypte(privateKey, member.getPassword()));
+		member.setPassword(SHA256Util.hashing(member.getPassword()));
 		
-		
-		return 0;
+		return memberDao.isMember(member); 
 	}
 
 	@Override
-	public int regist(Member member) throws Exception {
-		// TODO Auto-generated method stub
-		RSAKeySet keySet = new RSAKeySet();
-		
-		member.setPublicKey(keySet.getEncodedPublic());
-		member.setPrivateKey(keySet.getEncodedPrivate());
-		member.setPassword(RSAUtil.encrypte(keySet, member.getPassword()));
+	public int regist(Member member, Key privateKey) throws Exception {
+		member.setPassword(RSAUtil.decrypte(privateKey, member.getPassword()));
+        member.setPassword(SHA256Util.hashing(member.getPassword()));
 		
 		return memberDao.regist(member);
+	}
+	
+	public int updateSession(Member member) {
+		return memberDao.updateSession(member);
+	}
+	
+	public Member autoLogin(String sessionKey) {
+		return memberDao.autoLogin(sessionKey);
 	}
 }

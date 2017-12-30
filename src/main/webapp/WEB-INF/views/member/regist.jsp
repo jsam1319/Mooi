@@ -1,7 +1,10 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 <head>
-
+<script src="/resources/js/rsa.js"></script>
+<script src="/resources/js/jsbn.js"></script>
+<script src="/resources/js/prng4.js"></script>
+<script src="/resources/js/rng.js"></script>
 <style>
 	.information-blocks {
     margin-left:15%;
@@ -56,43 +59,6 @@
       }
 	</script>
 	
-	<script>
-	$(document).ready(function(){
-	   $("#password2").keyup(function(){
-	   		check($("#password2").val());
-	   }) ;
-	   
-	   
-	   $("#ckId").click(function(){
-	      var id = $(".id").val();
-	      $.ajax({
-	          url : "/member/regist/"+id,
-	          type : "get",
-	          success : function(data){
-	              if(data == 'possible'){ 
-	                  $("#id-span").html("사용가능한 아이디 입니다.");
-	              }
-	              else{
-	                  $("#id-span").html("불가능한 아이디 입니다.");
-	              }
-	          },
-	          error : function(xhr, statusText){
-	              console.log("("+xhr.status+", "+statusText+")");
-	              alert("사용불가능한 아이디 입니다.");
-	          }
-	      }); 
-	   });
-	});
-	
-	var check = function(data){
-	   if(data != $("#password1").val()){
-	       $(".pw-span").html("비밀번호가 일치하지 않습니다.");
-	   } 
-	   else{
-	       $(".pw-span").html("");
-	   }
-	}
-	</script>
 </head>
 
 <body class="style-10">
@@ -104,95 +70,146 @@
                             <h3>New Customers</h3>
                             
                             <form action="/member/regist" method="POST" class="form">
-                            		<label>ID</label>
-                            		<div class="row">
-	                            		<div class="col-sm-8 form-group">
-	                            			<input class="simple-field id" type="text" name="id" placeholder="ID" required/>
-	                            		</div>
-	                            		<div class="col-sm-2 form-group">
-		                            			<input class="button style-10" type="button" id="ckId" value="중복체크"/>
-		                            	</div>
+                            	<input type="hidden" name="modulus" id="modulus">
+                            	<input type="hidden" name="exponent" id="exponent">
+                            	
+                            	<label>ID</label>
+                            	<div class="row">
+	                            	<div class="col-sm-8 form-group">
+	                            		<input class="simple-field id" type="text" name="id" placeholder="ID" required/>
 	                            	</div>
-	                            	<span id="id-span" class="red-span"></span>
+	                            	<div class="col-sm-2 form-group">
+		                           			<input class="button style-10" type="button" id="ckId" value="중복체크"/>
+		                           	</div>
+	                            </div>
+	                            <span id="id-span" class="red-span"></span>
+                            	                            		<br>
+                            	<div class="row" >
+                            		<div class="col-sm-6">
+                            			<label>PASSWORD</label>
+	                            		<input class="simple-field" type="password" name="password1" id="password1" placeholder="PASSWORD" required/>
+	                            	</div>
+	                            		
+	                            	<div class="col-sm-6">
+	                            		<label>CONFIRM PASSWORD</label>
+	                            		<input class="simple-field" type="password" name="password" id="password2" placeholder="PASSWORD" required/>
+	                            	</div>
+                            	</div>
+                            	<span class="pw-span red-span"></span>
+                            	<br>
                             	
-                            		<br>
-                            		<div class="row" >
-                            			<div class="col-sm-6">
-                            				<label>PASSWORD</label>
-	                            			<input class="simple-field" type="password" name="password1" id="password1" placeholder="PASSWORD" required/>
-	                            		</div>
-	                            			
-	                            		<div class="col-sm-6">
-	                            			<label>CONFIRM PASSWORD</label>
-	                            			<input class="simple-field" type="password" name="password" id="password2" placeholder="PASSWORD" required/>
-	                            		</div>
-                            		</div>
-                            		<span class="pw-span red-span"></span>
-                            		<br>
-                            		
-                            		<label>NAME</label>
-                            		<input class="simple-field" type="text" name="name" placeholder="NAME" required/>
-                            		
-                            		<label>EMAIL</label>
-	                            	<input class="simple-field" type="email" name="email" placeholder="EMAIL" required/>
-	                            	
-                            		<label>ADDTRESS</label>
-									<div class="row">
-										<div class="col-sm-4 form-group">
-											<input type="text" class="simple-field" id="postcode" name="postcode" required disabled>
-										</div>
-										<div class="col-sm-2 form-group">
-											<input type="button" onclick="daumPostcode()" value="우편번호 찾기" class="button style-10"><br>
-										</div>
-		
-									</div>
-									<%-- /.row --%>
-									<div class="row">
-										<div class="col-sm-12 form-group">
-											<input type="text" class="simple-field" id="address" name="address" disabled required>
-											<span id="guide" style="color: #999" class="red-span"></span>
-										</div>
-									<%-- /.row --%>
-                            		
-                            		
-                            		<div class="row">
-	                            		<div class="col-sm-6 form-group">
-		                            		<label>AGE</label>
-		                            		<input class="simple-field" type="text" name="age" placeholder="AGE" required/>
-		                            	</div> 
-		                            	<div class="col-sm-6 form-group">
-		                            		<label>PHONE</label>
-		                            		<input class="simple-field" type="tel" name="phone" placeholder="PHONE" required/>
-										</div>
-									</div> 
-									
-									<br>
-									<label>GENDER</label>
-									<div class="row">
-										<div class="col-sm-6 form-group">
-											<label class="checkbox-entry radio">
-		                                         <input type="radio" name="gender" value="female"> <span class="check"></span> 여
-		                                    </label>
-	                                    </div>
-	                                    <div class="col-sm-6 form-group">
-		                                    <label class="checkbox-entry radio">
-		                                         <input type="radio" name="gender" value="male"> <span class="check"></span> 남
-		                                    </label>
-	                                    </div>
-									</div>
-									
-									<hr>
-								<button type="submit" class="button style-12" style="text-align: center">Register Account</button>
+                            	<label>NAME</label>
+                            	<input class="simple-field" type="text" name="name" placeholder="NAME" required/>
                             	
-                        	</form>
-                        	
-                        </div>
-                    </div><!-- ./regist-box -->
-                </div><!-- ./information-entry-->
-            </div><!-- ./row -->
-           </div><!-- ./information-blocks -->
-           
-          <div></div>
-        
+                            	<label>EMAIL</label>
+	                            <input class="simple-field" type="email" name="email" placeholder="EMAIL" required/>
+	                            
+                            	<label>ADDTRESS</label>
+								<div class="row">
+									<div class="col-sm-4 form-group">
+										<input type="text" class="simple-field" id="postcode" name="postcode" required disabled>
+									</div>
+									<div class="col-sm-2 form-group">
+										<input type="button" onclick="daumPostcode()" value="우편번호 찾기" class="button style-10"><br>
+									</div>
+											</div>
+								<%-- /.row --%>
+								<div class="row">
+									<div class="col-sm-12 form-group">
+										<input type="text" class="simple-field" id="address" name="address" disabled required>
+										<span id="guide" style="color: #999" class="red-span"></span>
+									</div>
+								<%-- /.row --%>
+                           		
+                           		
+                           		<div class="row">
+	                           		<div class="col-sm-6 form-group">
+		                           		<label>AGE</label>
+		                           		<input class="simple-field" type="text" name="age" placeholder="AGE" required/>
+		                           	</div> 
+		                           	<div class="col-sm-6 form-group">
+		                           		<label>PHONE</label>
+		                           		<input class="simple-field" type="tel" name="phone" placeholder="PHONE" required/>
+									</div>
+								</div> 
+								
+								<br>
+								<label>GENDER</label>
+								<div class="row">
+									<div class="col-sm-6 form-group">
+										<label class="checkbox-entry radio">
+		                                        <input type="radio" name="gender" value="female"> <span class="check"></span> 여
+		                                   </label>
+	                                   </div>
+	                                   <div class="col-sm-6 form-group">
+		                                   <label class="checkbox-entry radio">
+		                                        <input type="radio" name="gender" value="male"> <span class="check"></span> 남
+		                                   </label>
+	                                   </div>
+								</div>
+								
+								<hr>
+							<button type="submit" id="regist" class="button style-12" style="text-align: center">Register Account</button>
+                           	
+                       	</form>
+                       	
+                       </div>
+                   </div><!-- ./regist-box -->
+               </div><!-- ./information-entry-->
+           </div><!-- ./row -->
+          </div><!-- ./information-blocks -->
+          
+         <div></div>
+<script>
+
+$(document).ready(function() {
+	$("#modulus").val("${Modulus}");
+	$("#exponent").val("${Exponent}");
+	
+	$("#regist").click(function(event) {
+		var rsa = new RSAKey();
+	    rsa.setPublic($('#modulus').val(),$('#exponent').val());
+	    
+	    $("#password2").val(rsa.encrypt($("#password2").val()));
+	    
+	    return true;
+	})
+    
+	
+   	$("#password2").keyup(function(){
+   		check($("#password2").val());
+   	}) ;
+   
+   
+   	$("#ckId").click(function(){
+      var id = $(".id").val();
+      $.ajax({
+          url : "/member/regist/"+id,
+          type : "get",
+          success : function(data){
+              if(data == 'possible'){ 
+                  $("#id-span").html("사용가능한 아이디 입니다.");
+              }
+              else{
+                  $("#id-span").html("불가능한 아이디 입니다.");
+              }
+          },
+          error : function(xhr, statusText){
+              console.log("("+xhr.status+", "+statusText+")");
+              alert("사용불가능한 아이디 입니다.");
+          }
+      }); 
+   });
+});
+
+var check = function(data){
+   if(data != $("#password1").val()){
+       $(".pw-span").html("비밀번호가 일치하지 않습니다.");
+   } 
+   else{
+       $(".pw-span").html("");
+   }
+}
+</script>
 </body>
 </html>

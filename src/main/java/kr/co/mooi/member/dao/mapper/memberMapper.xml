@@ -4,18 +4,17 @@
                         
 <mapper namespace="kr.co.mooi.member.dao.MemberDao">
 
-       <insert id="insert" parameterType="Member" useGeneratedKeys="true" keyProperty="memberNo">
+       <insert id="regist" parameterType="Member" useGeneratedKeys="true" keyProperty="memberNo">
         INSERT INTO member
             (
                 id,
                 password,
                 email,
                 address,
+                phone,
+				gender,            
                 name,
-                postcode,
-                hp,
-                public_key,
-               	private_key
+                postcode
             )
             VALUES 
             (
@@ -23,13 +22,27 @@
                 #{password},
                 #{email},
                 #{address},
+                #{phone},
+                #{gender},
                 #{name},
-                #{postcode},
-                #{hp},
-                #{publicKey},
-                #{privateKey}
+                #{postcode}
             )
     </insert>
+    
+   <update id="updateSession" parameterType="Member">
+        UPDATE  member 
+        SET     session_key = #{sessionKey},
+        		session_limit = #{sessionLimit}
+        WHERE 	member_no = #{memberNo}	
+    </update>
+    
+    <select id="autoLogin" parameterType="string" resultType="Member">
+    	SELECT 	member_no
+    	FROM 	member
+    	WHERE	session_key = #{sessionKey}
+    	AND		session_limit > now()
+    </select>
+    
     
     <select id="listAll" resultType="Member">
         SELECT  member_no    AS     "memberNo",
@@ -87,15 +100,7 @@
         WHERE member_no = #{value}
     </select>
     
-    <update id="update" parameterType="Member">
-        UPDATE  member 
-        SET     password = #{password},
-                email = #{email},
-                address = #{address},
-                name = #{name},
-                postcode = #{postcode},
-                phone = #{phone}	
-    </update>
+ 
     
     <delete id="delete" parameterType="String">
         DELETE FROM member 
@@ -103,16 +108,17 @@
     </delete>
     
      <select id="isMember" parameterType="Member" resultType="Member">
-                 SELECT  member_no AS memberNo,
-        		id,
-                password,
-                email,
-                address,
-                name,
-                postcode,
-                hp,
-                public_key AS publicKey,
-               	private_key AS privateKey
+       SELECT member_no AS memberNo,
+        	  id,
+              password,
+              email,
+              address,
+              phone,
+			  gender,            
+              name,
+              postcode,
+              regdate,
+              state
         FROM member
         WHERE id = #{id} 
         AND password = #{password}

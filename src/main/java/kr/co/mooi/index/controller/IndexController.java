@@ -1,5 +1,7 @@
 package kr.co.mooi.index.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -7,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 
 	@RequestMapping("/")
-	public String index() {
+	public String root(HttpSession session) {
+		
 		return "index";
 	}
 	
-	@RequestMapping("/layout")
-	public String layout() {
-		return "/layout/layout";
+	@RequestMapping("/index")
+	public String index(HttpSession session) {
+		
+		return "index";
 	}
 }

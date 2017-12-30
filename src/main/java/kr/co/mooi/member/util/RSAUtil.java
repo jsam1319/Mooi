@@ -12,33 +12,32 @@ import java.util.Map;
 import javax.crypto.Cipher;
 
 public class RSAUtil {
-	
+
 	private RSAUtil() {}
-	
-	public static String encrypte(RSAKeySet keySet, String password) throws Exception {
-		Cipher cipher = Cipher.getInstance("RSA");
-		Encoder encoder = Base64.getEncoder();
-		
-		String encodedPw = null;
 
-		cipher.init(Cipher.ENCRYPT_MODE, keySet.getPublicKey());
-		byte[] encrpyte = cipher.doFinal(password.getBytes()); 
-		encodedPw = encoder.encodeToString(encrpyte);
-
-		return encodedPw;
-	}
-	
-	public static String decrypte(RSAKeySet keySet, String password) throws Exception {
+	public static String decrypte(Key privateKey, String password) throws Exception {
 		Cipher cipher = Cipher.getInstance("RSA");
-		Decoder decoder = Base64.getDecoder();
-		
+		byte[] encryptedBytes = hexToByteArray(password);
+
 		String plainPw = null;
+
+		cipher.init(Cipher.DECRYPT_MODE, privateKey);
+		byte[] arrData = cipher.doFinal(encryptedBytes);
+		plainPw = new String(arrData, "utf-8");
+
+		return plainPw;
+	}
+
+	private static byte[] hexToByteArray(String hex) {
+		if (hex == null || hex.length() % 2 != 0) return new byte[] {};
+		byte[] bytes = new byte[hex.length() / 2];
 		
-		cipher.init(Cipher.DECRYPT_MODE, keySet.getPrivateKey());
-		byte[] arrData = cipher.doFinal(decoder.decode(password));
-		plainPw = new String(arrData);
+		for (int i = 0; i < hex.length(); i += 2) {
+			byte value = (byte) Integer.parseInt(hex.substring(i, i + 2), 16);
+			bytes[(int) Math.floor(i / 2)] = value;
+		}
 		
-		return plainPw; 
+		return bytes;
 	}
 
 }

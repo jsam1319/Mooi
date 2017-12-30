@@ -8,7 +8,13 @@ public interface MemberDao {
 	
 	public int regist(Member member);
 	
+	public Member isMember(Member member);
+	
 	public Member select(int memberNo);
 	
 	public Member selectById(String id);
+	
+	public int updateSession(Member member);
+	
+	public Member autoLogin(String sessionKey);
 }

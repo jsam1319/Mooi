@@ -2,6 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="/resources/js/rsa.js"></script>
+<script src="/resources/js/jsbn.js"></script>
+<script src="/resources/js/prng4.js"></script>
+<script src="/resources/js/rng.js"></script>
+
 </head>
 
 <body class="style-10">
@@ -13,11 +18,14 @@
                             <h3>로그인</h3>
                         </div>
                          <form action="/member/login" method="post" class="form">
+                            <input type="hidden" name="modulus" id="modulus">
+                           	<input type="hidden" name="exponent" id="exponent">
+                            
                             <label>ID</label> <input class="simple-field" type="text" name="id" placeholder="Enter Email Address" value="" /> <label>Password</label>
-                            <input class="simple-field" type="password"  name="password" placeholder="Enter Password" value="" />
+                            <input class="simple-field" type="password" id="password" name="password" placeholder="Enter Password" value="" />
                             <div class="row">
 	                            <label class="col-sm-6 checkbox-entry">
-                                      <input type="checkbox" value="true" name="autoLogin"/> <span class="check"></span> 자동로그인
+                                      <input type="checkbox" value="true" name="isAutoLogin"/> <span class="check"></span> 자동로그인
                                  </label>
 	                            <div class="col-sm-6">
 	                            <p class="text-right"><button type="submit" class="button style-10" style=""> LOGIN </button></p>
@@ -42,5 +50,21 @@
            </div><%-- ./information-blocks --%>
            
           <div></div>
-        
+<script>
+$(document).ready(function() {
+	$("#modulus").val("${Modulus}");
+	$("#exponent").val("${Exponent}");
+	
+	$("button[type='submit']").click(function(event) {
+		var rsa = new RSAKey();
+	    rsa.setPublic($('#modulus').val(),$('#exponent').val());
+	    
+	    $("#password").val(rsa.encrypt($("#password").val()));
+	    
+	    return true;
+	})
+});
+
+
+</script>        
 </body>

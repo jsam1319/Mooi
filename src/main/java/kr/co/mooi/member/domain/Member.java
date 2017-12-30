@@ -5,37 +5,40 @@ public class Member {
 	int memberNo;
 	String id;
 	String password;
+	String address;
 	String name;
 	String email;
-	String hp;
+	String phone;
+	String regdate;
 	String state;
 	String postcode;
-	String address;
-	String publicKey;
-	String privateKey;
-	
+	String gender;
+	String sessionKey;
+	String sessionLimit;
 	
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Member(int memberNo, String id, String password, String name, String email, String hp, String state,
-			String postcode, String address, String publicKey, String privateKey) {
+	
+	
+	public Member(int memberNo, String id, String password, String address, String name, String email, String phone,
+			String regdate, String state, String postcode, String gender, String sessionKey, String sessionLimit) {
 		super();
 		this.memberNo = memberNo;
 		this.id = id;
 		this.password = password;
+		this.address = address;
 		this.name = name;
 		this.email = email;
-		this.hp = hp;
+		this.phone = phone;
+		this.regdate = regdate;
 		this.state = state;
 		this.postcode = postcode;
-		this.address = address;
-		this.publicKey = publicKey;
-		this.privateKey = privateKey;
+		this.gender = gender;
+		this.sessionKey = sessionKey;
+		this.sessionLimit = sessionLimit;
 	}
-
 
 
 	public int getMemberNo() {
@@ -68,6 +71,16 @@ public class Member {
 	}
 
 
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
 	public String getName() {
 		return name;
 	}
@@ -88,13 +101,23 @@ public class Member {
 	}
 
 
-	public String getHp() {
-		return hp;
+	public String getPhone() {
+		return phone;
 	}
 
 
-	public void setHp(String hp) {
-		this.hp = hp;
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+	public String getRegdate() {
+		return regdate;
+	}
+
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
 
 
@@ -118,44 +141,43 @@ public class Member {
 	}
 
 
-	public String getAddress() {
-		return address;
+	public String getGender() {
+		return gender;
 	}
 
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 
-	public String getPublicKey() {
-		return publicKey;
+	public String getSessionKey() {
+		return sessionKey;
 	}
 
 
-	public void setPublicKey(String publicKey) {
-		this.publicKey = publicKey;
+	public void setSessionKey(String sessionKey) {
+		this.sessionKey = sessionKey;
 	}
 
 
-	public String getPrivateKey() {
-		return privateKey;
+	public String getSessionLimit() {
+		return sessionLimit;
 	}
 
 
-	public void setPrivateKey(String privateKey) {
-		this.privateKey = privateKey;
+	public void setSessionLimit(String sessionLimit) {
+		this.sessionLimit = sessionLimit;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Member [memberNo=" + memberNo + ", id=" + id + ", password=" + password + ", name=" + name + ", email="
-				+ email + ", hp=" + hp + ", state=" + state + ", postcode=" + postcode + ", address=" + address
-				+ ", publicKey=" + publicKey + ", privateKey=" + privateKey + "]";
+		return "Member [memberNo=" + memberNo + ", id=" + id + ", password=" + password + ", address=" + address
+				+ ", name=" + name + ", email=" + email + ", phone=" + phone + ", regdate=" + regdate + ", state="
+				+ state + ", postcode=" + postcode + ", gender=" + gender + ", sessionKey=" + sessionKey
+				+ ", sessionLimit=" + sessionLimit + "]";
 	}
-	
-	
 	
 	
 }
