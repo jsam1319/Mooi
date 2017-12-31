@@ -12,8 +12,8 @@
 <meta name="viewport"
   content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui" />
   
-<!-- <link rel="shortcut icon" href="/resources/favicon.ico" type="image/x-icon"> 
-<link rel="icon" href="/resources/favicon.ico" type="image/x-icon"> -->
+<link rel="shortcut icon" href="/resources/img/logo/favicon.ico" type="image/x-icon"> 
+<link rel="icon" href="/resources/img/logo/favicon.ico" type="image/x-icon">
   
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="/resources/css/idangerous.swiper.css" rel="stylesheet" type="text/css" />
@@ -40,15 +40,16 @@
 	height : 100%;
 }
 
+header {
+	margin-top: 20px;
+}
+
 
 </style>
 
 </head>
-<<body>
-
-
+<body>
     <div id="content-block">
-
         <div class="content-center fixed-header-margin">
             <!-- HEADER -->
             <div class="header-wrapper style-17">
@@ -68,7 +69,7 @@
 
                     <div class="header-middle">
                         <div class="logo-wrapper">
-                            <a id="logo" href="#"><img src="/resources/img/logo-18.png" alt="" /></a>
+                            <a id="logo" href="#"><img src="/resources/img/logo/Logo.png" alt="" /></a>
                         </div>
 
                         <div class="middle-entry">
@@ -105,26 +106,26 @@
                             <a class="header-functionality-entry open-search-popup" href="#"><i class="fa fa-search"></i><span>Search</span></a>
 							<c:choose>
 								<c:when test="${login != null}">
-									<a class="header-functionality-entry" href="/member/logout"><i class="fa fa-copy"></i><span>Logout</span></a>
+									<a class="header-functionality-entry" href="/member/logout"><i class="fa fa-sign-out"></i><span>Logout</span></a>
 								</c:when>
 								<c:otherwise>
-									<a class="header-functionality-entry" href="/member/loginForm"><i class="fa fa-copy"></i><span>Login</span></a>
+									<a class="header-functionality-entry" href="/member/loginForm"><i class="fa fa-sign-in"></i><span>Login</span></a>
 								</c:otherwise>
 							</c:choose>                            
                             
                             <c:choose>
 								<c:when test="${login == -1}">
-									<a class="header-functionality-entry" href="/admin/"><i class="fa fa-copy"></i><span>Admin</span></a>
+									<a class="header-functionality-entry" href="/admin/"><i class="fa fa-unlock"></i><span>Admin</span></a>
 								</c:when>
 								<c:when test="${login > 1}">
-									<a class="header-functionality-entry" href="/mypage"><i class="fa fa-copy"></i><span>My Page</span></a>
+									<a class="header-functionality-entry" href="/mypage"><i class="fa fa-user-o"></i><span>My Page</span></a>
 								</c:when>
 								<c:otherwise>
-									<a class="header-functionality-entry" href="/member/registForm"><i class="fa fa-copy"></i><span>Regist</span></a>
+									<a class="header-functionality-entry" href="/member/registForm"><i class="fa fa-user-plus"></i><span>Regist</span></a>
 								</c:otherwise>
 							</c:choose> 
-                            
-                            <a class="header-functionality-entry open-cart-popup" href="#"><i class="fa fa-shopping-cart"></i><span>My Cart</span> <b>$255,99</b></a>
+                            	<a class="header-functionality-entry" href="/cart"><i class="fa fa-shopping-cart"></i><span>My Cart</span></a>
+                           <!--  <a class="header-functionality-entry open-cart-popup" href="/cart"><i class="fa fa-shopping-cart"></i><span>My Cart</span> <b>$255,99</b></a> -->
                         </div>
 
                     </div>
@@ -465,7 +466,7 @@
                 </div>
             </div>
         <div class="clear"></div>
-
+	</div>
 
     <div class="search-box popup">
         <form>

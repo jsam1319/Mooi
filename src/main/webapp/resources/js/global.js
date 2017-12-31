@@ -37,8 +37,15 @@ $(function() {
 	function pageCalculations(){
 		winW = $(window).width();
 		winH = $(window).height();
-		if($('.menu-button').is(':visible')) _isresponsive = true;
-		else _isresponsive = false;
+		if($('.menu-button').is(':visible')) {
+			_isresponsive = true;
+			console.log("mobile!");
+			$('header').attr("class", "type-3");
+		}
+		else {
+			$('header').attr("class", "type-1");
+			_isresponsive = false;
+		}
 
 		$('.fixed-header-margin').css({'padding-top':$('header').outerHeight(true)});
 		$('.parallax-slide').css({'height':winH});
