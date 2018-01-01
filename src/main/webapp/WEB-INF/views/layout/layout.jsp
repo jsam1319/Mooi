@@ -17,13 +17,13 @@
   
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="/resources/css/idangerous.swiper.css" rel="stylesheet" type="text/css" />
-<link href="/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700%7CDancing+Script%7CMontserrat:400,700%7CMerriweather:400,300italic%7CLato:400,700,900' rel='stylesheet' type='text/css' />
 <link href="/resources/css/style.css" rel="stylesheet" type="text/css" />
 
 
 <script src="/resources/js/jquery-2.1.3.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<script src="/resources/js/bootstrap.js"></script> 
 <script src="/resources/js/idangerous.swiper.min.js"></script>
 <script src="/resources/js/global.js"></script>
 
@@ -40,8 +40,8 @@
 	height : 100%;
 }
 
-header {
-	margin-top: 20px;
+.fa-reorder {
+	margin-top: 15px;
 }
 
 
@@ -60,8 +60,8 @@ header {
                             <div class="title"><i class="fa fa-phone"></i>Call Service Center <a href="tel:+821098072280"><b>010. 9807. 2280</b></a></div>
                         </div>
                         <div class="socials-box">
-                            <a href="https://www.facebook.com/mooikr/"><i class="fa fa-facebook"></i></a>
-                            <a href="https://www.instagram.com/mooi.kr/"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/mooikr/"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/mooi.kr/"><i class="fab fa-instagram"></i></a>
                         </div>
                         <div class="menu-button responsive-menu-toggle-class"><i class="fa fa-reorder"></i></div>
                         <div class="clear"></div>
@@ -69,7 +69,7 @@ header {
 
                     <div class="header-middle">
                         <div class="logo-wrapper">
-                            <a id="logo" href="#"><img src="/resources/img/logo/Logo.png" alt="" /></a>
+                            <a id="logo" href="/"><img src="/resources/img/logo/Logo.png" alt="" /></a>
                         </div>
 
                         <div class="middle-entry">
@@ -109,7 +109,7 @@ header {
 									<a class="header-functionality-entry" href="/member/logout"><i class="fa fa-sign-out"></i><span>Logout</span></a>
 								</c:when>
 								<c:otherwise>
-									<a class="header-functionality-entry" href="/member/loginForm"><i class="fa fa-sign-in"></i><span>Login</span></a>
+									<a class="header-functionality-entry" href="/member/loginForm"><i class="fa fa-sign-in-alt"></i><span>Login</span></a>
 								</c:otherwise>
 							</c:choose>                            
                             
@@ -336,13 +336,13 @@ header {
                                 <ul>
                                     <li><a href="#">Buy this theme</a></li>
                                     <li class="fixed-header-visible">
-                                        <a class="fixed-header-square-button open-cart-popup"><i class="fa fa-shopping-cart"></i></a>
+                                        <a class="fixed-header-square-button" href="/cart"><i class="fa fa-shopping-cart"></i></a>
                                         <a class="fixed-header-square-button open-search-popup"><i class="fa fa-search"></i></a>
                                     </li>
                                 </ul>
                                 <div class="clear"></div>
 
-                                <a class="fixed-header-visible additional-header-logo"><img src="/resources/img/logo-18.png" alt=""/></a>
+                                <a class="fixed-header-visible additional-header-logo" href="/"><img src="/resources/img/logo/Logo.png" alt=""/></a>
                             </nav>
                             <div class="navigation-footer responsive-menu-toggle-class">
                                 <div class="socials-box">
@@ -378,7 +378,7 @@ header {
                         <div class="footer-columns-entry">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <img class="footer-logo" src="/resources/img/logo-18.png" alt="" />
+                                    <img class="footer-logo" style="width : 270px; height:140px;" src="/resources/img/logo/Logo.png" alt="" />
                                     <div class="footer-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</div>
                                     <div class="footer-address">30 South Avenue San Francisco<br/>
                                         Phone: +78 123 456 789<br/>

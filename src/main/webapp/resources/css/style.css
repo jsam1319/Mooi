@@ -432,11 +432,11 @@ body:not(.mobile) .socials-box a:hover .fa{top: -5px;}
 #logo img{display: block; width: 100%;}
 .middle-entry{display: table-cell; vertical-align: middle;}
 .search-box{background: #fff;}
-.search-button{float: right; width: 45px; height: 45px; background: #03b4ea; position: relative;}
+.search-button{float: right; width: 45px; height: 45px; background: #333; position: relative;}
 .search-button:hover{background: #999!important;}
 .search-button .fa{display: block; line-height: 45px; text-align: center; color: #fff; font-size: 14px;}
 .search-button input[type="submit"]{position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0;}
-.search-drop-down{border-top: 1px #e8e8e8 solid; border-bottom: 1px #e8e8e8 solid; border-left: 1px #f2f2f2 solid; float: right; width: 135px; position: relative;}
+.search-drop-down{border-top: 1px #333 solid; border-bottom: 1px #333 solid; border-left: 1px #333 solid; float: right; width: 135px; position: relative;}
 .search-drop-down .title{line-height: 43px; padding: 0 30px 0 20px; position: relative; cursor: pointer; font-size: 12px; color: #999; font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;}
 .search-drop-down .title .fa{position: absolute; top: 0; width: 10px; right: 20px; text-align: center; line-height: 45px;}
 .search-drop-down .list{border-radius: 3px; background-color: #fff; -webkit-box-shadow: 0 0 15px rgba(0,0,0,.1); box-shadow: 0 0 15px rgba(0,0,0,.1); border: solid 1px #f4f4f4; position: absolute; left: 0; top: 100%; width: 100%; /*transform: scale(0); -moz-transform: scale(0); -webkit-transform: scale(0); -ms-transform: scale(0);*/ display: none; z-index: 1;}
@@ -444,7 +444,7 @@ body:not(.mobile) .socials-box a:hover .fa{top: -5px;}
 .search-drop-down .overflow{max-height: 161px;}
 .search-drop-down .category-entry{color: #999; font-size: 12px; font-weight: 400; padding: 7px 0 7px 15px; margin: 0 5px; border-bottom: 1px #f2f2f2 solid; cursor: pointer;}
 .search-drop-down .category-entry:hover{color: #3d3d3d;}
-.search-field{border: 1px #e8e8e8 solid; border-right: none; height: 45px; margin-right: 180px;}
+.search-field{border: 1px #333 solid; border-right: none; height: 45px; margin-right: 180px;}
 .search-field input[type="text"]{width: 100%; height: 43px; line-height: 43px; border: none; background: none; font-size: 14px; padding: 0 20px; color: #3d3d3d;}
 .navigation-copyright{font-size: 14px; line-height: 16px; color: #fff; padding: 25px 10px; text-align: center;}
 .navigation-copyright a{color: #e5b81d; font-weight: 600;}
@@ -783,14 +783,14 @@ a.sale-entry .hot-mark{z-index: 2;}
 }
 
 /* 04.06 - sidebar menu */
-.sidebar-navigation{border: 2px #03b4ea solid; margin-bottom: 25px;}
-.sidebar-navigation .title{background: #03b4ea; padding: 20px 25px; line-height: 15px; color: #fff; font-size: 13px; text-transform: uppercase; font-weight: 700; margin-top: -2px; position: relative;}
+.sidebar-navigation{border: 2px #333 solid; margin-bottom: 25px;}
+.sidebar-navigation .title{background: #333; padding: 20px 25px; line-height: 15px; color: #fff; font-size: 13px; text-transform: uppercase; font-weight: 700; margin-top: -2px; position: relative;}
 .sidebar-navigation .title .fa{display: none;}
 .sidebar-navigation .entry{cursor: pointer; border-bottom: 1px #ebebeb solid; display: block; font-weight: 500; font-size: 13px; line-height: 15px; color: #2e2e2e; padding: 17px 25px; position: relative;}
 body.mobile .sidebar-navigation .entry{color: #2e2e2e!important;}
 body.mobile .sidebar-navigation .entry:before{display: none;}
 .sidebar-navigation .entry:last-child{border: none;}
-.sidebar-navigation .entry:before{position: absolute; left: 0; bottom: 0; width: 100%; height: 0%; background: #03b4ea; content: ""; opacity: 0;}
+.sidebar-navigation .entry:before{position: absolute; left: 0; bottom: 0; width: 100%; height: 0%; background: #2e3436; content: ""; opacity: 0;}
 .sidebar-navigation .entry span{position: relative;}
 .sidebar-navigation .entry:hover:before, .sidebar-navigation .entry.active:before{height: 100%; opacity: 1;}
 .sidebar-navigation .entry:hover, .sidebar-navigation .entry.active{color: #fff;}

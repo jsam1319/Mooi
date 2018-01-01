@@ -11,5 +11,6 @@
 
 	<typeAliases>
 		<typeAlias alias="Member" type="kr.co.mooi.member.domain.Member"/>
+		<typeAlias alias="Product" type="kr.co.mooi.product.domain.Product"/>
 	</typeAliases>
 </configuration>
