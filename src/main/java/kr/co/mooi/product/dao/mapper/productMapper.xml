@@ -9,6 +9,7 @@
             (
                 category_no,
                 name,
+                sub_name,
                 price,
                 cost,
                 content,
@@ -18,10 +19,63 @@
             (
                 #{categoryNo},
                 #{name},
+                #{subName},
                 #{price},
                 #{cost},
                 #{content},
                 #{frontImage}
             )
+       <selectKey resultType="int" order="AFTER" keyProperty="productNo">
+       	SELECT LAST_INSERT_ID()
+       </selectKey>
     </insert>
+    
+    <select id="select" parameterType="int" resultType="Product">
+    	SELECT
+    		product_no, 
+    		category_no,
+            name,
+            sub_name,
+            price,
+            cost,
+            content,
+			front_image,
+			regdate
+    	FROM 
+    		product
+    	WHERE
+    		product_no = #{productNo}
+    </select>
+    
+    <select id="selectByCategory" parameterType="int" resultType="Product">
+    	SELECT
+    		product_no, 
+    		category_no,
+            name,
+            sub_name,
+            price,
+            cost,
+            content,
+			front_image,
+			regdate
+    	FROM 
+    		product
+    	WHERE
+    		category_no = #{categoryNo}
+    </select>
+    
+    <select id="selectAll" resultType="Product">
+    	SELECT
+    		product_no, 
+    		category_no,
+            name,
+            sub_name,
+            price,
+            cost,
+            content,
+			front_image,
+			regdate
+    	FROM 
+    		product
+    </select>
 </mapper>

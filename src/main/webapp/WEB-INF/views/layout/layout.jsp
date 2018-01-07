@@ -40,8 +40,10 @@
 	height : 100%;
 }
 
-.fa-reorder {
+.fa-align-justify {
 	margin-top: 15px;
+	margin-bottom: 15px;
+	
 }
 
 
@@ -63,7 +65,7 @@
                             <a href="https://www.facebook.com/mooikr/"><i class="fab fa-facebook"></i></a>
                             <a href="https://www.instagram.com/mooi.kr/"><i class="fab fa-instagram"></i></a>
                         </div>
-                        <div class="menu-button responsive-menu-toggle-class"><i class="fa fa-reorder"></i></div>
+                        <div class="menu-button responsive-menu-toggle-class"><i class="fas fa-align-justify"></i></div>
                         <div class="clear"></div>
                     </div>
 
@@ -345,7 +347,7 @@
                                 <a class="fixed-header-visible additional-header-logo" href="/"><img src="/resources/img/logo/Logo.png" alt=""/></a>
                             </nav>
                             <div class="navigation-footer responsive-menu-toggle-class">
-                                <div class="socials-box">
+                                <!-- <div class="socials-box">
                                     <a href="#"><i class="fa fa-facebook"></i></a>
                                     <a href="#"><i class="fa fa-twitter"></i></a>
                                     <a href="#"><i class="fa fa-google-plus"></i></a>
@@ -354,7 +356,7 @@
                                     <a href="#"><i class="fa fa-instagram"></i></a>
                                     <a href="#"><i class="fa fa-pinterest-p"></i></a>
                                     <div class="clear"></div>
-                                </div>
+                                </div> -->
                                 <div class="navigation-copyright">Created by <a href="#">8theme</a>. All rights reserved</div>
                             </div>
                         </div>

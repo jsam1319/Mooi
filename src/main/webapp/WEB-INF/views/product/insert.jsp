@@ -4,12 +4,28 @@
 
 <link href="/resources/summernote/summernote.css" rel="stylesheet" type="text/css" />
 <link href="/resources/css/bootstrap-imageupload.css" rel="stylesheet" type="text/css" />
+<link href="/resources/css/jquery.tag-editor.css" rel="stylesheet" type="text/css" />
 
 <script src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script src="/resources/summernote/summernote.js"></script>
 <script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
 <script src="/resources/js/bootstrap-imageupload.js"></script>
+<script src="/resources/js/jquery.tag-editor.js"></script>
 
+<style type="text/css">
+.modal-backdrop {
+	z-index: 0;
+
+}
+	.tag-editor { background: #fafafa; font-size: 12px; }
+	.tag-editor .tag-editor-tag {
+	    color: #fff; background: #555;
+	    border-radius: 2px;
+	}
+	.tag-editor .tag-editor-spacer { width: 7px; }
+	.tag-editor .tag-editor-delete { display: none; }
+
+</style>
 
 </head>
 
@@ -23,10 +39,17 @@
                             <h3 class="block-title main-heading">상품 등록</h3>
                                 <div class="row">
                                 	<div class="col-sm-6">
-                                          <label>상품 이름 <span>*</span></label>
+                                          <label>상품 제목 <span>*</span></label>
                                           <input class="simple-field" type="text" name="name"/>
                                           <div class="clear"></div>
                                  	</div>
+                                 	<div class="col-sm-6">
+                                          <label>상품 부제목 <span>*</span></label>
+                                          <input class="simple-field" type="text" name="subName"/>
+                                          <div class="clear"></div>
+                                 	</div>
+                             	</div>
+                             	 <div class="row">
                                      <div class="col-sm-6">
 	                             			<label>상품 카테고리<span>*</span></label>
 	                             			<select class="simple-field" name="categoryNo">
@@ -51,6 +74,14 @@
                              		<div class="col-sm-6">
                                        	<label>원가(￦) <span>*</span></label>
                                         <input class="simple-field" type="number" name="cost" required />
+                                      	<div class="clear"></div>
+                             		</div>
+                             	</div>
+                             	
+                             	<div class="row">
+                             		<div class="col-sm-12" style="margin-bottom: 20px">
+                                      	<label>키워드</label>
+                                        <input class="simple-field" type="text" id="keyword" name="keywordString"/>
                                       	<div class="clear"></div>
                              		</div>
                              	</div>
@@ -100,11 +131,11 @@
         <div class="clear"></div>  
 <script>
 $(document).ready(function() {
-	
+	$("#keyword").tagEditor();
 	
 	$('#imageupload').imageupload({
 	    allowedFormats: [ 'jpg' ],
-	    maxFileSizeKb: 512
+	    maxFileSizeKb: 2048
 	});
 	
 	$('#summernote').summernote({

@@ -565,6 +565,7 @@ header .icon-entry .text b{font-size: 16px; line-height: 18px; font-weight: 600;
     nav .column-2 .submenu .full-width-menu-items-left, nav .column-1 .full-width-menu-items-left{margin-right: 0;}
     nav .column-2 .submenu, nav .column-1 .submenu, nav .simple-list .submenu{width: auto; margin: 0; left: auto;}
     .submenu-background{display: none;}
+    .submenu_img{display : none;}
     nav .simple-list .submenu a{display: block; font-size: 12px; line-height: 14px; margin: 0; padding: 15px 45px 15px 20px; color: #2e2e2e; font-weight: 700; text-transform: uppercase; border: none;}
     nav .simple-list .submenu a .fa{display: none;}
     nav>ul>li>a .menu-label{position: relative; right: auto; top: -7px; margin-left: 5px;}
@@ -685,7 +686,7 @@ footer{position: relative;}
 .swiper-tabs .block-title{float: left; border-bottom: none; position: relative; padding-left: 7px; padding-right: 7px; margin-right: 15px; font-weight: 400; color: #a1a1a1;}
 .swiper-tabs .block-title.active{font-weight: 600; color: #2e2e2e;}
 .swiper-tabs .block-title:hover{color: #2e2e2e;}
-.swiper-tabs .block-title:before{position: absolute; left: 0; height: 3px; bottom: -2px; content: ""; background: #03b4ea; width: 0;}
+.swiper-tabs .block-title:before{position: absolute; left: 0; height: 3px; bottom: -2px; content: ""; background: #333; width: 0;}
 .swiper-tabs .block-title.active:before{width: 100%;}
 .tabs-entry{display: none;}
 .tabs-entry:first-child{display: block;}
@@ -2084,9 +2085,9 @@ select{background: #fff!important;}
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 /* 20 - ERROR PAGE */
 /*-------------------------------------------------------------------------------------------------------------------------------*/
-.container-404{text-align: center; max-width: 630px; margin: 0 auto; padding: 100px 30px;}
-.container-404 .title{font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 300px; line-height: 300px; color: #343434; letter-spacing: -25px;}
-.container-404 .description{font-size: 70px; line-height: 100px; color: #343434; font-weight: 300; margin-bottom: 5px;}
+.container-404{text-align: center; max-width: 730px; margin: 0 auto; padding: 100px 30px;}
+.container-404 .title{font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 70px; line-height: 300px; color: #343434;}
+.container-404 .description{font-size: 50px; line-height: 100px; color: #343434; font-weight: 300; margin-bottom: 5px;}
 .container-404 .text{font-weight: 400; color: #808080; font-size: 14px; line-height: 24px;}
 .container-404 .text a{font-weight: 600; color: #ca1515; text-decoration: underline;}
 .container-404 .text a:hover{color: #343434;}

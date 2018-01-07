@@ -13,7 +13,7 @@
 	<div class="content-push">
 		<div class="information-blocks">
 			<div class="row">
-				<div class="col-md-3">
+				<!-- <div class="col-md-3">
 					<div class="sidebar-navigation">
 						<div class="title">
 							Product Categories<i class="fa fa-angle-down"></i>
@@ -38,8 +38,8 @@
 						</div>
 					</div>
 					<div class="clear"></div>
-				</div>
-				<div class="col-md-9">
+				</div> -->
+				<div class="col-md-12">
 
 					<div class="navigation-banner-swiper">
 						<div class="swiper-container" data-autoplay="5000" data-loop="1"
@@ -47,7 +47,7 @@
 							<div class="swiper-wrapper">
 								<div class="swiper-slide active" data-val="0">
 									<div class="navigation-banner-wrapper light-text align-1"
-										style="background-image: url(img/jewellery-1.jpg);">
+										style="background-image: url(/resources/img/earring.jpg);">
 										<div class="navigation-banner-content">
 											<div class="cell-view">
 												<h2 class="subtitle">New special collection</h2>
@@ -66,7 +66,7 @@
 								</div>
 								<div class="swiper-slide" data-val="1">
 									<div class="navigation-banner-wrapper light-text align-1"
-										style="background-image: url(img/jewellery-2.jpg);">
+										style="background-image: url(/resources/img/earring2.jpg);">
 										<div class="navigation-banner-content">
 											<div class="cell-view">
 												<h2 class="subtitle">New special collection</h2>
@@ -85,7 +85,7 @@
 								</div>
 								<div class="swiper-slide" data-val="2">
 									<div class="navigation-banner-wrapper light-text align-1"
-										style="background-image: url(img/jewellery-3.jpg);">
+										style="background-image: url(/resources/img/earring3.jpg);">
 										<div class="navigation-banner-content">
 											<div class="cell-view">
 												<h2 class="subtitle">New special collection</h2>

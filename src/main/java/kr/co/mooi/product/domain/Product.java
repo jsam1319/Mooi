@@ -4,10 +4,12 @@ public class Product {
 	int productNo;
 	int categoryNo;
 	String name;
+	String subName;
 	String price;
 	String cost;
 	String content;
 	String frontImage;
+	String regdate;
 	
 	
 	
@@ -16,16 +18,18 @@ public class Product {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Product(int productNo, int categoryNo, String name, String price, String cost, String content,
-			String frontImage) {
+	public Product(int productNo, int categoryNo, String name, String subName, String price, String cost,
+			String content, String frontImage, String regdate) {
 		super();
 		this.productNo = productNo;
 		this.categoryNo = categoryNo;
 		this.name = name;
+		this.subName = subName;
 		this.price = price;
 		this.cost = cost;
 		this.content = content;
 		this.frontImage = frontImage;
+		this.regdate = regdate;
 	}
 	public int getProductNo() {
 		return productNo;
@@ -44,6 +48,12 @@ public class Product {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getSubName() {
+		return subName;
+	}
+	public void setSubName(String subName) {
+		this.subName = subName;
 	}
 	public String getPrice() {
 		return price;
@@ -69,10 +79,17 @@ public class Product {
 	public void setFrontImage(String frontImage) {
 		this.frontImage = frontImage;
 	}
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
 	@Override
 	public String toString() {
-		return "Product [productNo=" + productNo + ", categoryNo=" + categoryNo + ", name=" + name + ", price=" + price
-				+ ", cost=" + cost + ", content=" + content + ", frontImage=" + frontImage + "]";
+		return "Product [productNo=" + productNo + ", categoryNo=" + categoryNo + ", name=" + name + ", subName="
+				+ subName + ", price=" + price + ", cost=" + cost + ", content=" + content + ", frontImage="
+				+ frontImage + ", regdate=" + regdate + "]";
 	}
 	
 	

@@ -1,5 +1,7 @@
 package kr.co.mooi.product.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
@@ -22,4 +24,24 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productDao.insert(product);
 	}
+
+	@Override
+	public List<Product> selectByCategory(int categoryNo) {
+		// TODO Auto-generated method stub
+		return productDao.selectByCategory(categoryNo);
+	}
+
+	@Override
+	public Product select(int productNo) {
+		// TODO Auto-generated method stub
+		return productDao.select(productNo);
+	}
+
+	@Override
+	public List<Product> selectAll() {
+		// TODO Auto-generated method stub
+		return productDao.selectAll();
+	}
+	
+	
 }

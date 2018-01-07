@@ -64,7 +64,7 @@
 <body class="style-10">
         <div class="information-blocks">
             <div class="row">
-                <div class="col-sm-10 information-entry">
+                <div class="col-sm-12 information-entry">
                     <div class="regist-box">
                         <div class="article-container style-1">
                             <h3>New Customers</h3>
@@ -119,6 +119,7 @@
 										<input type="text" class="simple-field" id="address" name="address" disabled required>
 										<span id="guide" style="color: #999" class="red-span"></span>
 									</div>
+								</div>
 								<%-- /.row --%>
                            		
                            		
@@ -138,12 +139,12 @@
 								<div class="row">
 									<div class="col-sm-6 form-group">
 										<label class="checkbox-entry radio">
-		                                        <input type="radio" name="gender" value="female"> <span class="check"></span> 여
+		                                        <input type="radio" name="gender" value="female"> <span class="check"></span> 남
 		                                   </label>
 	                                   </div>
 	                                   <div class="col-sm-6 form-group">
 		                                   <label class="checkbox-entry radio">
-		                                        <input type="radio" name="gender" value="male"> <span class="check"></span> 남
+		                                        <input type="radio" name="gender" value="male"> <span class="check"></span> 여
 		                                   </label>
 	                                   </div>
 								</div>
@@ -159,7 +160,8 @@
            </div><!-- ./row -->
           </div><!-- ./information-blocks -->
           
-         <div></div>
+         </div>
+         
 <script>
 
 $(document).ready(function() {

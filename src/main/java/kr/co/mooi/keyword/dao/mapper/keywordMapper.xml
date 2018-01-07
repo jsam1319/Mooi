@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="kr.co.mooi.keyword.dao.KeywordDao">
+
+   	<insert id="insert" parameterType="Keyword" useGeneratedKeys="true" keyProperty="keywordNo">
+        INSERT INTO keyword
+            (
+  				product_no,
+  				name
+            )
+            VALUES 
+            (
+                #{productNo},
+                #{name}
+            )
+   	</insert>
+	
+	<select id="selectByProductNo" parameterType="int" resultType="Keyword">
+		SELECT 
+			keyword_no,
+			product_no,
+			name,
+			hit_count
+		FROM keyword
+		WHERE product_no = #{productNo}
+	</select>
+</mapper>

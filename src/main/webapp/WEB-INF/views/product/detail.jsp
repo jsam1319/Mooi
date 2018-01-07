@@ -13,17 +13,15 @@ var productSize = new Object;
 var bestSize = new Object;
 
 </script>
+
+<style>
+
+
+</style>
 </head>
 
 <body class="style-10">
 
-  <!-- LOADER -->
-  <div id="loader-wrapper">
-    <div class="bubbles">
-      <div class="title">loading</div>
-      <span></span> <span id="bubble2"></span> <span id="bubble3"></span>
-    </div>
-  </div>
 
   <!-- HEADER -->
   <div class="header-wrapper style-10">
@@ -42,18 +40,13 @@ var bestSize = new Object;
       <div class="row">
         <div class="col-sm-5 col-md-4 col-lg-5 information-entry">
           <div class="product-preview-box">
-            <div class="swiper-container product-preview-swiper slider"
-              data-autoplay="0" data-loop="1" data-speed="500"
+            <div class="swiper-container product-preview-swiper"
+              data-autoplay="0" data-speed="500"
               data-center="0" data-slides-per-view="1">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <div class="product-zoom-image">
-                    <img src="${gpurchase.frontImg}" alt="" />
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="product-zoom-image">
-                    <img src="${gpurchase.toggleImg}" alt="" />
+                    <img src="/resources/upload/${product.frontImage}" alt="" />
                   </div>
                 </div>
               </div>
@@ -64,7 +57,7 @@ var bestSize = new Object;
               <div class="pagination"></div>
               <div class="product-zoom-container">
                 <div class="move-box">
-                  <img class="default-image" src="${gpurchase.frontImg}" alt="" />
+                  <img class="default-image" src="${product.frontImage}" alt="" />
                 </div>
                 <div class="zoom-area"></div>
               </div>
@@ -75,30 +68,22 @@ var bestSize = new Object;
         <!-- 상품 정보 -->
           <div class="col-sm-7 col-md-4 information-entry">
             <div class="product-detail-box">
-              <h1 class="product-title">${gpurchase.gname}</h1>
-              <h3 class="product-subtitle">${gpurchase.cname}</h3>
+              <h1 class="product-title">${product.name}</h1>
+              <h3 class="product-subtitle">${product.subName}</h3>
 
               <div class="rating-box" id="avgGrade"></div>
 
               <div class="price detail-info-entry">
-                <div class="current">￦<fmt:formatNumber value="${gpurchase.price}" groupingUsed="true"/></div>
-              </div>
-              <div class="size-selector detail-info-entry">
-                <div class="detail-info-entry-title sizeDiv">Size</div>
-                
-                <!-- 상의/하의 구분해 데이터 출력  -->
-                <c:forEach var="size" items="${size}">
-                  <c:choose>
-                    <c:when test="${size.TOPSNO != null}">
-                      <div class="entry size" name="TOP" id="${size.TOPSNO}">${size.SIZES}</div>
-                    </c:when>
-                    <c:when test="${size.BOTTOMNO != null}">
-                      <div class="entry size" name="BOTTOM" id="${size.BOTTOMNO}">${size.SIZES}</div>
-                    </c:when>
-                  </c:choose>
-                </c:forEach>
+                <div class="current">￦<fmt:formatNumber value="${product.price}" groupingUsed="true"/></div>
               </div>
             
+	            <div class="quantity-selector detail-info-entry">
+	              <div class="detail-info-entry-title">주문수량</div>
+	              <div class="entry number-minus">&nbsp;</div>
+	              <div class="entry number">1</div>
+	              <div class="entry number-plus">&nbsp;</div>
+	           	</div>
+	            
               <div class="orderListDiv col-sm-12">
                 <div class="accordeon">
                   <div class="accordeon-title">주문항목</div>
@@ -110,15 +95,6 @@ var bestSize = new Object;
               </div>
               
               <div class="enterContent-3"></div>
-              <div class="purchaseNum">
-              <c:if test="${gpurchase.status == 1}">
-                <div class="col-xs-5 pNumDiv">(${gpurchase.pnum} / ${gpurchase.min}) 참여</div>
-              </c:if>
-                <div class="detail-info-entry col-xs-7 btnDiv">
-                  <div class="clear"></div>
-                </div>
-              </div>
-              <div class="col-sm-7 enterContent-3"></div>
 
               <div class="detail-info-entry buttonDiv">
                 <div class="clear"></div>
@@ -130,9 +106,8 @@ var bestSize = new Object;
         <!-- /.상품 정보 -->
 
         <!-- js 사용을 위한 hidden Value -->
-        <input type="hidden" id="gpurchaseNo" value="${gpurchase.gpurchaseNo}">
-        <input type="hidden" id="goodsNo" value="${gpurchase.goodsNo}">
-        <input type="hidden" id="memberNo" value="${no}">
+        <input type="hidden" id="productNo" value="${product.productNo}">
+        <input type="hidden" id="memberNo" value="${login}">
         <input type="hidden" id="status" value="${gpurchase.status}">
         <input type="hidden" id="askCnt" value="${askCnt}">
         <!-- /.js 사용을 위한 hidden Value -->
@@ -144,19 +119,6 @@ var bestSize = new Object;
           <div class="row">
             <div class="col-md-12">
               <div class="information-blocks">
-                
-                <!-- 체형별 사이즈 정보 제공 시작 -->
-                 <div class="information-entry products-list">
-                  <h3 class="block-title inline-product-column-title" style="line-height:150%;"> 체형별 사이즈 정보 </h3>
-                  <div class="inline-product-entry">
-                       	<div class="price">
-                       		<div class="current" id="sizeAnnounce"></div>
-						</div>
-						<h3 class="compare product-subtitle" style="text-decoration:none;  line-height: 150%;"></h3>
-                    <div class="clear"></div>
-                  </div>
-                </div>
-                <!-- 체형별 사이즈 정보 제공 끝 -->
                 
                 <br><br>
                 
@@ -170,10 +132,10 @@ var bestSize = new Object;
       <div class="enterContent-1"></div>
       
        <!-- 상품 Keyword(Tag) -->
-      <div class="tags-selector detail-info-entry col-sm-6">
+      <div class="tags-selector detail-info-entry col-sm-6" style="margin-top: 20px; margin-bottom: 20px">
         <div class="detail-info-entry-title">Tags: </div>
        <c:forEach var="keyword" items="${keyword}">
-          <a href="#">${keyword}</a>&nbsp;
+          <a href="#">${keyword.name}</a>&nbsp;
           <c:if test="${not status.last}">/&nbsp; </c:if>
        </c:forEach>
       </div>
@@ -192,7 +154,7 @@ var bestSize = new Object;
           class="button style-40" href="#productInfo3">유의 사항</a>
       </div>
 
-      <div class="inline-product-entry">${gpurchase.detail}<br>${orderCheck}</div>
+      <div class="inline-product-entry">${product.content}</div>
 
       <div id="productInfo2"></div>
       
