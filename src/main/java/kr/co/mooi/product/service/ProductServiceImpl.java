@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import kr.co.mooi.product.dao.ProductDao;
+import kr.co.mooi.product.domain.PageBuilder;
 import kr.co.mooi.product.domain.Product;
 
 @Service
@@ -26,9 +27,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> selectByCategory(int categoryNo) {
+	public List<Product> selectByCategory(PageBuilder pageBuilder) {
 		// TODO Auto-generated method stub
-		return productDao.selectByCategory(categoryNo);
+		return productDao.selectByCategory(pageBuilder);
 	}
 
 	@Override

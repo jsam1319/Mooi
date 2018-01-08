@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.mooi.image.service.ImageService;
 import kr.co.mooi.keyword.domain.Keyword;
 import kr.co.mooi.keyword.service.KeywordService;
+import kr.co.mooi.product.domain.PageBuilder;
 import kr.co.mooi.product.domain.Product;
 import kr.co.mooi.product.service.ProductService;
 
@@ -91,9 +92,14 @@ public class ProductController {
 	
 	@RequestMapping(value="/product/list/{categoryNo}", method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> listByCategory(@PathVariable int categoryNo) {
+	public Map<String, Object> listByCategory(@PathVariable int categoryNo, int page) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<Product> products = productService.selectByCategory(categoryNo);
+		
+		PageBuilder pageBuilder = new PageBuilder();
+		pageBuilder.setCategoryNo(categoryNo);
+		pageBuilder.setPage(page * 8);
+		
+		List<Product> products = productService.selectByCategory(pageBuilder);
 		
 		resultMap.put("result", "FAIL");
 		

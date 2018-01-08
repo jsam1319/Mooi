@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html; charset=utf-8"%>
 
 <head>
@@ -57,7 +58,7 @@ var bestSize = new Object;
               <div class="pagination"></div>
               <div class="product-zoom-container">
                 <div class="move-box">
-                  <img class="default-image" src="${product.frontImage}" alt="" />
+                  <img class="default-image" src="/resources/upload/${product.frontImage}" alt="" />
                 </div>
                 <div class="zoom-area"></div>
               </div>
@@ -72,28 +73,22 @@ var bestSize = new Object;
               <h3 class="product-subtitle">${product.subName}</h3>
 
               <div class="rating-box" id="avgGrade"></div>
-
+			  <c:set var="total" value="${product.price}" />
+				
               <div class="price detail-info-entry">
-                <div class="current">￦<fmt:formatNumber value="${product.price}" groupingUsed="true"/></div>
+                <div class="current"><fmt:formatNumber value="${product.price}" type="currency" groupingUsed="true"/></div>
               </div>
-            
 	            <div class="quantity-selector detail-info-entry">
 	              <div class="detail-info-entry-title">주문수량</div>
 	              <div class="entry number-minus">&nbsp;</div>
 	              <div class="entry number">1</div>
 	              <div class="entry number-plus">&nbsp;</div>
 	           	</div>
-	            
-              <div class="orderListDiv col-sm-12">
-                <div class="accordeon">
-                  <div class="accordeon-title">주문항목</div>
-                  <!-- 주문항목 appendDiv -->
-                  <div class="accordeon-entry orderItem" style="display: block;">
-                  </div>
-                  <!-- /.주문항목 appendDiv -->
-                </div>
-              </div>
+
+
               
+              <a class="button style-10" id="order"> <p id="total"><fmt:formatNumber value="${total}" groupingUsed="true"/> 원</p> 주문하기 </a>
+                     	
               <div class="enterContent-3"></div>
 
               <div class="detail-info-entry buttonDiv">
@@ -208,21 +203,6 @@ var bestSize = new Object;
           class="button style-40" href="#productInfo2">상품 리뷰</a> <a
           class="button style-14" href="#productInfo3">유의 사항</a>
       </div>
-      <c:choose>
-        <c:when test="${gpurchase.status == 1 }">
-          <div class="inline-product-entry">
-            <p>진행중인 공동구매입니다.</p>
-            <p>공동구매 상품이므로 반품은 불가능합니다.</p>
-            <p>구매는 한번에 한 상품씩 가능합니다.</p>
-          </div>
-        </c:when>
-        <c:when test="${gpurchase.status == 2 }">
-          <div class="inline-product-entry">
-            <p>마감된 공동구매입니다.</p>
-            <p>해당 상품 공동구매를 원하시면 재공구요청을 해주세요.</p>
-          </div>
-        </c:when>
-      </c:choose>
     </div>
   </div>
 
@@ -235,6 +215,22 @@ var bestSize = new Object;
   <script src="/resources/js/ko.js"></script>
   <script src="/resources/js/gpurchase/product.js"></script>
   <script src="/resources/js/jquery.raty.js"></script>
-  <link href="/resources/css/gpurchase.css" rel="stylesheet" type="text/css"></link>
+
+<script>
+
+$(document).ready(function() {
+	$(".entry").click(function() {
+		var number = $(".number").html() * ${total};
+		
+		$("#total").html(numberWithCommas(number) + " 원");
+	})
+})
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+</script>
+
 
 </body>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <body class="style-10">
+
 <style>
 .goods-regdate{
   font-size: 13px; 
@@ -11,17 +12,12 @@
   margin-bottom: 7px;
 }
 </style>
+
   <!-- LOADER -->
-  <div id="loader-wrapper">
-    <div class="bubbles">
-      <div class="title">loading</div>
-      <span></span> <span id="bubble2"></span> <span id="bubble3"></span>
-    </div>
-  </div>
   <div class="content-push">
 
     <div class="breadcrumb-box">
-      <a href="/">Home</a> <a href="/product/list/110">상품 목록</a>
+      <a href="/">Home</a> <i class="fas fa-caret-right"></i> <a href="/product/list/110">상품 목록</a>
     </div>
 
     <div class="information-blocks">
@@ -67,10 +63,10 @@
                   <div class="row shop-grid grid-view listView">
                   
                   
-                  
                   </div>
-                  <div class="page-selector">
-                      <a class="moreView"><i class="fa fa-angle-down"></i></a>
+                  
+                  <div class="page-selector" style="text-align: center;">
+                    <a class="button style-10" id="more" style="font-size: 15px">더 보기(MORE)</a>
                     <div class="pages-box">
                       <a href="#" class="square-button"><i class="fa fa-angle-up"></i></a>
                     </div>
@@ -93,14 +89,14 @@
             <div class="enterContent-2"></div>
                 <div class="article-container style-1">
                 <ul>
-                    <li><a href="/product/list/110"> EARRING</a></li>
-                    <li><a href="/product/list/120"> PIERCING</a></li>
-                    <li><a href="/product/list/130"> NECKLACE</a></li>
-                    <li><a href="/product/list/140"> BRACELET</a></li>
-                    <li><a href="/product/list/150"> RING</a></li>
-                    <li><a href="/product/list/210"> HAIR ITEM</a></li>
-                    <li><a href="/product/list/220"> ETC</a></li>
-                    <li><a href="/product/list/230"> ON SALE</a></li>
+                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/110"> EARRING</a></li>
+                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/120"> PIERCING</a></li>
+                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/130"> NECKLACE</a></li>
+                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/140"> BRACELET</a></li>
+                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/150"> RING</a></li>
+                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/210"> HAIR ITEM</a></li>
+                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/220"> ETC</a></li>
+                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/230"> ON SALE</a></li>
                     </ul>
                 </div>
           	</div>
@@ -113,26 +109,35 @@
   <div class="clear"></div>
   
 <script>
-
+var page = 0;
 
 $(document).ready(function() {
+	getList(0);
+})
 
-	getList();
-	
-	
-	
-	
+$("#more").click(function() {
+	page = page + 1;
+	getList(page);
 })
 
 
-
-function getList() {
+function getList(page) {
 	var categoryNo = $("#category").val();
 	
 	$.ajax({
 		url : "/product/list/" + categoryNo,
 		dataType : "json",
+		data : {
+			"page" : page
+		},
 		success : function(data) {
+			if(data.result == "FAIL") {
+				alert("마지막 페이지 입니다.");
+				window.page = window.page - 1;
+				console.log(window.page);
+				return;
+			}
+			
 			$(".listView").append(returnStr(data.list));
 			console.log(data);
 		},
@@ -153,11 +158,10 @@ function returnStr(data) {
 		str += "<div class='col-md-3 col-sm-4 shop-grid-item'>"
       	str += "	<div class='product-slide-entry'>"
       	str += "		<div class='product-image'>"
-      	str += "			<img src='/resources/upload/"+list.frontImage+"' alt='image' />"
-	    /* str += "			<img src='"+list.toggleImg+"' alt='image' />" shift-image*/
+      	str += "			<a href='/product/detailForm/"+list.productNo+"'><img src='/resources/upload/"+list.frontImage+"' alt='image' /></a>"
       	str += "		</div>"
       	str += "		<a class='tag'>"+list.subName+"</a>"
-      	str += "		<a href='/product/"+list.productNo+"' class='title loginTitle' title='"+list.productNo+"'>"+list.name+"</a>"
+      	str += "		<a href='/product/detailForm/"+list.productNo+"' class='title loginTitle' title='"+list.productNo+"'>"+list.name+"</a>"
 		str += "		<div class='price gpurchasePrice'>"
       	str += "        	<div class='current gpurchasePrice'>￦"+list.price+"</div>"
       	str += "		</div>"
