@@ -70,7 +70,7 @@ public class ProductController {
 	
 	@RequestMapping(value="/product/insert", method=RequestMethod.POST)
 	public String insert(Product product, MultipartFile image, HttpServletRequest request, String keywordString) throws Exception {
-		String frontImage = imageService.uploadImage(image);
+		String frontImage = imageService.uploadImage(request, image);
 		product.setFrontImage(frontImage);
 		
 		logger.info(productService.insert(product));

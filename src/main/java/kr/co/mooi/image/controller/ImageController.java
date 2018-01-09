@@ -22,7 +22,7 @@ public class ImageController {
 	@RequestMapping(value="/image/body", method=RequestMethod.POST)
 	@ResponseBody
 	public String uploadImage(MultipartFile file, HttpServletRequest request) throws Exception {
-		return imageService.uploadImage(file);
+		return imageService.uploadImage(request, file);
 	}
 	
 }
