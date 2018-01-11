@@ -173,7 +173,6 @@ $(document).ready(function() {
 	        enctype: 'multipart/form-data',
 	        processData: false,
 	        success: function(url) {
-	        	alert(url)
 	         	$(el).summernote('editor.insertImage', "/resources/upload/" + url, function($image) {
 	         		$image.css('width', '480px');	
 	         		$image.css('height', 'auto');

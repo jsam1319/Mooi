@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="kr.co.mooi.cart.dao.CartDao">
+
+       <insert id="insert" parameterType="Cart" useGeneratedKeys="true" keyProperty="cartNo">
+        INSERT INTO cart
+            (
+                member_no,
+				product_no,
+				amount                
+            )
+        VALUES 
+            (
+                #{memberNo},
+                #{productNo},
+                #{amount}
+            )
+       <selectKey resultType="int" order="AFTER" keyProperty="cartNo">
+       	SELECT LAST_INSERT_ID()
+       </selectKey>
+    </insert>
+    
+    <delete id="delete" parameterType="int">
+    	DELETE 
+    		FROM cart
+    	WHERE 
+    		cart_no = #{cartNo}
+    </delete>
+   
+   	<update id="update" parameterType="Cart">
+   		UPDATE cart
+   		SET
+   			amount = #{amount}
+   		WHERE
+   			cart_no = #{cartNo}
+   	</update>
+    
+    <select id="selectByMemberNo" parameterType="int" resultType="Cart">
+    	SELECT
+    		cart_no, 
+    		member_no,
+            product_no,
+			amount
+    	FROM 
+    		cart
+    	WHERE
+    		member_no = #{memberNo}
+    </select>
+</mapper>

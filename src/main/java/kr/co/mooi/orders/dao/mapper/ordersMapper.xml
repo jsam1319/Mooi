@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="kr.co.mooi.orders.dao.OrdersDao">
+
+       <insert id="insert" parameterType="Orders" useGeneratedKeys="true" keyProperty="ordersNo">
+        INSERT INTO orders
+            (
+                member_no,
+                name,
+                phone,
+                address,
+                remain_addr,
+                postcode,
+                price,
+                cof,
+                orderer_name,
+                orderer_phone
+            )
+            VALUES 
+            (
+                #{memberNo},
+                #{name},
+                #{phone},
+                #{address},
+                #{remainAddr},
+                #{postcode},
+                #{price},
+                #{cof},
+                #{ordererName},
+                #{ordererPhone}
+            )
+    </insert>
+    
+    <select id="select" resultType="Orders" parameterType="int">
+    	SELECT
+  			orders_no, 
+  			member_no,
+            name,
+            phone,
+            address,
+            remain_addr,
+            regdate,
+            postcode,
+            price,
+            cof,
+            orderer_name,
+            orderer_phone
+       	FROM orders
+       	WHERE orders_no = #{ordersNo}
+    
+    
+    </select>
+    
+  	<select id="selectByMemeberNo" resultType="Orders" parameterType="int">
+  		SELECT
+  			orders_no, 
+  			member_no,
+            name,
+            phone,
+            address,
+            remain_addr,
+            regdate,
+            postcode,
+            price,
+            cof,
+            orderer_name,
+            orderer_phone
+       	FROM orders
+       	WHERE member_no = #{memberNo}
+  	</select>
+  	
+  	
+</mapper>

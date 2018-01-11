@@ -14,5 +14,8 @@
 		<typeAlias alias="Product" type="kr.co.mooi.product.domain.Product"/>
 		<typeAlias alias="Keyword" type="kr.co.mooi.keyword.domain.Keyword"/>
 		<typeAlias alias="PageBuilder" type="kr.co.mooi.product.domain.PageBuilder"/>
+		<typeAlias alias="Cart" type="kr.co.mooi.cart.domain.Cart"/>
+		<typeAlias alias="Orders" type="kr.co.mooi.orders.domain.Orders"/>
+		
 	</typeAliases>
 </configuration>

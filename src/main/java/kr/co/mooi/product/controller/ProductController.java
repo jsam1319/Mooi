@@ -37,6 +37,13 @@ public class ProductController {
 	@Inject
 	KeywordService keywordService;
 	
+	@RequestMapping(value="/product/{productNo}", method=RequestMethod.GET)
+	@ResponseBody
+	public Product select(@PathVariable int productNo) {
+		return productService.select(productNo);
+	}
+
+	
 	@RequestMapping("/product/insertForm")
 	public String insertForm() {
 		return "product/insert";

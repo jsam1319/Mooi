@@ -126,7 +126,7 @@
 									<a class="header-functionality-entry" href="/member/registForm"><i class="fa fa-user-plus"></i><span>Regist</span></a>
 								</c:otherwise>
 							</c:choose> 
-                            	<a class="header-functionality-entry" href="/cart"><i class="fa fa-shopping-cart"></i><span>My Cart</span></a>
+                            	<a class="header-functionality-entry" href="/cart/listForm"><i class="fa fa-shopping-cart"></i><span>My Cart</span></a>
                            <!--  <a class="header-functionality-entry open-cart-popup" href="/cart"><i class="fa fa-shopping-cart"></i><span>My Cart</span> <b>$255,99</b></a> -->
                         </div>
 
@@ -250,13 +250,13 @@
                                                     <div class="col-lg-4">
                                                         <div class="submenu-list-title"><a href="index-wide.html">Products <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
                                                         <ul class="list-type-1 toggle-list-container">
-                                                       		<li><a name="menu" href="#"><i class="fa fa-angle-right"></i>EARRING</a></li>
-                                                            <li><a name="menu" href="#"><i class="fa fa-angle-right"></i>PIERCING</a></li>
-                                                            <li><a name="menu" href="#"><i class="fa fa-angle-right"></i>NECKLACE</a></li>
-                                                            <li><a name="menu" href="#"><i class="fa fa-angle-right"></i>BRACELET</a></li>
-                                                            <li><a name="menu" href="#"><i class="fa fa-angle-right"></i>RING</a></li>
-                                                            <li><a name="menu" href="#"><i class="fa fa-angle-right"></i>HAIR-ITEM</a></li>
-                                                            <li><a name="menu" href="#"><i class="fa fa-angle-right"></i>ETC</a></li>
+                                                       		<li><a name="menu" href="/product/listForm/110"><i class="fa fa-angle-right"></i>EARRING</a></li>
+                                                            <li><a name="menu" href="/product/listForm/120"><i class="fa fa-angle-right"></i>PIERCING</a></li>
+                                                            <li><a name="menu" href="/product/listForm/210"><i class="fa fa-angle-right"></i>NECKLACE</a></li>
+                                                            <li><a name="menu" href="/product/listForm/220"><i class="fa fa-angle-right"></i>BRACELET</a></li>
+                                                            <li><a name="menu" href="/product/listForm/310"><i class="fa fa-angle-right"></i>RING</a></li>
+                                                            <li><a name="menu" href="/product/listForm/410"><i class="fa fa-angle-right"></i>HAIR-ITEM</a></li>
+                                                            <li><a name="menu" href="/product/listForm/0"><i class="fa fa-angle-right"></i>ETC</a></li>
                                                         </ul>
                                                     </div>
                                                     
@@ -338,7 +338,7 @@
                                 <ul>
                                     <li><a href="#">Buy this theme</a></li>
                                     <li class="fixed-header-visible">
-                                        <a class="fixed-header-square-button" href="/cart"><i class="fa fa-shopping-cart"></i></a>
+                                        <a class="fixed-header-square-button" href="/cart/listForm"><i class="fa fa-shopping-cart"></i></a>
                                         <a class="fixed-header-square-button open-search-popup"><i class="fa fa-search"></i></a>
                                     </li>
                                 </ul>
@@ -668,7 +668,6 @@
             </div>
         </div>
     </div>
-    
 <script>
 $(document).ready(function() {
 	$("a[name='menu']").mouseover(function(event) {

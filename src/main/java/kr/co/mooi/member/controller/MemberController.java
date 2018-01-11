@@ -59,7 +59,7 @@ public class MemberController {
 		
 		if(session.getAttribute("RSA_private") != null) {
 			if(memberService.regist(member, (Key)session.getAttribute("RSA_private")) > 0)
-				resultPage = "member/result";
+				resultPage = "/member/result";
 		}
 
 		session.removeAttribute("RSA_private");

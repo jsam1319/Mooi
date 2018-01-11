@@ -17,6 +17,9 @@ var bestSize = new Object;
 
 <style>
 
+.cart {
+	margin-bottom : 10px;
+}
 
 </style>
 </head>
@@ -84,10 +87,9 @@ var bestSize = new Object;
 	              <div class="entry number">1</div>
 	              <div class="entry number-plus">&nbsp;</div>
 	           	</div>
-
-
-              
-              <a class="button style-10" id="order"> <p id="total"><fmt:formatNumber value="${total}" groupingUsed="true"/> 원</p> 주문하기 </a>
+				<h3 class="product-plaintitle" id="total">총 금액 : <fmt:formatNumber value="${total}" groupingUsed="true"/> 원</h3>
+              <div class="cart"><a class="button style-10" id="cart"> 장바구니에 담기 </a></div>
+              <div><a class="button style-10" id="order"> 주문하기 </a></div>
                      	
               <div class="enterContent-3"></div>
 
@@ -103,8 +105,6 @@ var bestSize = new Object;
         <!-- js 사용을 위한 hidden Value -->
         <input type="hidden" id="productNo" value="${product.productNo}">
         <input type="hidden" id="memberNo" value="${login}">
-        <input type="hidden" id="status" value="${gpurchase.status}">
-        <input type="hidden" id="askCnt" value="${askCnt}">
         <!-- /.js 사용을 위한 hidden Value -->
 
         <div class="clear visible-xs visible-sm"></div>
@@ -222,7 +222,29 @@ $(document).ready(function() {
 	$(".entry").click(function() {
 		var number = $(".number").html() * ${total};
 		
-		$("#total").html(numberWithCommas(number) + " 원");
+		$("#total").html("총 금액 : " + numberWithCommas(number) + " 원");
+	})
+	
+	$("#cart").click(function() {
+		var amount = $(".number").html();
+		var productNo = $("#productNo").val();
+		
+		$.ajax({
+			url : "/cart",
+			dataType : "json",
+			type : "POST",
+			data : {
+				productNo : productNo,
+				amount : amount
+			},
+			success : function(data) {
+				alert("물품이 장바구니에 성공적으로 담겼습니다.");
+			},
+			error : function(data) {
+				console.log("System ERROR");
+				console.log(data);
+			}
+		})
 	})
 })
 
