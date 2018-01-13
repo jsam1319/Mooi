@@ -66,30 +66,32 @@
     
     <select id="select" resultType="Member">
         SELECT  member_no AS memberNo,
-        		id,
-                password,
-                email,
-                address,
-                name,
-                postcode,
-                hp,
-                public_key AS publicKey,
-               	private_key AS privateKey
+        	 	id,
+              	password,
+              	email,
+              	address,
+              	phone,
+			  	gender,            
+              	name,
+              	postcode,
+              	regdate,
+              	state
         FROM member
         WHERE member_no = #{value}
     </select>
     
      <select id="selectById" resultType="Member">
         SELECT  member_no AS memberNo,
-        		id,
-                password,
-                email,
-                address,
-                name,
-                postcode,
-                hp,
-                public_key AS publicKey,
-               	private_key AS privateKey
+	        	id,
+	            password,
+	            email,
+	            address,
+	            phone,
+			 	gender,            
+	            name,
+	            postcode,
+	            regdate,
+	            state
         FROM member
         WHERE id = #{value}
     </select>

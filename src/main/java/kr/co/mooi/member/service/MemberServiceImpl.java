@@ -40,4 +40,8 @@ public class MemberServiceImpl implements MemberService {
 	public Member autoLogin(String sessionKey) {
 		return memberDao.autoLogin(sessionKey);
 	}
+	
+	public Member select(int memberNo) {
+		return memberDao.select(memberNo);
+	}
 }

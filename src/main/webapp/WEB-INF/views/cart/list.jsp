@@ -69,8 +69,7 @@
                             <div class="cart-summary-box">
                                 <div class="sub-total">Subtotal: $990,00</div>
                                 <div class="grand-total">Grand Total $1029,79</div>
-                                <a class="button style-10" id="order" href="#">Proceed To Checkout</a>
-                                <a class="simple-link" href="#">Checkout with Multiple Addresses</a>
+                                <a class="button style-10" id="order" href="/orderForm">선택한 상품 주문하기</a>
                             </div>
                         </div>
                     </div>
@@ -118,11 +117,23 @@
 	   $("#order").click(function() {
 		   addOrderCookie();
 	   })
+	   
+	$(document).on('click', '.entry', function() {
+		if($(this).attr('class') == "entry number") return false;	   
+		   
+		var number = $(this).siblings().filter(".number").html();
+		
+		var tr = $(this).parent().parent().parent();
+		var subtotal = $(tr).find(".subtotal");
+		var price = $(tr).find("input[name='price']").val();
+		
+		$(subtotal).html(numberWithCommas(price * number) + " 원")
+	})
    })
    
    function addEntry(cart) {
 	   var returnStr = "";
-	   var product = "1234";
+	   var product = "";
 	   
 	   $.ajax({
 		   url : "/product/" + cart.productNo,
@@ -157,7 +168,7 @@
 					"           </div>\n" + 
 					"       </div>\n" + 
 					"   </td>\n" + 
-					"   <td>" + product.price + "</td>\n" + 
+					"   <td>" + numberWithCommas(product.price) + " 원 <input type='hidden' name='price' value='"+ product.price +"'></td>\n" + 
 					"   <td>\n" + 
 					"       <div class=\"quantity-selector detail-info-entry\">\n" + 
 					"           <div class=\"entry number-minus\">&nbsp;</div>\n" + 
@@ -165,7 +176,7 @@
 					"           <div class=\"entry number-plus\">&nbsp;</div>\n" + 
 					"       </div>\n" + 
 					"   </td>\n" + 
-					"   <td><div class=\"subtotal\">"+ product.price * cart.amount +"</div></td>\n" + 
+					"   <td><div class=\"subtotal\">"+ numberWithCommas(product.price * cart.amount) +" 원</div></td>\n" + 
 					"   <td><a class=\"remove-button\"><i class=\"fa fa-times\"></i></a></td>\n" + 
 					"</tr>\n";
 		
@@ -194,12 +205,15 @@
 	   
 	   $.ajax({
 		   url : "/order/ordersCookie",
-		   dataType : "json",
 		   type : "POST",
 		   data : {
 			   ordersData : JSON.stringify(orders)
 		   },
 		   success : function(data) {
+			   if(data == "SUCCESS") {
+				   alert("주문 창으로 이동합니다.");
+				   location.href("/orderForm");   
+			   }
 			   
 		   }
 	   })
@@ -207,6 +221,9 @@
 	   
    }
    
-   
+   function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
    </script>
    

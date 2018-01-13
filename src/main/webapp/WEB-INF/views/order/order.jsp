@@ -13,39 +13,18 @@
     <div class="information-blocks">
 
       <div class="row">
-        <div class="col-sm-9 information-entry">
-          <h3 class="cart-column-title size-1">Products</h3>
+        <div class="col-sm-9 information-entry" id="orderList">
+          <h3 class="cart-column-title size-1">주문 상품</h3>
           
- 
-          <c:forEach items="${orderList}" var="order">
-            <div class="traditional-cart-entry style-1">
-              <a href="#" class="image"><img class="order-image"
-                src="${order.frontImage}" alt=""></a>
-              <div class="content">
-                <div class="cell-view" name="dataset">
-                  <a class="tag" href="#">tag</a> 
-                  <a class="title" href="#">title</a>
-                  <div class="inline-description">Order Qty : ${order.amount}</div>
-                  <div class="price">
-                    <div class="current">￦<fmt:formatNumber value="${order.PRICE * order.qty}" groupingUsed="true"/></div>
-                    
-                    <input type="hidden" name="qty" value="${order.count}">
-                    <input type="hidden"  id="orderPrice" value="${order.price}">
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-          </c:forEach>
         </div>
 
         <div class="col-sm-3 information-entry totalOrder">
           <h3 class="cart-column-title size-1"
-            style="text-align: center;">Subtotal</h3>
+            style="text-align: center;">주문 총 금액</h3>
           <div class="sidebar-subtotal">
             <div class="price-data">
               <div class="main totalPrice"></div>
-              <div class="title">총 주문수량 : <label class="qty"></label> </div>
+              <div class="title"><div class="price"><div class='current' id="total"></div></div> </div>
             </div>
           </div>
         </div>
@@ -215,5 +194,77 @@
   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.3/js.cookie.js"></script>
 
+
+<script>
+
+$(document).ready(function() {
+	var cookieData = ${cookie.orderCookie.value};
+	var totalAmount = 0;
+	
+	
+	for(var i in cookieData) {
+		totalAmount = totalAmount + Number(cookieData[i].amount);
+		appendEntry(cookieData[i]);
+	}
+	
+	
+	$("#amount").html(totalAmount);
+	
+})
+
+function appendEntry(data) {
+	var amount = data.amount;
+	var productNo = data.productNo;
+	
+	$.ajax({
+		url : "/product/" + productNo,
+		dataType : "json",
+		success : function(product) {
+			$("#orderList").append(getEntryStr(product, amount));
+			
+			var totalPrice = 0;
+			var prices = $("input[name='price']");
+			
+			for(var i=0; i<prices.length; i++) {
+				totalPrice = totalPrice + Number($(prices[i]).val());
+			}
+			
+			$("#total").html(numberWithCommas(totalPrice) + " 원");
+		},
+		error : function(data) {
+			console.log(data);
+		}
+	})
+}
+
+function getEntryStr(product, amount) {
+	var returnStr = "";
+	
+	returnStr += "<div class='traditional-cart-entry style-1'>\n" + 
+				 "  <a href='#' class='image'><img class='order-image'\n src='/resources/upload/" + product.frontImage + "' alt=''></a>\n" + 
+				 "  <div class='content'>\n" + 
+				 "     <div class='cell-view' name='dataset'>\n" + 
+				 "        <a class='tag' href='#'>" + product.subName + "</a>\n" + 
+				 "        <a class='title' href='#'>" + product.name + "</a>\n" + 
+				 "        <div class='inline-description'>주문 수량 : " + amount + "</div>\n" + 
+				 "        <div class='price'>\n" + 
+				 "            <div class='current'>￦" + numberWithCommas(amount * product.price) + "</div>\n" + 
+				 "            <input type='hidden' name='qty' value='" + amount + "'>\n" + 
+				 "            <input type='hidden' name='price' value='" + amount * product.price + "'>\n" + 
+				 "        </div>\n" + 
+				 "    </div>\n" + 
+				 "  </div>\n" + 
+				 "</div>";
+	
+	return returnStr;
+}
+
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+
+</script>
 
 </body>

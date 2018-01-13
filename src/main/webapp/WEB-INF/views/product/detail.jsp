@@ -160,10 +160,8 @@ var bestSize = new Object;
           class="button style-40" href="#productInfo3">유의 사항</a>
       </div>
 
-      <c:if test="${orderCheck > 0}">
-          <div class="inline-product-entry">
-            <form id="replyform" method="post"
-              enctype="multipart/form-data">
+      <div class="inline-product-entry">
+        <form id="replyform" method="post" enctype="multipart/form-data">
               <div class="row">
                 <div class=" col-md-8">
                   <label>리뷰 작성<span>*</span></label>
@@ -187,7 +185,6 @@ var bestSize = new Object;
               </div>
             </form>
           </div>
-          </c:if>
 
       <div id="reviewList"></div>
 
@@ -246,6 +243,33 @@ $(document).ready(function() {
 			}
 		})
 	})
+	
+	$("#order").click(function() {
+		var productNo = $("#productNo").val();
+		var amount = $(".number").html();
+		
+		var cookieObj = {
+				productNo : productNo,
+				amount : amount
+		};
+		
+		$.ajax({
+			url : "/order/ordersCookie",
+			type : "post",
+			data : {
+				ordersData : JSON.stringify(cookieObj)
+			},
+			success : function(data) {
+				if(data == "SUCCESS") {
+					alert("주문 창으로 이동합니다.");
+				}
+			},
+			error : function(data) {
+				return false;
+			}
+		})
+	})
+	
 })
 
 function numberWithCommas(x) {
