@@ -3,19 +3,20 @@ package kr.co.mooi.orderitem.domain;
 public class OrderItem {
 
 	int orderItemNo;
-	int orderNo;
+	int ordersNo;
 	int productNo;
 	int amount;
+	
 	
 	public OrderItem() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public OrderItem(int orderItemNo, int orderNo, int productNo, int amount) {
+	public OrderItem(int orderItemNo, int ordersNo, int productNo, int amount) {
 		super();
 		this.orderItemNo = orderItemNo;
-		this.orderNo = orderNo;
+		this.ordersNo = ordersNo;
 		this.productNo = productNo;
 		this.amount = amount;
 	}
@@ -26,11 +27,11 @@ public class OrderItem {
 	public void setOrderItemNo(int orderItemNo) {
 		this.orderItemNo = orderItemNo;
 	}
-	public int getOrderNo() {
-		return orderNo;
+	public int getOrdersNo() {
+		return ordersNo;
 	}
-	public void setOrderNo(int orderNo) {
-		this.orderNo = orderNo;
+	public void setOrdersNo(int ordersNo) {
+		this.ordersNo = ordersNo;
 	}
 	public int getProductNo() {
 		return productNo;
@@ -46,7 +47,10 @@ public class OrderItem {
 	}
 	@Override
 	public String toString() {
-		return "OrderItem [orderItemNo=" + orderItemNo + ", orderNo=" + orderNo + ", productNo=" + productNo
+		return "OrderItem [orderItemNo=" + orderItemNo + ", ordersNo=" + ordersNo + ", productNo=" + productNo
 				+ ", amount=" + amount + "]";
 	}
+
+	
+	
 }

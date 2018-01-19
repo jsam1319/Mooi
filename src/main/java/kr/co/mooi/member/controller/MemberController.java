@@ -11,8 +11,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
 import kr.co.mooi.member.domain.Member;
@@ -117,6 +119,13 @@ public class MemberController {
 		loginCookie.setMaxAge(0);
 		
 		return "redirect:/index";
+	}
+	
+	@RequestMapping(value="/member/regist/{id}", method=RequestMethod.GET)
+	@ResponseBody
+	public String checkId(@PathVariable String id) {
+		if(memberService.selectById(id) == null) return "TRUE";
+		else									 return "FALSE";
 	}
 	
 }

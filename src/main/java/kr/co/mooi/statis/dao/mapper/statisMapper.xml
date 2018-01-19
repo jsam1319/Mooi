@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="kr.co.mooi.statis.dao.StatisDao">
+
+    
+    <select id="selectByDate" parameterType="StatisDate" resultType="Statis">
+    	SELECT ord.product_no  					AS productNo,
+    		   pro.name							AS name, 
+		       Sum(ord.amount)         			AS volume, 
+		       Sum(ord.amount) * pro.price 		AS sales, 
+		       ( Sum(ord.amount) * pro.price ) - ( Sum(ord.amount) * pro.cost ) 
+		       AS income 
+		FROM   (SELECT o2.product_no, 
+		               o2.amount, 
+		               o1.regdate 
+		        FROM   orders o1, 
+		               order_item o2 
+		        WHERE  o1.orders_no = o2.orders_no) ord, 
+		       (SELECT product_no, 
+		               price, 
+		               cost,
+		               name 
+		        FROM   product) pro 
+		WHERE  ord.regdate BETWEEN #{start} AND #{end} 
+		       AND ord.product_no = pro.product_no 
+		GROUP  BY pro.product_no
+    </select>
+    
+    <select id="selectByCategory" parameterType="PageBuilder" resultType="Product">
+    	SELECT
+    		product_no, 
+    		category_no,
+            name,
+            sub_name,
+            price,
+            cost,
+            content,
+			front_image,
+			regdate
+    	FROM 
+    		product
+    	WHERE
+    		category_no = #{categoryNo}
+    	LIMIT
+    		#{page}, #{count}
+    </select>
+    
+    <select id="selectAll" resultType="Product">
+    	SELECT
+    		product_no, 
+    		category_no,
+            name,
+            sub_name,
+            price,
+            cost,
+            content,
+			front_image,
+			regdate
+    	FROM 
+    		product
+    </select>
+</mapper>

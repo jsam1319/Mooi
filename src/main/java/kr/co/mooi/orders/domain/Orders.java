@@ -2,7 +2,7 @@ package kr.co.mooi.orders.domain;
 
 public class Orders {
 
-	int orderNo;
+	int ordersNo;
 	int memberNo;
 	String price;
 	String name;
@@ -12,20 +12,19 @@ public class Orders {
 	String postcode;
 	String content;
 	String regdate;
-	String cof;
+	String status;
 	String ordererName;
 	String ordererPhone;
-	
 	
 	public Orders() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Orders(int orderNo, int memberNo, String price, String name, String phone, String address, String remainAddr,
-			String postcode, String content, String regdate, String cof, String ordererName, String ordererPhone) {
+	public Orders(int ordersNo, int memberNo, String price, String name, String phone, String address,
+			String remainAddr, String postcode, String content, String regdate, String status, String ordererName,
+			String ordererPhone) {
 		super();
-		this.orderNo = orderNo;
+		this.ordersNo = ordersNo;
 		this.memberNo = memberNo;
 		this.price = price;
 		this.name = name;
@@ -35,16 +34,15 @@ public class Orders {
 		this.postcode = postcode;
 		this.content = content;
 		this.regdate = regdate;
-		this.cof = cof;
+		this.status = status;
 		this.ordererName = ordererName;
 		this.ordererPhone = ordererPhone;
 	}
-
-	public int getOrderNo() {
-		return orderNo;
+	public int getOrdersNo() {
+		return ordersNo;
 	}
-	public void setOrderNo(int orderNo) {
-		this.orderNo = orderNo;
+	public void setOrdersNo(int ordersNo) {
+		this.ordersNo = ordersNo;
 	}
 	public int getMemberNo() {
 		return memberNo;
@@ -100,11 +98,11 @@ public class Orders {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	public String getCof() {
-		return cof;
+	public String getStatus() {
+		return status;
 	}
-	public void setCof(String cof) {
-		this.cof = cof;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public String getOrdererName() {
 		return ordererName;
@@ -118,13 +116,12 @@ public class Orders {
 	public void setOrdererPhone(String ordererPhone) {
 		this.ordererPhone = ordererPhone;
 	}
-
 	@Override
 	public String toString() {
-		return "Orders [orderNo=" + orderNo + ", memberNo=" + memberNo + ", price=" + price + ", name=" + name
+		return "Orders [ordersNo=" + ordersNo + ", memberNo=" + memberNo + ", price=" + price + ", name=" + name
 				+ ", phone=" + phone + ", address=" + address + ", remainAddr=" + remainAddr + ", postcode=" + postcode
-				+ ", content=" + content + ", regdate=" + regdate + ", cof=" + cof + ", ordererName=" + ordererName
-				+ ", ordererPhone=" + ordererPhone + "]";
+				+ ", content=" + content + ", regdate=" + regdate + ", status=" + status + ", ordererName="
+				+ ordererName + ", ordererPhone=" + ordererPhone + "]";
 	}
 	
 }

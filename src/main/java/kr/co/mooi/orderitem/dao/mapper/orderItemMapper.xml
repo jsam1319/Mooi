@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="kr.co.mooi.orderitem.dao.OrderItemDao">
+
+    <insert id="insert" parameterType="OrderItem" useGeneratedKeys="true" keyProperty="orderItemNo">
+        INSERT INTO order_item
+            (
+                orders_no,
+                product_no,
+                amount
+            )
+            VALUES 
+            (
+                #{ordersNo},
+                #{productNo},
+                #{amount}
+            )
+    </insert>
+    
+    <select id="select" resultType="OrderItem" parameterType="int">
+    	SELECT
+    		 order_item_no,
+  			 orders_no,
+             product_no,
+             amount
+       	FROM order_item
+       	WHERE order_item_no = #{orderItemNo}
+    </select>
+    
+  	<select id="selectByOrdersNo" resultType="Orders" parameterType="int">
+    	SELECT
+    		 order_item_no,
+  			 orders_no,
+             product_no,
+             amount
+       	FROM order_item
+       	WHERE orders_no = #{ordersNo}
+   </select>
+</mapper>

@@ -67,7 +67,6 @@ public class CartServiceImpl implements CartService {
 				Cookie newCartCookie = new Cookie("cartCookie", mapper.writeValueAsString(carts));
 				newCartCookie.setPath("/");
 				
-				System.out.println(newCartCookie.getValue());
 				response.addCookie(newCartCookie);
 			}
 		
@@ -92,8 +91,12 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public List<Cart> selectByNonMember(HttpServletRequest request) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Cookie cartCookie = WebUtils.getCookie(request, "cartCookie");
+		ObjectMapper mapper = new ObjectMapper();
+		
+		List<Cart> carts = mapper.readValue(cartCookie.getValue(), new TypeReference<List<Cart>>(){});
+		
+		return carts;
 	}
 	
 	

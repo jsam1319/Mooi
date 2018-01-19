@@ -34,8 +34,7 @@ margin-bottom:10%;
 				<div class="col-sm-6 information-entry left-border nopadding">
 					<div class="column-article-entry">
 						<a class="title" href="/admin/list">상품</a>
-						<a class="description" href="/admin/list">상품 관리 <i class="fa fa-angle-right"></i></a><br>
-						<a class="description" href="/product/insertForm">상품 등록 <i class="fa fa-angle-right"></i></a>
+						<a class="description" href="/admin/product/listForm">상품 관리 <i class="fa fa-angle-right"></i></a><br>
 					</div>
 				</div>
                 <div class="col-sm-6 information-entry left-border nopadding">

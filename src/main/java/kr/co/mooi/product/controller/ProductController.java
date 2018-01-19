@@ -117,4 +117,21 @@ public class ProductController {
 		
 		return resultMap;
 	}
+	
+	@RequestMapping(value="/product/list", method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> listAll() {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		List<Product> products = productService.selectAll();
+		
+		resultMap.put("result", "FAIL");
+		
+		if(products.size() != 0) {
+			resultMap.put("list", products);
+			resultMap.put("result", "SUCCESS");
+		}
+		
+		return resultMap;
+	}
 }

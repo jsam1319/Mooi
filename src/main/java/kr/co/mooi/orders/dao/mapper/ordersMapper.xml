@@ -14,7 +14,8 @@
                 remain_addr,
                 postcode,
                 price,
-                cof,
+                status,
+                content,
                 orderer_name,
                 orderer_phone
             )
@@ -27,10 +28,14 @@
                 #{remainAddr},
                 #{postcode},
                 #{price},
-                #{cof},
+                #{status},
+                #{content},
                 #{ordererName},
                 #{ordererPhone}
             )
+       <selectKey resultType="int" order="AFTER" keyProperty="ordersNo">
+       		SELECT LAST_INSERT_ID()
+       </selectKey>
     </insert>
     
     <select id="select" resultType="Orders" parameterType="int">
@@ -44,13 +49,31 @@
             regdate,
             postcode,
             price,
-            cof,
+            status,
+            content,
             orderer_name,
             orderer_phone
        	FROM orders
        	WHERE orders_no = #{ordersNo}
+    </select>
     
-    
+    <select id="selectAll" resultType="Orders">
+    	SELECT
+  			orders_no, 
+  			member_no,
+            name,
+            phone,
+            address,
+            remain_addr,
+            regdate,
+            postcode,
+            price,
+            status,
+            content,
+            orderer_name,
+            orderer_phone
+       	FROM orders
+       	ORDER BY regdate;
     </select>
     
   	<select id="selectByMemeberNo" resultType="Orders" parameterType="int">
@@ -64,7 +87,8 @@
             regdate,
             postcode,
             price,
-            cof,
+            status,
+            content,
             orderer_name,
             orderer_phone
        	FROM orders

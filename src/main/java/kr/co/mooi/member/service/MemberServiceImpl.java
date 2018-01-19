@@ -44,4 +44,8 @@ public class MemberServiceImpl implements MemberService {
 	public Member select(int memberNo) {
 		return memberDao.select(memberNo);
 	}
+	
+	public Member selectById(String id) {
+		return memberDao.selectById(id);
+	}
 }

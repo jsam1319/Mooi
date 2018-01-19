@@ -35,7 +35,7 @@ public class OrdersServiceImpl implements OrdersService {
 	@Override
 	public List<Orders> selectAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return ordersDao.selectAll();
 	}
 
 	@Override

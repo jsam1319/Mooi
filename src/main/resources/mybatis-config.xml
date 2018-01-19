@@ -16,6 +16,9 @@
 		<typeAlias alias="PageBuilder" type="kr.co.mooi.product.domain.PageBuilder"/>
 		<typeAlias alias="Cart" type="kr.co.mooi.cart.domain.Cart"/>
 		<typeAlias alias="Orders" type="kr.co.mooi.orders.domain.Orders"/>
+		<typeAlias alias="OrderItem" type="kr.co.mooi.orderitem.domain.OrderItem"/>
+		<typeAlias alias="Statis" type="kr.co.mooi.statis.domain.Statis"/>
+		<typeAlias alias="StatisDate" type="kr.co.mooi.statis.domain.StatisDate"/>
 		
 	</typeAliases>
 </configuration>

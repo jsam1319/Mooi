@@ -5,6 +5,7 @@
 <script src="/resources/js/jsbn.js"></script>
 <script src="/resources/js/prng4.js"></script>
 <script src="/resources/js/rng.js"></script>
+
 <style>
 	.information-blocks {
     margin-left:15%;
@@ -17,7 +18,7 @@
 </style>
 
  <%-- 주소 API --%>
-   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
   <script>
       function daumPostcode() {
           new daum.Postcode({
@@ -67,7 +68,7 @@
                 <div class="col-sm-12 information-entry">
                     <div class="regist-box">
                         <div class="article-container style-1">
-                            <h3>New Customers</h3>
+                            <h3>회원 가입</h3>
                             
                             <form action="/member/regist" method="POST" class="form">
                             	<input type="hidden" name="modulus" id="modulus">
@@ -80,6 +81,7 @@
 	                            	</div>
 	                            	<div class="col-sm-2 form-group">
 		                           			<input class="button style-10" type="button" id="ckId" value="중복체크"/>
+		                           			<input type="hidden" id="isCheck" name="isCheck" value="false">
 		                           	</div>
 	                            </div>
 	                            <span id="id-span" class="red-span"></span>
@@ -93,6 +95,7 @@
 	                            	<div class="col-sm-6">
 	                            		<label>CONFIRM PASSWORD</label>
 	                            		<input class="simple-field" type="password" name="password" id="password2" placeholder="PASSWORD" required/>
+	                            		<input type="hidden" id="isConfirm" name="isConfirm" value="false">
 	                            	</div>
                             	</div>
                             	<span class="pw-span red-span"></span>
@@ -110,17 +113,24 @@
 										<input type="text" class="simple-field" id="postcode" name="postcode" required disabled>
 									</div>
 									<div class="col-sm-2 form-group">
-										<input type="button" onclick="daumPostcode()" value="우편번호 찾기" class="button style-10"><br>
+										<input type="button" onclick="daumPostcode()" value="우편번호 찾기" class="button style-10">
 									</div>
 											</div>
 								<%-- /.row --%>
 								<div class="row">
 									<div class="col-sm-12 form-group">
 										<input type="text" class="simple-field" id="address" name="address" disabled required>
-										<span id="guide" style="color: #999" class="red-span"></span>
+										<span id="guide" style="color: #333" class="red-span"></span>
 									</div>
 								</div>
 								<%-- /.row --%>
+                           		
+                           		<div class="row">
+                     	      		<div class="col-sm-12 form-group">
+										<input type="text" class="simple-field" id="remain_addr" name="remain_addr" placeholder="나머지 주소 입력" required>
+										<span id="guide" style="color: #999" class="red-span"></span>
+									</div>
+                           		</div>
                            		
                            		
                            		<div class="row">
@@ -139,12 +149,12 @@
 								<div class="row">
 									<div class="col-sm-6 form-group">
 										<label class="checkbox-entry radio">
-		                                        <input type="radio" name="gender" value="female"> <span class="check"></span> 남
+		                                        <input type="radio" name="gender" value="male"> <span class="check"></span> 남
 		                                   </label>
 	                                   </div>
 	                                   <div class="col-sm-6 form-group">
 		                                   <label class="checkbox-entry radio">
-		                                        <input type="radio" name="gender" value="male"> <span class="check"></span> 여
+		                                        <input type="radio" name="gender" value="female"> <span class="check"></span> 여
 		                                   </label>
 	                                   </div>
 								</div>
@@ -160,7 +170,6 @@
            </div><!-- ./row -->
           </div><!-- ./information-blocks -->
           
-         </div>
          
 <script>
 
@@ -169,6 +178,16 @@ $(document).ready(function() {
 	$("#exponent").val("${Exponent}");
 	
 	$("#regist").click(function(event) {
+		if($("#isCheck").val() == 'false') {
+			alert("아이디 중복체크를 해주세요.");
+			return false;
+		}
+		
+		if($("#isConfirm").val() == 'false') {
+			alert("비밀번호를 확인해주세요.");
+			return false;
+		}
+		
 		var rsa = new RSAKey();
 	    rsa.setPublic($('#modulus').val(),$('#exponent').val());
 	    
@@ -189,15 +208,18 @@ $(document).ready(function() {
           url : "/member/regist/"+id,
           type : "get",
           success : function(data){
-              if(data == 'possible'){ 
+              if(data == 'TRUE'){ 
                   $("#id-span").html("사용가능한 아이디 입니다.");
+                  $("#isCheck").val("true");
               }
               else{
                   $("#id-span").html("불가능한 아이디 입니다.");
+                  $("#isCheck").val("false");
               }
           },
           error : function(xhr, statusText){
               console.log("("+xhr.status+", "+statusText+")");
+              $("#isCheck").val("false");
               alert("사용불가능한 아이디 입니다.");
           }
       }); 
@@ -207,9 +229,11 @@ $(document).ready(function() {
 var check = function(data){
    if(data != $("#password1").val()){
        $(".pw-span").html("비밀번호가 일치하지 않습니다.");
+       $("#isConfirm").val("false");
    } 
    else{
        $(".pw-span").html("");
+       $("#isConfirm").val("true");
    }
 }
 </script>

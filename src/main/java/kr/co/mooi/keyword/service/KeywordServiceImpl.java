@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.mooi.keyword.dao.KeywordDao;
 import kr.co.mooi.keyword.domain.Keyword;
+import kr.co.mooi.keyword.util.HangulSeperator;
 
 @Service
 public class KeywordServiceImpl implements KeywordService {
@@ -23,12 +24,20 @@ public class KeywordServiceImpl implements KeywordService {
 		// TODO Auto-generated method stub
 		logger.info(keyword);
 		
+		keyword.setName(HangulSeperator.seperate(keyword.getName()));
+		
 		return keywordDao.insert(keyword);
 	}
 
 	@Override
 	public List<Keyword> selectByProductNo(int productNo) {
 		// TODO Auto-generated method stub
-		return keywordDao.selectByProductNo(productNo);
+		List<Keyword> keywords = keywordDao.selectByProductNo(productNo);
+		
+		for (Keyword keyword : keywords) {
+			keyword.setName(HangulSeperator.conHangul(keyword.getName()));
+		}
+				
+		return keywords;
 	}
 }

@@ -15,4 +15,6 @@ public interface MemberService {
 	public Member autoLogin(String sessionKey);
 	
 	public Member select(int memberNo);
+	
+	public Member selectById(String id);
 }

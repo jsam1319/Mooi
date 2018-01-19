@@ -72,7 +72,7 @@ public class CartController {
 	
 	@RequestMapping(value = "/cart", method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> selectByMemberNo(HttpSession session) {
+	public Map<String, Object> selectByMemberNo(HttpSession session, HttpServletRequest request) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", "FAIL");
 

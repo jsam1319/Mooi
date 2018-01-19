@@ -10,4 +10,19 @@ public class AdminController {
 	public String adminIndex() {
 		return "/admin/index";
 	}
+	
+	@RequestMapping("/admin/product/listForm")
+	public String productListForm() {
+		return "/admin/productList";
+	}
+	
+	@RequestMapping("/admin/product/salesForm")
+	public String salesForm() {
+		return "/admin/sales";
+	}
+	
+	@RequestMapping("/admin/order/listForm")
+	public String orderListForm() {
+		return "/admin/orderList";
+	}
 }
