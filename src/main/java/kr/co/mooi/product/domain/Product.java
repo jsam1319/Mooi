@@ -3,6 +3,7 @@ package kr.co.mooi.product.domain;
 public class Product {
 	int productNo;
 	int categoryNo;
+	int stock;
 	String name;
 	String subName;
 	String price;
@@ -12,17 +13,17 @@ public class Product {
 	String regdate;
 	
 	
-	
-	
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Product(int productNo, int categoryNo, String name, String subName, String price, String cost,
+	
+	public Product(int productNo, int categoryNo, int stock, String name, String subName, String price, String cost,
 			String content, String frontImage, String regdate) {
 		super();
 		this.productNo = productNo;
 		this.categoryNo = categoryNo;
+		this.stock = stock;
 		this.name = name;
 		this.subName = subName;
 		this.price = price;
@@ -31,6 +32,7 @@ public class Product {
 		this.frontImage = frontImage;
 		this.regdate = regdate;
 	}
+
 	public int getProductNo() {
 		return productNo;
 	}
@@ -42,6 +44,12 @@ public class Product {
 	}
 	public void setCategoryNo(int categoryNo) {
 		this.categoryNo = categoryNo;
+	}
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 	public String getName() {
 		return name;
@@ -87,10 +95,11 @@ public class Product {
 	}
 	@Override
 	public String toString() {
-		return "Product [productNo=" + productNo + ", categoryNo=" + categoryNo + ", name=" + name + ", subName="
-				+ subName + ", price=" + price + ", cost=" + cost + ", content=" + content + ", frontImage="
-				+ frontImage + ", regdate=" + regdate + "]";
+		return "Product [productNo=" + productNo + ", categoryNo=" + categoryNo + ", stock=" + stock + ", name=" + name
+				+ ", subName=" + subName + ", price=" + price + ", cost=" + cost + ", content=" + content
+				+ ", frontImage=" + frontImage + ", regdate=" + regdate + "]";
 	}
+	
 	
 	
 }

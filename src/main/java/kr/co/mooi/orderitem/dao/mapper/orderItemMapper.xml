@@ -29,7 +29,7 @@
        	WHERE order_item_no = #{orderItemNo}
     </select>
     
-  	<select id="selectByOrdersNo" resultType="Orders" parameterType="int">
+  	<select id="selectByOrdersNo" resultType="OrderItem" parameterType="int">
     	SELECT
     		 order_item_no,
   			 orders_no,

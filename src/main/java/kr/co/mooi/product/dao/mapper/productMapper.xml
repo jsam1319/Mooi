@@ -13,7 +13,8 @@
                 price,
                 cost,
                 content,
-				front_image            
+				front_image,
+				stock            
             )
             VALUES 
             (
@@ -23,7 +24,8 @@
                 #{price},
                 #{cost},
                 #{content},
-                #{frontImage}
+                #{frontImage},
+                #{stock}
             )
        <selectKey resultType="int" order="AFTER" keyProperty="productNo">
        	SELECT LAST_INSERT_ID()
@@ -40,7 +42,8 @@
             cost,
             content,
 			front_image,
-			regdate
+			regdate,
+			stock
     	FROM 
     		product
     	WHERE
@@ -57,7 +60,8 @@
             cost,
             content,
 			front_image,
-			regdate
+			regdate,
+			stock
     	FROM 
     		product
     	WHERE
@@ -76,8 +80,61 @@
             cost,
             content,
 			front_image,
-			regdate
+			regdate,
+			stock
     	FROM 
     		product
+    </select>
+    
+    <update id="updateStock" parameterType="Product">
+    	UPDATE product
+    	SET
+    		stock = #{stock}
+    	WHERE
+    		product_no = #{productNo}
+    
+    </update>
+    
+    <select id="selectNewArrive" resultType="Product">
+		SELECT
+    		product_no, 
+    		category_no,
+            name,
+            sub_name,
+            price,
+            cost,
+            content,
+			front_image,
+			regdate,
+			stock
+    	FROM 
+    		product
+    	WHERE 
+    		stock > 0
+        ORDER BY 
+    		regdate DESC
+    	LIMIT
+    		0, 6 ;
+    </select>
+    
+    <select id="selectPopular" resultType="Product">
+    	SELECT product_no, 
+		       category_no, 
+		       name, 
+		       sub_name, 
+		       price, 
+		       cost, 
+		       content, 
+		       front_image, 
+		       regdate, 
+		       stock 
+		FROM   product 
+		WHERE  product_no IN (SELECT o.product_no 
+		                      FROM   (SELECT product_no, 
+		                                     Sum(amount) AS total 
+		                              FROM   order_item 
+		                              GROUP  BY product_no 
+		                              ORDER  BY total DESC)o ) 
+		LIMIT  0, 6; 
     </select>
 </mapper>

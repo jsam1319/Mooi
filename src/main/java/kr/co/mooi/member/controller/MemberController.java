@@ -116,7 +116,7 @@ public class MemberController {
 		memberService.updateSession(member);
 		
 		session.removeAttribute("login");
-		loginCookie.setMaxAge(0);
+		if(loginCookie != null) loginCookie.setMaxAge(0);
 		
 		return "redirect:/index";
 	}
@@ -128,4 +128,13 @@ public class MemberController {
 		else									 return "FALSE";
 	}
 	
+	@RequestMapping(value="/member/mypage", method=RequestMethod.GET)
+	public String mypage() {
+		return "member/mypage";
+	}
+	
+	@RequestMapping(value="/member/orderList", method=RequestMethod.GET)
+	public String orderList() {
+		return "member/orderList";
+	}
 }

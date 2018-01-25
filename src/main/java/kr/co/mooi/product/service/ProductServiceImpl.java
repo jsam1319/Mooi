@@ -43,6 +43,22 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return productDao.selectAll();
 	}
+
+	@Override
+	public int updateStock(Product product) {
+		// TODO Auto-generated method stub
+		return productDao.updateStock(product);
+	}
+	
+	@Override
+	public List<Product> selectNewArrive() {
+		return productDao.selectNewArrive();
+	}
+	
+	@Override
+	public List<Product> selectPopular() {
+		return productDao.selectPopular();
+	}
 	
 	
 }

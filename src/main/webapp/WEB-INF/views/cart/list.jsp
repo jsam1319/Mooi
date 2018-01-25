@@ -69,7 +69,7 @@
                             <div class="cart-summary-box">
                                 <div class="sub-total">Subtotal: $990,00</div>
                                 <div class="grand-total">Grand Total $1029,79</div>
-                                <a class="button style-10" id="order" href="/orderForm">선택한 상품 주문하기</a>
+                                <a class="button style-10" id="order" href="#">선택한 상품 주문하기</a>
                             </div>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
 	   var returnStr = "";
 	   
 	   returnStr += "<tr>\n" + 
-	   				" 	<td>  <label class='checkbox-entry' style='text-align: center;'> <input type='checkbox' checked/> <span class='check'></span>" +
+	   				" 	<td>  <label class='checkbox-entry' style='text-align: center;'> <input type='checkbox' id='"+ cart.cartNo +"' checked/> <span class='check'></span>" +
                     " </label> </td>"+ 
 					"   <td>\n" + 
 					"       <div class=\"traditional-cart-entry\">\n" + 
@@ -185,12 +185,17 @@
    }
    
    function addOrderCookie() {
+	   alert('1234');
+	   
 	   var orders = [];
+	   var cartNos = [];
 	   
 	   var checkboxs = $(".checkbox-entry input");
 	   
 	   for(var i=0; i<checkboxs.length; i++) {
 			if(checkboxs[i].checked == true) {
+				cartNos.push(checkboxs[i].id);
+				
 				var tr = $(checkboxs[i]).parent().parent().parent();
 				
 				var productNo = tr.find("input[type='hidden']").val();
@@ -203,18 +208,27 @@
 			}
 	   }
 	   
+	  	
+	   
 	   $.ajax({
 		   url : "/order/ordersCookie",
 		   type : "POST",
+		   async : false,
 		   data : {
-			   ordersData : JSON.stringify(orders)
+			   	ordersData : JSON.stringify(orders),
+		   		cartNos : JSON.stringify(cartNos)
 		   },
 		   success : function(data) {
 			   if(data == "SUCCESS") {
-				   alert("주문 창으로 이동합니다.");
-				   location.href("/orderForm");   
+					alert("주문 창으로 이동합니다.");
+					location.href = "/orderForm";      
 			   }
 			   
+		   },
+		   error : function(a, b, c) {
+			   console.log(a);
+			   console.log(b);
+			   console.log(c);
 		   }
 	   })
 	   

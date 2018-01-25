@@ -14,4 +14,11 @@ public interface ProductService {
 	public Product select(int productNo);
 	
 	public List<Product> selectAll();
+
+	public int updateStock(Product product);
+
+	public List<Product> selectNewArrive();
+	
+	public List<Product> selectPopular();
 }
+

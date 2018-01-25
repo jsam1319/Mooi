@@ -17,7 +17,7 @@
   
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="/resources/css/idangerous.swiper.css" rel="stylesheet" type="text/css" />
-<link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
+
 <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700%7CDancing+Script%7CMontserrat:400,700%7CMerriweather:400,300italic%7CLato:400,700,900' rel='stylesheet' type='text/css' />
 <link href="/resources/css/style.css" rel="stylesheet" type="text/css" />
 
@@ -30,8 +30,8 @@
 <!-- custom scrollbar -->
 <script src="/resources/js/jquery.mousewheel.js"></script>
 <script src="/resources/js/jquery.jscrollpane.min.js"></script>
-
-<title><decorator:title default="::Mooi - 쥬얼리 쇼핑몰" /></title>
+<link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
+<title><decorator:title default="Mooi (무이)" /></title>
 <decorator:head />
 
 <style>
@@ -43,9 +43,15 @@
 .fa-align-justify {
 	margin-top: 15px;
 	margin-bottom: 15px;
-	
 }
 
+footer.type-2 {
+	padding : 35px 0 70px 0;
+}
+
+.copyright {
+	margin-bottom : 0px
+}
 
 </style>
 
@@ -119,8 +125,8 @@
 								<c:when test="${login == -1}">
 									<a class="header-functionality-entry" href="/admin/"><i class="fa fa-unlock"></i><span>Admin</span></a>
 								</c:when>
-								<c:when test="${login > 1}">
-									<a class="header-functionality-entry" href="/mypage"><i class="fa fa-user-o"></i><span>My Page</span></a>
+								<c:when test="${login >= 1}">
+									<a class="header-functionality-entry" href="/member/mypage"><i class="fa fa-address-book"></i><span>My Page</span></a>
 								</c:when>
 								<c:otherwise>
 									<a class="header-functionality-entry" href="/member/registForm"><i class="fa fa-user-plus"></i><span>Regist</span></a>
@@ -373,19 +379,36 @@
     
     
     
-    
+    	</div>
+    </div>
         <!-- FOOTER -->
-                <div class="footer-wrapper style-17">
+        <div class="footer-wrapper style-5 style-7" style="margin-top : 50px">
+            <footer class="type-2">
+                <div class="position-center">
+                    <img class="footer-logo" src="/resources/img/logo/FooterLogo.png" style="width : 350px; height : 200px; margin-top: 0px"alt="" />
+                    <div class="footer-links">
+                        <a href="#">Site Map</a>
+                        <a href="#">Search</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Advanced Search</a>
+                        <a href="#">Orders and Returns</a>
+                        <a href="#">Contact Us</a>
+                    </div>
+                    <div class="copyright">소재지 : 충북 청주시 상당구 탑동로32번길 23, 삼원빌라 203호 / 회사명 : 무이 / 대표 : 김지선 / 사업자 번호 : 402-28-05336</div>
+                    <div class="copyright">통신판매신고번호 : 제 2017-충북청주-1122호 / 개인정보보호책임자 : 김지선 / 고객지원센터 : 010-9807-2280 </div>
+                    <div class="copyright">E-mail : <a href="mailto:lnh02262003@naver.com">lnh02262003@naver.com</a> </div>
+                </div>
+            </footer>
+        </div>
+                <!-- <div class="footer-wrapper style-17">
                     <footer class="type-1">
                         <div class="footer-columns-entry">
                             <div class="row">
                                 <div class="col-md-3">
                                     <img class="footer-logo" style="width : 270px; height:140px;" src="/resources/img/logo/Logo.png" alt="" />
-                                    <div class="footer-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</div>
-                                    <div class="footer-address">30 South Avenue San Francisco<br/>
-                                        Phone: +78 123 456 789<br/>
-                                        Email: <a href="mailto:Support@blanco.com">Support@blanco.com</a><br/>
-                                        <a href="www.inmedio.com"><b>www.inmedio.com</b></a>
+                                    <div class="footer-address">충북 청주시 상당구 탑동로32번길 23,<br> 삼원빌라 302호<br/>
+                                        연락처 : 010. 9807. 2280<br/>
+                                        이메일 : <a href="mailto:lnh02262003@naver.com">lnh02262003@naver.com</a><br/>
                                     </div>
                                     <div class="clear"></div>
                                 </div>
@@ -465,7 +488,7 @@
                             </div>
                         </div>
                     </footer>
-                </div>
+                </div> -->
             </div>
         <div class="clear"></div>
 	</div>

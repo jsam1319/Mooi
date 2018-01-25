@@ -60,4 +60,10 @@
 		<error-code>401</error-code>
 		<location>/error/accessPage</location>
 	</error-page> -->
+	
+	<listener>
+      <listener-class>kr.co.mooi.visitor.listener.VisitorLogListener</listener-class>
+ 	</listener> 
+
+
 </web-app>

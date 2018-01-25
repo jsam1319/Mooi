@@ -19,6 +19,8 @@
 		<typeAlias alias="OrderItem" type="kr.co.mooi.orderitem.domain.OrderItem"/>
 		<typeAlias alias="Statis" type="kr.co.mooi.statis.domain.Statis"/>
 		<typeAlias alias="StatisDate" type="kr.co.mooi.statis.domain.StatisDate"/>
+		<typeAlias alias="VisitorLog" type="kr.co.mooi.visitor.domain.VisitorLog"/>
+		<typeAlias alias="VisitorCount" type="kr.co.mooi.visitor.domain.VisitorCount"/>
 		
 	</typeAliases>
 </configuration>

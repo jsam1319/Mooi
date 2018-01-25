@@ -11,6 +11,14 @@
   font-weight: 500; 
   margin-bottom: 7px;
 }
+
+.product-slide-entry img {
+	width : 100%;
+	height : 100%
+
+} 
+
+
 </style>
 
   <!-- LOADER -->

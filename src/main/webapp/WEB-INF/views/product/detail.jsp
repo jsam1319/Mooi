@@ -15,11 +15,34 @@ var bestSize = new Object;
 
 </script>
 
+
+
 <style>
 
 .cart {
 	margin-bottom : 10px;
 }
+
+.style-40:hover {
+	background : #333;
+	color : white;
+}
+
+.present {
+	background : #333;
+	color : white;
+}
+
+.present:hover {
+	background : white;
+	color : #333;
+}
+
+img {
+	max-width: 100%;
+	
+}
+
 
 </style>
 </head>
@@ -81,16 +104,24 @@ var bestSize = new Object;
               <div class="price detail-info-entry">
                 <div class="current"><fmt:formatNumber value="${product.price}" type="currency" groupingUsed="true"/></div>
               </div>
-	            <div class="quantity-selector detail-info-entry">
-	              <div class="detail-info-entry-title">주문수량</div>
-	              <div class="entry number-minus">&nbsp;</div>
-	              <div class="entry number">1</div>
-	              <div class="entry number-plus">&nbsp;</div>
-	           	</div>
-				<h3 class="product-plaintitle" id="total">총 금액 : <fmt:formatNumber value="${total}" groupingUsed="true"/> 원</h3>
-              <div class="cart"><a class="button style-10" id="cart"> 장바구니에 담기 </a></div>
-              <div><a class="button style-10" id="order"> 주문하기 </a></div>
-                     	
+              <c:choose>
+				  <c:when test="${product.stock > 0}">	            
+		            <div class="quantity-selector detail-info-entry">
+		              <div class="detail-info-entry-title">주문수량 (재고 : ${product.stock})</div>
+		              <div class="entry number-minus">&nbsp;</div>
+		              <div class="entry number">1</div>
+		              <div class="entry number-plus">&nbsp;</div>
+		           	</div>
+					<h3 class="product-plaintitle" id="total">총 금액 : <fmt:formatNumber value="${total}" groupingUsed="true"/> 원</h3>
+	              	<div class="cart"><a class="button style-10" id="cart"> 장바구니에 담기 </a></div>
+	              	<div><a class="button style-10" id="order"> 주문하기 </a></div>
+	               </c:when>
+	               
+               	<c:otherwise>
+               	<label>재고가 부족해 주문이 불가능합니다.</label>
+               
+               </c:otherwise>	
+              </c:choose>
               <div class="enterContent-3"></div>
 
               <div class="detail-info-entry buttonDiv">
@@ -138,13 +169,14 @@ var bestSize = new Object;
       
     </div>
     </form>
+    
     <div class="clear"></div>
 
     <div id="productInfo1"></div>
     <div class="information-blocks">
     <div class="enterContent-4"></div>
       <div>
-        <a class="button style-14" href="#productInfo1">상세 정보</a> <a
+        <a class="button style-40 present" href="#productInfo1">상세 정보</a> <a
           class="button style-40" href="#productInfo2">상품 리뷰</a> <a
           class="button style-40" href="#productInfo3">유의 사항</a>
       </div>
@@ -156,7 +188,7 @@ var bestSize = new Object;
       <div class="enterContent-4"></div>
       <div>
         <a class="button style-40" href="#productInfo1">상세 정보</a> <a
-          class="button style-14" href="#productInfo2">상품 리뷰</a> <a
+          class="button style-40 present" href="#productInfo2">상품 리뷰</a> <a
           class="button style-40" href="#productInfo3">유의 사항</a>
       </div>
 
@@ -198,7 +230,7 @@ var bestSize = new Object;
       <div>
         <a class="button style-40" href="#productInfo1">상세 정보</a> <a
           class="button style-40" href="#productInfo2">상품 리뷰</a> <a
-          class="button style-14" href="#productInfo3">유의 사항</a>
+          class="button style-40 present" href="#productInfo3">유의 사항</a>
       </div>
     </div>
   </div>
@@ -216,13 +248,23 @@ var bestSize = new Object;
 <script>
 
 $(document).ready(function() {
-	$(".entry").click(function() {
+	var stock = ${product.stock};
+	
+	$(document).on('click', '.entry', function() {
+		if($(".number").html() > stock) {
+			alert("재고가 부족합니다.");
+			
+			$(".number").html($(".number").html()-1);
+			return false;
+		}
+		
 		var number = $(".number").html() * ${total};
 		
 		$("#total").html("총 금액 : " + numberWithCommas(number) + " 원");
 	})
 	
 	$("#cart").click(function() {
+		
 		var amount = $(".number").html();
 		var productNo = $("#productNo").val();
 		
@@ -245,6 +287,11 @@ $(document).ready(function() {
 	})
 	
 	$("#order").click(function() {
+		if(stock <= 0) {
+			alert("재고가 부족해 물품 주문이 불가능합니다.");
+			return false;
+		}
+		
 		var productNo = $("#productNo").val();
 		var amount = $(".number").html();
 		

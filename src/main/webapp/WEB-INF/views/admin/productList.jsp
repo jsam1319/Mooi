@@ -50,6 +50,7 @@ float:right;
                                 <th id="th">등록일자</th>
                                 <th id="th">가격</th>
                                 <th id="th">원가</th>
+                                <th id="th">재고</th>
                                 <th id="th">상품삭제</th>
                             </tr>
                         </thead>
@@ -165,6 +166,7 @@ $(document).ready(function(){
     		data.push(obj[i].regdate);
     		data.push(obj[i].price);
     		data.push(obj[i].cost);
+    		data.push(obj[i].stock);
     		
     		dataSet.push(data);
 		}

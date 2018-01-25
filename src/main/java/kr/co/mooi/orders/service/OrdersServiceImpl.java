@@ -29,7 +29,7 @@ public class OrdersServiceImpl implements OrdersService {
 	@Override
 	public List<Orders> selectByMemberNo(int memberNo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ordersDao.selectByMemberNo(memberNo);
 	}
 
 	@Override

@@ -15,4 +15,10 @@ public interface ProductDao {
 	
 	public List<Product> selectAll();
 	
+	public int updateStock(Product product);
+	
+	public List<Product> selectNewArrive();
+	
+	public List<Product> selectPopular();
+	
 }

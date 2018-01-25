@@ -65,7 +65,7 @@
             phone,
             address,
             remain_addr,
-            regdate,
+            DATE_FORMAT(regdate, '%Y년 %m월 %d일 %p %h시 %i분') AS regdate,
             postcode,
             price,
             status,
@@ -73,10 +73,10 @@
             orderer_name,
             orderer_phone
        	FROM orders
-       	ORDER BY regdate;
+       	ORDER BY regdate
     </select>
     
-  	<select id="selectByMemeberNo" resultType="Orders" parameterType="int">
+  	<select id="selectByMemberNo" resultType="Orders" parameterType="int">
   		SELECT
   			orders_no, 
   			member_no,
@@ -84,7 +84,7 @@
             phone,
             address,
             remain_addr,
-            regdate,
+            DATE_FORMAT(regdate, '%Y년 %m월 %d일 %p %h시 %i분') AS regdate,
             postcode,
             price,
             status,
@@ -93,6 +93,7 @@
             orderer_phone
        	FROM orders
        	WHERE member_no = #{memberNo}
+       	ORDER BY regdate DESC
   	</select>
   	
   	
