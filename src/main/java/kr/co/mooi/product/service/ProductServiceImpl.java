@@ -59,6 +59,25 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> selectPopular() {
 		return productDao.selectPopular();
 	}
+
+	@Override
+	public List<Product> selectFeature() {
+		// TODO Auto-generated method stub
+		return productDao.selectFeature();
+	}
+
+	@Override
+	public int addFeature(int productNo) {
+		// TODO Auto-generated method stub
+		return productDao.addFeature(productNo);
+	}
+
+	@Override
+	public int removeFeature(int productNo) {
+		// TODO Auto-generated method stub
+		return productDao.removeFeature(productNo);
+	}
+	
 	
 	
 }

@@ -148,194 +148,32 @@ footer.type-2 {
                             <nav>
                                 <ul>
                                  <li class="full-width">
-                                        <a href="#" class="active">Products</a><i class="fa fa-chevron-down"></i>
-                                        <div class="submenu">
-                                            <div class="full-width-menu-items-right">
-                                                <div class="menu-slider-arrows">
-                                                    <a class="left"><i class="fa fa-chevron-left"></i></a>
-                                                    <a class="right"><i class="fa fa-chevron-right"></i></a>
-                                                </div>
-                                                <div class="submenu-list-title"><a href="#">추천 상품</a><span class="toggle-list-button"></span></div>
-                                                <div class="menu-slider-out">
-                                                    <div class="menu-slider-in">
-                                                        <div class="menu-slider-entry">
-                                                            <div class="product-slide-entry">
-                                                                <div class="product-image">
-                                                                    <img src="/resources/img/product-minimal-1.jpg" alt="" />
-                                                                    <div class="bottom-line left-attached">
-                                                                        <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="#" class="title">1.Pullover Batwing Sleeve Zigzag</a>
-                                                                <div class="price">
-                                                                    <div class="prev">$199,99</div>
-                                                                    <div class="current">$119,99</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="menu-slider-entry">
-                                                            <div class="product-slide-entry">
-                                                                <div class="product-image">
-                                                                    <img src="/resources/img/product-minimal-2.jpg" alt="" />
-                                                                    <div class="bottom-line left-attached">
-                                                                        <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="#" class="title">2.Pullover Batwing Sleeve Zigzag</a>
-                                                                <div class="price">
-                                                                    <div class="prev">$199,99</div>
-                                                                    <div class="current">$119,99</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="menu-slider-entry">
-                                                            <div class="product-slide-entry">
-                                                                <div class="product-image">
-                                                                    <img src="/resources/img/product-minimal-3.jpg" alt="" />
-                                                                    <div class="bottom-line left-attached">
-                                                                        <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="#" class="title">3.Pullover Batwing Sleeve Zigzag</a>
-                                                                <div class="price">
-                                                                    <div class="prev">$199,99</div>
-                                                                    <div class="current">$119,99</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="menu-slider-entry">
-                                                            <div class="product-slide-entry">
-                                                                <div class="product-image">
-                                                                    <img src="/resources/img/product-minimal-4.jpg" alt="" />
-                                                                    <div class="bottom-line left-attached">
-                                                                        <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="#" class="title">4.Pullover Batwing Sleeve Zigzag</a>
-                                                                <div class="price">
-                                                                    <div class="prev">$199,99</div>
-                                                                    <div class="current">$119,99</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="menu-slider-entry">
-                                                            <div class="product-slide-entry">
-                                                                <div class="product-image">
-                                                                    <img src="/resources/img/product-minimal-5.jpg" alt="" />
-                                                                    <div class="bottom-line left-attached">
-                                                                        <a class="bottom-line-a square"><i class="fa fa-shopping-cart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-heart"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-retweet"></i></a>
-                                                                        <a class="bottom-line-a square"><i class="fa fa-expand"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="#" class="title">5.Pullover Batwing Sleeve Zigzag</a>
-                                                                <div class="price">
-                                                                    <div class="prev">$199,99</div>
-                                                                    <div class="current">$119,99</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="full-width-menu-items-left">
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <div class="submenu-list-title"><a href="index-wide.html">Products <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
-                                                        <ul class="list-type-1 toggle-list-container">
-                                                       		<li><a name="menu" href="/product/listForm/110"><i class="fa fa-angle-right"></i>EARRING</a></li>
-                                                            <li><a name="menu" href="/product/listForm/120"><i class="fa fa-angle-right"></i>PIERCING</a></li>
-                                                            <li><a name="menu" href="/product/listForm/210"><i class="fa fa-angle-right"></i>NECKLACE</a></li>
-                                                            <li><a name="menu" href="/product/listForm/220"><i class="fa fa-angle-right"></i>BRACELET</a></li>
-                                                            <li><a name="menu" href="/product/listForm/310"><i class="fa fa-angle-right"></i>RING</a></li>
-                                                            <li><a name="menu" href="/product/listForm/410"><i class="fa fa-angle-right"></i>HAIR-ITEM</a></li>
-                                                            <li><a name="menu" href="/product/listForm/0"><i class="fa fa-angle-right"></i>ETC</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    
-                                                    <div class="col-lg-8">
-                                                      <img class="submenu_img" src="/resources/img/menu/ETC.jpg" alt="" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="submenu-links-line">
-                                                <div class="submenu-links-line-container">
-                                                    <div class="cell-view">
-                                                        <div class="line-links"><b>Quicklinks:</b>  <a href="#">Blazers</a>, <a href="#">Jackets</a>, <a href="#">Shoes</a>, <a href="#">Bags</a>, <a href="#">Special offers</a>, <a href="#">Sales and discounts</a></div>
-                                                    </div>
-                                                    <div class="cell-view">
-                                                        <div class="red-message"><b>-20% sale only this week. Donât miss buy something!</b></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="simple-list">
-                                        <a href="shop.html">Products</a><i class="fa fa-chevron-down"></i>
-                                        <div class="submenu">
-                                            <ul class="simple-menu-list-column">
-                                                <li><a href="shop.html"><i class="fa fa-angle-right"></i>Shop</a></li>
-                                                <li><a href="product.html"><i class="fa fa-angle-right"></i>Product</a></li>
-                                                <li><a href="product-nosidebar.html"><i class="fa fa-angle-right"></i>No Sidebar</a></li>
-                                                <li><a href="product-tabnosidebar.html"><i class="fa fa-angle-right"></i>Tab No Sidebar</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
+                                 	<a href="/product/listForm/110" class="">EARRING</a><!-- <i class="fa fa-chevron-down"></i> -->
+                                 </li>
+                                 <li class="full-width">
+                                 	<a href="/product/listForm/120" class="">PIERCING</a><!-- <i class="fa fa-chevron-down"></i> -->
+                                 </li>
+                                 <li class="full-width">
+                                 	<a href="/product/listForm/210" class="">NECKLACE</a><!-- <i class="fa fa-chevron-down"></i> -->
+                                 </li>
+                                 <li class="full-width">
+                                 	<a href="/product/listForm/220" class="">BRACELET</a><!-- <i class="fa fa-chevron-down"></i> -->
+                                 </li>
+                                 <li class="full-width">
+                                 	<a href="/product/listForm/310" class="">RING</a><!-- <i class="fa fa-chevron-down"></i> -->
+                                 </li>
+                                 <li class="full-width">
+                                 	<a href="/product/listForm/410" class="">HAIR ITEM</a><!-- <i class="fa fa-chevron-down"></i> -->
+                                 </li>
+                                 <li class="full-width">
+                                 	<a href="/product/listForm/0" class="">ETC</a><!-- <i class="fa fa-chevron-down"></i> -->
+                                 </li>
                                    
-                                    <li class="column-1">
-                                        <a href="blog.html">Blog</a><i class="fa fa-chevron-down"></i>
-                                        <div class="submenu">
-                                            <div class="full-width-menu-items-left">
-                                                <img class="submenu-background" src="/resources/img/product-menu-8.jpg" alt="" />
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="submenu-list-title"><a href="blog.html">Blog <span class="menu-label blue">new</span></a><span class="toggle-list-button"></span></div>
-                                                        <ul class="list-type-1 toggle-list-container">
-                                                            <li><a href="blog.html"><i class="fa fa-angle-right"></i>Blog Default</a></li>
-                                                            <li><a href="blog-grid.html"><i class="fa fa-angle-right"></i>Blog Grid</a></li>
-                                                            <li><a href="blog-timeline.html"><i class="fa fa-angle-right"></i>Blog Timeline</a></li>
-                                                            <li><a href="blog-list.html"><i class="fa fa-angle-right"></i>Blog List</a></li>
-                                                            <li><a href="blog-biggrid.html"><i class="fa fa-angle-right"></i>Blog Big Grid</a></li>
-                                                            <li><a href="blog-detail.html"><i class="fa fa-angle-right"></i>Single Post</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="submenu-links-line">
-                                                <div class="submenu-links-line-container">
-                                                    <div class="cell-view">
-                                                        <div class="line-links"><b>Quicklinks:</b>  <a href="shop.html">Blazers</a>, <a href="shop.html">Jackets</a>, <a href="shop.html">Shoes</a>, <a href="shop.html">Bags</a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
                                     <li class="simple-list">
                                         <a>More</a><i class="fa fa-chevron-down"></i>
                                         <div class="submenu">
                                             <ul class="simple-menu-list-column">
-                                                <li><a href="login.html"><i class="fa fa-angle-right"></i>Login</a></li>
-                                                <li><a href="error.html"><i class="fa fa-angle-right"></i>Error</a></li>
-                                                <li><a href="faq.html"><i class="fa fa-angle-right"></i>Faq</a></li>
-                                                <li><a href="compare.html"><i class="fa fa-angle-right"></i>Compare</a></li>
-                                                <li><a href="wishlist.html"><i class="fa fa-angle-right"></i>Wishlist</a></li>
-                                                <li><a href="shortcodes.html"><i class="fa fa-angle-right"></i>Shortcodes</a></li>
-                                                <li><a href="elements-headers.html"><i class="fa fa-angle-right"></i>Elements - Headers</a></li>
-                                                <li><a href="elements-footers.html"><i class="fa fa-angle-right"></i>Elements - Footers</a></li>
-                                                <li><a href="elements-breadcrumbs.html"><i class="fa fa-angle-right"></i>Elements - Breadcrumbs</a></li>
+                                                <li><a ><i class="fa fa-angle-right"></i>작업중입니다.</a></li>
                                             </ul>
                                         </div>
                                     </li>

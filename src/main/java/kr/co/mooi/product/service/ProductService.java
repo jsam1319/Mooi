@@ -20,5 +20,12 @@ public interface ProductService {
 	public List<Product> selectNewArrive();
 	
 	public List<Product> selectPopular();
+	
+	public List<Product> selectFeature();
+	
+	public int addFeature(int productNo);
+	
+	public int removeFeature(int productNo);
+
 }
 

@@ -21,4 +21,10 @@ public interface ProductDao {
 	
 	public List<Product> selectPopular();
 	
+	public List<Product> selectFeature();
+	
+	public int addFeature(int productNo);
+	
+	public int removeFeature(int productNo);
+	
 }

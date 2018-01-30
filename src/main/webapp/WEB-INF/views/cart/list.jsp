@@ -152,34 +152,67 @@
    function getEntryStr(product, cart) {
 	   var returnStr = "";
 	   
-	   returnStr += "<tr>\n" + 
-	   				" 	<td>  <label class='checkbox-entry' style='text-align: center;'> <input type='checkbox' id='"+ cart.cartNo +"' checked/> <span class='check'></span>" +
-                    " </label> </td>"+ 
-					"   <td>\n" + 
-					"       <div class=\"traditional-cart-entry\">\n" + 
-					"           <a href=\"#\" class=\"image\"><img src=\"/resources/upload/" + product.frontImage + "\" alt=\"\"></a>\n" + 
-					"           <div class=\"content\">\n" + 
-					"               <div class=\"cell-view\">\n" + 
-					"                   <a href=\"#\" class=\"tag\">"+ product.categoryNo +"</a>\n" + 
-					"                   <a href=\"#\" class=\"title\">" + product.name + "</a>\n" + 
-					"					<input type='hidden' value=" + product.productNo + ">" +					
-					"                   <div class=\"inline-description\">"+ product.subName +"</div>\n" + 
-					"               </div>\n" + 
-					"           </div>\n" + 
-					"       </div>\n" + 
-					"   </td>\n" + 
-					"   <td>" + numberWithCommas(product.price) + " 원 <input type='hidden' name='price' value='"+ product.price +"'></td>\n" + 
-					"   <td>\n" + 
-					"       <div class=\"quantity-selector detail-info-entry\">\n" + 
-					"           <div class=\"entry number-minus\">&nbsp;</div>\n" + 
-					"           <div class=\"entry number\">"+ cart.amount +"</div>\n" + 
-					"           <div class=\"entry number-plus\">&nbsp;</div>\n" + 
-					"       </div>\n" + 
-					"   </td>\n" + 
-					"   <td><div class=\"subtotal\">"+ numberWithCommas(product.price * cart.amount) +" 원</div></td>\n" + 
-					"   <td><a class=\"remove-button\"><i class=\"fa fa-times\"></i></a></td>\n" + 
-					"</tr>\n";
-		
+	   if(product.stock <= 0) {
+		   returnStr += "<tr>\n" + 
+						" 	<td>  <label class='checkbox-entry' style='text-align: center;'> <input type='checkbox' id='"+ cart.cartNo +"' disabled/> <span class='check'></span>" +
+			            " </label> </td>"+ 
+						"   <td>\n" + 
+						"       <div class=\"traditional-cart-entry\">\n" + 
+						"           <a href=\"#\" class=\"image\"><img src=\"/resources/upload/" + product.frontImage + "\" alt=\"\"></a>\n" + 
+						"           <div class=\"content\">\n" + 
+						"               <div class=\"cell-view\">\n" + 
+						"                   <a href=\"/product/listForm/ " + product.categoryNo + "\" class=\"tag\">"+ product.categoryNo +"</a>\n" + 
+						"                   <a href=\"/product/detailForm/" + product.productNo + "\" class=\"title\">" + product.name + "</a>\n" + 
+						"					<input type='hidden' value=" + product.productNo + ">" +					
+						"                   <div class=\"inline-description\">"+ product.subName +"</div>\n" + 
+						"               </div>\n" + 
+						"           </div>\n" + 
+						"       </div>\n" + 
+						"   </td>\n" + 
+						"   <td>" + numberWithCommas(product.price) + " 원 <input type='hidden' name='price' value='"+ product.price +"'></td>\n" + 
+						"   <td>\n" + 
+						"       <div class=\"quantity-selector detail-info-entry\">\n" + 
+						"           <label>재고가 부족하여 상품 주문이 불가능합니다.</label>" + 
+						"       </div>\n" + 
+						"   </td>\n" + 
+						"   <td><div class=\"subtotal\">"+ 0 +" 원</div></td>\n" + 
+						"   <td><a class=\"remove-button\"><i class=\"fa fa-times\"></i></a></td>\n" + 
+						"</tr>\n";
+
+	   }
+	   
+	   else {
+		   returnStr += "<tr>\n" + 
+						" 	<td>  <label class='checkbox-entry' style='text-align: center;'> <input type='checkbox' id='"+ cart.cartNo +"' checked/> <span class='check'></span>" +
+			            " </label> </td>"+ 
+						"   <td>\n" + 
+						"       <div class=\"traditional-cart-entry\">\n" + 
+						"           <a href=\"#\" class=\"image\"><img src=\"/resources/upload/" + product.frontImage + "\" alt=\"\"></a>\n" + 
+						"           <div class=\"content\">\n" + 
+						"               <div class=\"cell-view\">\n" + 
+						"                   <a href=\"/product/listForm/ " + product.categoryNo + "\" class=\"tag\">"+ product.categoryNo +"</a>\n" + 
+						"                   <a href=\"/product/detailForm/" + product.productNo + "\" class=\"title\">" + product.name + "</a>\n" + 
+						"					<input type='hidden' value=" + product.productNo + ">" +					
+						"                   <div class=\"inline-description\">"+ product.subName +"</div>\n" + 
+						"               </div>\n" + 
+						"           </div>\n" + 
+						"       </div>\n" + 
+						"   </td>\n" + 
+						"   <td>" + numberWithCommas(product.price) + " 원 <input type='hidden' name='price' value='"+ product.price +"'></td>\n" + 
+						"   <td>\n" + 
+						"       <div class=\"quantity-selector detail-info-entry\">\n" + 
+						"           <div class=\"entry number-minus\">&nbsp;</div>\n" + 
+						"           <div class=\"entry number\">"+ cart.amount +"</div>\n" + 
+						"           <div class=\"entry number-plus\">&nbsp;</div>\n" + 
+						"       </div>\n" + 
+						"   </td>\n" + 
+						"   <td><div class=\"subtotal\">"+ numberWithCommas(product.price * cart.amount) +" 원</div></td>\n" + 
+						"   <td><a class=\"remove-button\"><i class=\"fa fa-times\"></i></a></td>\n" + 
+						"</tr>\n";
+
+	   }
+	   
+	  
 		return returnStr;
 	   
    }

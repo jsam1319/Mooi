@@ -43,7 +43,8 @@
             content,
 			front_image,
 			regdate,
-			stock
+			stock,
+			feature
     	FROM 
     		product
     	WHERE
@@ -61,7 +62,8 @@
             content,
 			front_image,
 			regdate,
-			stock
+			stock,
+			feature
     	FROM 
     		product
     	WHERE
@@ -81,7 +83,8 @@
             content,
 			front_image,
 			regdate,
-			stock
+			stock,
+			feature
     	FROM 
     		product
     </select>
@@ -92,7 +95,22 @@
     		stock = #{stock}
     	WHERE
     		product_no = #{productNo}
+    </update>
     
+    <update id="addFeature" parameterType="int">
+    	UPDATE product
+    	SET
+    		feature = 'T'
+    	WHERE
+    		product_no = #{productNo}
+    </update>
+    
+    <update id="removeFeature" parameterType="int">
+    	UPDATE product
+    	SET
+    		feature = 'F'
+    	WHERE
+    		product_no = #{productNo}
     </update>
     
     <select id="selectNewArrive" resultType="Product">
@@ -106,7 +124,8 @@
             content,
 			front_image,
 			regdate,
-			stock
+			stock,
+			feature
     	FROM 
     		product
     	WHERE 
@@ -114,7 +133,7 @@
         ORDER BY 
     		regdate DESC
     	LIMIT
-    		0, 6 ;
+    		0, 6
     </select>
     
     <select id="selectPopular" resultType="Product">
@@ -127,7 +146,8 @@
 		       content, 
 		       front_image, 
 		       regdate, 
-		       stock 
+		       stock,
+		       feature 
 		FROM   product 
 		WHERE  product_no IN (SELECT o.product_no 
 		                      FROM   (SELECT product_no, 
@@ -135,6 +155,25 @@
 		                              FROM   order_item 
 		                              GROUP  BY product_no 
 		                              ORDER  BY total DESC)o ) 
-		LIMIT  0, 6; 
+		LIMIT  0, 6
     </select>
+    
+    <select id="selectFeature" resultType="Product">
+    	SELECT product_no, 
+		       category_no, 
+		       name, 
+		       sub_name, 
+		       price, 
+		       cost, 
+		       content, 
+		       front_image, 
+		       regdate, 
+		       stock,
+		       feature 
+		FROM   product 
+		WHERE  feature = 'T'
+		LIMIT  0,6
+    </select>
+    
+    
 </mapper>

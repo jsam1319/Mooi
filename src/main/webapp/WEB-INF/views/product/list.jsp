@@ -2,35 +2,36 @@
 <body class="style-10">
 
 <style>
-.goods-regdate{
-  font-size: 13px; 
-  line-height: 14px; 
-  color: #8b8b8b; 
-  text-transform: uppercase; 
-  display: block; 
-  font-weight: 500; 
-  margin-bottom: 7px;
-}
 
 .product-slide-entry img {
-	width : 100%;
-	height : 100%
+	width : 250px;
+	height : 250px;
 
-} 
+}
+
+.product-slide-entry .tag {
+	font-size: 13px
+
+}  
+
+.product-slide-entry .title {
+	font-size: 20px
+
+}  
 
 
 </style>
 
   <!-- LOADER -->
   <div class="content-push">
-
+	<div id="loading"><img id="loading-image" src="/resources/img/loading/5.gif" alt="Loading..." /></div>
     <div class="breadcrumb-box">
       <a href="/">Home</a> <i class="fas fa-caret-right"></i> <a href="/product/list/110">상품 목록</a>
     </div>
 
     <div class="information-blocks">
       <div class="row">
-        <div class="col-md-9 col-md-push-3 col-sm-8 col-sm-push-4">
+        <div class="col-md-12 col-sm-8">
 
           <input type="hidden" id="loginMemberNo" value="${no}">
           <input type="hidden" id="category" value="${categoryNo}">
@@ -90,26 +91,7 @@
           </div>
           <!-- /.End Gpurchase -->
 
-        <!-- Left Side Menu -->
-        <div class="col-md-3 col-md-pull-9 col-sm-4 col-sm-pull-8 blog-sidebar">
-          <div class="information-blocks categories-border-wrapper">
-            <div class="block-title size-3">Categories</div>
-            <div class="enterContent-2"></div>
-                <div class="article-container style-1">
-                <ul>
-                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/110"> EARRING</a></li>
-                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/120"> PIERCING</a></li>
-                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/130"> NECKLACE</a></li>
-                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/140"> BRACELET</a></li>
-                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/150"> RING</a></li>
-                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/210"> HAIR ITEM</a></li>
-                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/220"> ETC</a></li>
-                    <li><i class="fas fa-caret-right"></i><a href="/product/listForm/230"> ON SALE</a></li>
-                    </ul>
-                </div>
-          	</div>
-        </div>
-        <!-- /.Left Side Menu -->
+        
       </div>
     </div>
   </div>
@@ -120,7 +102,11 @@
 var page = 0;
 
 $(document).ready(function() {
+	$('#loading').show();
+	
 	getList(0);
+
+	$('#loading').hide();  
 })
 
 $("#more").click(function() {
@@ -140,10 +126,13 @@ function getList(page) {
 		},
 		success : function(data) {
 			if(data.result == "FAIL") {
-				alert("마지막 페이지 입니다.");
-				window.page = window.page - 1;
-				console.log(window.page);
-				return;
+				if(page != 0) {
+					alert("마지막 페이지 입니다.");
+					window.page = window.page - 1;
+					console.log(window.page);
+				}
+				
+				return false;
 			}
 			
 			$(".listView").append(returnStr(data.list));
@@ -171,7 +160,7 @@ function returnStr(data) {
       	str += "		<a class='tag'>"+list.subName+"</a>"
       	str += "		<a href='/product/detailForm/"+list.productNo+"' class='title loginTitle' title='"+list.productNo+"'>"+list.name+"</a>"
 		str += "		<div class='price gpurchasePrice'>"
-      	str += "        	<div class='current gpurchasePrice'>￦"+list.price+"</div>"
+      	str += "        	<div class='current gpurchasePrice'>￦"+ numberWithCommas(list.price)+"</div>"
       	str += "		</div>"
       	str += "		<div class='list-buttons'>"
       	str += "		</div>"
@@ -182,7 +171,13 @@ function returnStr(data) {
 	
 	return str;
 	
-}	  
+}	
+
+
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 </script>  
 </body>

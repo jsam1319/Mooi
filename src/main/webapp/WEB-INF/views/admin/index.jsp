@@ -15,19 +15,19 @@ margin-bottom:10%;
 			<div class="row nopadding">
 				<div class="col-sm-6 information-entry left-border nopadding">
 					<div class="column-article-entry">
-						<a class="title" href="/chart/mul">통계</a>
-						<a class="description" href="/chart/mul"> 회사 매출액 통계 & 카테고리 매출액 통계
+						<a class="title">통계</a>
+						<a class="description" href="/admin/product/salesForm"> 상품 매출액 통계
 							<i class="fa fa-angle-right"></i> <br>
 						</a> 
-						<a class="description" href="/chart/salesline"> 회사 월 별 매출액 통계
+						<a class="description" href="/admin/member/visitorForm"> 일일 방문자 통계
 							<i class="fa fa-angle-right"></i><br>
 						</a>
 					</div>
 				</div>
 				<div class="col-sm-6 information-entry left-border nopadding">
 					<div class="column-article-entry">
-						<a class="title" href="/admin/push">주문</a>
-						<a class="description" href="/admin/push">주문 관리<i class="fa fa-angle-right"></i><br>
+						<a class="title">주문</a>
+						<a class="description" href="/admin/order/listForm">주문 관리<i class="fa fa-angle-right"></i><br>
                         </a>
 					</div>
 				</div>
@@ -35,6 +35,8 @@ margin-bottom:10%;
 					<div class="column-article-entry">
 						<a class="title" href="/admin/list">상품</a>
 						<a class="description" href="/admin/product/listForm">상품 관리 <i class="fa fa-angle-right"></i></a><br>
+						<a class="description" href="/admin/product/stockForm">재고 관리 <i class="fa fa-angle-right"></i></a><br>
+						<a class="description" href="/admin/product/featureForm">추천 상품 관리 <i class="fa fa-angle-right"></i></a>
 					</div>
 				</div>
                 <div class="col-sm-6 information-entry left-border nopadding">

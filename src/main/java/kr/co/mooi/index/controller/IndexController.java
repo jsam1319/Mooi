@@ -21,6 +21,7 @@ public class IndexController {
 		
 		mav.addObject("popular", productService.selectPopular());
 		mav.addObject("newArrive", productService.selectNewArrive());
+		mav.addObject("feature", productService.selectFeature());
 		
 		mav.setViewName("index");
 		

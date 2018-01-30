@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -134,4 +135,39 @@ public class ProductController {
 		
 		return resultMap;
 	}
+	
+	@RequestMapping(value="/product/stock/{productNo}", method=RequestMethod.PUT)
+	@ResponseBody
+	public String updateStock(@PathVariable int productNo, @RequestBody String stock) {
+		String result = "FAIL";
+		Product product = new Product();
+		
+		product.setProductNo(productNo);
+		product.setStock(Integer.parseInt(stock));
+
+		if(productService.updateStock(product) >= 1) result = "SUCCESS";
+		
+		return result;
+	}
+	
+	@RequestMapping(value="/product/feature/{productNo}", method=RequestMethod.PUT)
+	@ResponseBody
+	public String addFeature(@PathVariable int productNo) {
+		String result = "FAIL";
+
+		if(productService.addFeature(productNo) >= 1) result = "SUCCESS";
+		
+		return result;
+	}
+	
+	@RequestMapping(value="/product/feature/{productNo}", method=RequestMethod.PATCH)
+	@ResponseBody
+	public String removeFeature(@PathVariable int productNo) {
+		String result = "FAIL";
+
+		if(productService.removeFeature(productNo) >= 1) result = "SUCCESS";
+		
+		return result;
+	}
+	
 }
