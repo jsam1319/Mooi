@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.WebUtils;
 
@@ -17,18 +18,36 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.mooi.cart.dao.CartDao;
 import kr.co.mooi.cart.domain.Cart;
+import kr.co.mooi.product.dao.ProductDao;
+import kr.co.mooi.product.domain.Product;
 
 @Service
 public class CartServiceImpl implements CartService {
 
+	Logger logger = Logger.getLogger(this.getClass());
+	
 	@Inject
 	CartDao cartDao;
+	
+	@Inject
+	ProductDao productDao;
 	
 	@Override
 	public int insert(HttpServletRequest request, HttpServletResponse response, Cart cart) throws Exception {
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute("login") != null) {
+			List<Cart> carts = cartDao.selectByMemberNo((int)session.getAttribute("login"));
+			
+			for (Cart cCart : carts) {
+				if(cCart.getProductNo() == cart.getProductNo()) {
+					cCart.setAmount(cart.getAmount() + cCart.getAmount());
+					
+					cartDao.update(cCart);
+					return 1;
+				}
+			}
+			
 			cart.setMemberNo((int)session.getAttribute("login"));
 			return cartDao.insert(cart);
 		}

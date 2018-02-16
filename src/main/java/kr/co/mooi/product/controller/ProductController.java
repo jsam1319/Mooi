@@ -43,6 +43,21 @@ public class ProductController {
 	public Product select(@PathVariable int productNo) {
 		return productService.select(productNo);
 	}
+	
+	@RequestMapping(value="/product/{productNo}", method=RequestMethod.DELETE)
+	@ResponseBody
+	public Map<String, Object> delete(@PathVariable int productNo) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", "FAIL");
+		Product product = productService.select(productNo);
+		product.setStatus("F");
+		
+		if(productService.updateStatus(product) > 0) {
+			resultMap.put("result", "SUCCESS");
+		}
+		
+		return resultMap;
+	}
 
 	
 	@RequestMapping("/product/insertForm")

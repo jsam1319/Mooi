@@ -15,4 +15,6 @@ public interface OrdersDao {
 	public List<Orders> selectAll();
 	
 	public List<Orders> selectByDate(String start, String end);
+	
+	public int updateStatus(Orders orders);
 }

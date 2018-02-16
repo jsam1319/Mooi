@@ -118,7 +118,7 @@ public class MemberController {
 		session.removeAttribute("login");
 		if(loginCookie != null) loginCookie.setMaxAge(0);
 		
-		return "redirect:/index";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/member/regist/{id}", method=RequestMethod.GET)

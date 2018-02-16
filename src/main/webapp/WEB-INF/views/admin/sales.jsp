@@ -132,14 +132,14 @@ $(document).ready(function () {
 	
 	var chart;
 	var list;
-	
+
 	$.ajax({
 		url : "/statis",
 		dataType : "json",
 		async : false,
 		data : {
 			start : start.format("YYYY/MM/DD"),
-			end : end.format("YYYY/MM/DD")
+			end : end.format("YYYY/MM/DD") + "/23/59/59"
 		},
 		success : function(data) {
 			list = data.list;
@@ -184,7 +184,7 @@ $(document).ready(function () {
 			async : false,
 			data : {
 				start : start.format("YYYY/MM/DD"),
-				end : end.format("YYYY/MM/DD")
+				end : end.format("YYYY/MM/DD") + "/23/59/59"
 			},
 			success : function(data) {
 				list = data.list;

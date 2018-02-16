@@ -9,6 +9,8 @@ public interface ProductService {
 
 	public int insert(Product product); 
 	
+	public int delete(int productNo);
+	
 	public List<Product> selectByCategory(PageBuilder pageBuilder);
 	
 	public Product select(int productNo);
@@ -16,6 +18,8 @@ public interface ProductService {
 	public List<Product> selectAll();
 
 	public int updateStock(Product product);
+	
+	public int updateStatus(Product product);
 
 	public List<Product> selectNewArrive();
 	

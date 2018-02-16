@@ -124,8 +124,8 @@
             </div>
             <div class="row">
               <div class="col-sm-10 form-group">
-                <label>배송 메세지 <span>*</span></label>
-                <textarea class="simple-field" required name="content"></textarea>
+                <label>배송 메세지</label>
+                <textarea class="simple-field" name="content"></textarea>
               </div>
             </div>
           </div>

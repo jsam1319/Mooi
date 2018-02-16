@@ -76,7 +76,7 @@ z-index : 0;
 		
 		    <div class="orderinfomation-blocks">
 		      <div class="accordeon">
-		        <div class="accordeon-title active">
+		        <div class="accordeon-title">
 		          <h4 class="block-title order-main-heading">주문자 정보</h4>
 		        </div>
 		        <div style="display: block;" class="accordeon-entry">
@@ -246,64 +246,15 @@ $(document).ready(function(){
  	 				//$(this).attr("href","/product/insert/"+tableNo);
  			}) */
  			
- 			$('#productTable tbody').on( 'click', "a[name='regist']", function () {
+ 		/* 	$('#productTable tbody').on( 'click', "a[name='regist']", function () {
  		        var data = table.row( $(this).parents('tr') ).data();
  		     	
- 		    } );
+ 		    } ); */
  			
  			
 		}
 	})
 	
-	jsonToDataSet = function(json) {
-		
-		var obj = JSON.parse(json)
-		var category;
-		var str;
-    	var dataSet = [];
-    	
-    	for(var i in obj) {
-    		var data = [];
-    		
-    		data.push(obj[i].ordersNo);
-    		data.push(obj[i].ordererName);
-    		data.push(obj[i].regdate);
-    		data.push(numberWithCommas(obj[i].price) + " 원");
-    		
-    		/* data.push("<a href='/product/detailForm/" + obj[i].productNo + "'> " + obj[i].name + " </a>"); */
-    		
-    		switch(obj[i].status){
-    			case 'OC':
-    				data.push("주문완료");
-    				break;
-    			case 'PC':
-    				data.push("결제완료");
-    				break;
-    			case 'DR':
-    				data.push("배송준비중");
-    				break;
-    			case 'DC':
-    				data.push("발송완료(배송중)");
-    				break;
-    			case 'RE':
-    				data.push("반품");
-    				break;
-    			case 'ER':
-    				data.push("취소");
-    				break;
-    			case 'NF':
-    				data.push("오류발생");
-    				break;	
-    		}
-    		
-    		data.push('<a class="button style-15" name="orderDetail"  data-toggle="modal" data-target="#myModal" value="'+ obj[i].ordersNo +'">자세히 보기</a>');
-    		
-    		dataSet.push(data); 
-		}
-    	
-    	return dataSet;
-	}
-     
 	$('#myModal').on('shown.bs.modal', function () {
 		$('#myInput').focus()
 	})
@@ -311,8 +262,83 @@ $(document).ready(function(){
 	$(document).on('click', 'a[name="orderDetail"]', function() {
 		appendEntry($(this).attr("value"));
 	})
+	
+	$(document).on('click', 'a[name="regist"]', function() {
+		var td = $(this).parent().parent().find('td');
+		var ordersNo = td[0].innerHTML;
+		
+		var conf = confirm("주문 상태를 변경 하시겠습니까?");
+		
+		if(conf) {
+			$.ajax({
+				url : "/order/" + ordersNo,
+				type : "PUT",
+				success : function(data) {
+					alert("주문 상태를 변경하였습니다.");	
+					td[4].innerHTML = data.status;
+				},
+				error : function(data) {
+					alert('error');
+				}
+			});
+			
+		}
+		
+		else {
+			alert("주문 상태 변경을 취소하였습니다.");
+		}
+	})
 })
 
+
+jsonToDataSet = function(json) {
+		
+	var obj = JSON.parse(json)
+	var category;
+	var str;
+    var dataSet = [];
+    
+    for(var i in obj) {
+    	var data = [];
+    	
+    	data.push(obj[i].ordersNo);
+    	data.push(obj[i].ordererName);
+    	data.push(obj[i].regdate);
+    	data.push(numberWithCommas(obj[i].price) + " 원");
+    	
+    	/* data.push("<a href='/product/detailForm/" + obj[i].productNo + "'> " + obj[i].name + " </a>"); */
+    	
+    	switch(obj[i].status){
+    		case 'OC':
+    			data.push("주문완료");
+    			break;
+    		case 'PC':
+    			data.push("결제완료");
+    			break;
+    		case 'DR':
+    			data.push("배송준비중");
+    			break;
+    		case 'DC':
+    			data.push("발송완료(배송중)");
+    			break;
+    		case 'RE':
+    			data.push("반품");
+    			break;
+    		case 'ER':
+    			data.push("취소");
+    			break;
+    		case 'NF':
+    			data.push("오류발생");
+    			break;	
+    	}
+    	
+    	data.push('<a class="button style-15" name="orderDetail"  data-toggle="modal" data-target="#myModal" value="'+ obj[i].ordersNo +'">자세히 보기</a>');
+    	
+    	dataSet.push(data); 
+	}
+    
+    return dataSet;
+}	
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

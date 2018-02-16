@@ -96,5 +96,10 @@
        	ORDER BY regdate DESC
   	</select>
   	
+  	<update id="updateStatus" parameterType="Orders">
+  		UPDATE orders
+  		SET status = #{status}
+  		WHERE orders_no = #{ordersNo}
+  	</update>
   	
 </mapper>

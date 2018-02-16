@@ -78,7 +78,7 @@ $(document).ready(function(){
  				columnDefs: [{
 			    	   	targets:-1,
 			    	   	data:null,
-			            defaultContent: "<div id='hiddenDiv'></div><a class='button style-15' name='regist'>삭제</a>"
+			            defaultContent: "<div id='hiddenDiv'></div><a class='button style-15' name='remove'>삭제</a>"
 			    }],
  				language: {
  			        processing:     "데이터 검색 중",
@@ -110,9 +110,20 @@ $(document).ready(function(){
  	 				//$(this).attr("href","/product/insert/"+tableNo);
  			}) */
  			
- 			$('#productTable tbody').on( 'click', "a[name='regist']", function () {
- 		        var data = table.row( $(this).parents('tr') ).data();
- 		       $(this).attr("href","/product/insert/"+data[4])
+ 			$('#productTable tbody').on( 'click', "a[name='remove']", function () {
+ 			   	var tr = $(this).parents('tr');
+ 		       	var productNo = table.row( $(this).parents('tr') ).data()[0];
+ 		       
+ 		      	$.ajax({
+ 		    	   url : "/product/" + productNo,
+ 		    	   type : "delete",
+ 		    	   success : function(data) {
+ 		    		   if(data.result == "SUCCESS") {	
+ 		    			   alert("상품 삭제가 성공적으로 되었습니다.");
+ 		    			   $(tr).remove();
+ 		    		   }
+ 		    	   }
+ 		       	})
  		    } );
  			
  			

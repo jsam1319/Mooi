@@ -32,6 +32,11 @@
        </selectKey>
     </insert>
     
+    <delete id="delete" parameterType="int">
+    	DELETE FROM product
+    	WHERE product_no = #{productNo}
+    </delete>
+    
     <select id="select" parameterType="int" resultType="Product">
     	SELECT
     		product_no, 
@@ -44,11 +49,13 @@
 			front_image,
 			regdate,
 			stock,
-			feature
+			feature,
+			status
     	FROM 
     		product
     	WHERE
     		product_no = #{productNo}
+
     </select>
     
     <select id="selectByCategory" parameterType="PageBuilder" resultType="Product">
@@ -63,11 +70,14 @@
 			front_image,
 			regdate,
 			stock,
-			feature
+			feature,
+			status
     	FROM 
     		product
     	WHERE
     		category_no = #{categoryNo}
+    	AND
+    		status = 'T'
     	LIMIT
     		#{page}, #{count}
     </select>
@@ -84,15 +94,26 @@
 			front_image,
 			regdate,
 			stock,
-			feature
+			feature,
+			status
     	FROM 
     		product
+    	WHERE
+    		status = 'T'
     </select>
     
     <update id="updateStock" parameterType="Product">
     	UPDATE product
     	SET
     		stock = #{stock}
+    	WHERE
+    		product_no = #{productNo}
+    </update>
+    
+    <update id="updateStatus" parameterType="Product">
+        UPDATE product
+    	SET
+    		status = #{status}
     	WHERE
     		product_no = #{productNo}
     </update>
@@ -125,11 +146,14 @@
 			front_image,
 			regdate,
 			stock,
-			feature
+			feature,
+			status
     	FROM 
     		product
     	WHERE 
     		stock > 0
+    	AND
+    		status = 'T'
         ORDER BY 
     		regdate DESC
     	LIMIT
@@ -155,6 +179,8 @@
 		                              FROM   order_item 
 		                              GROUP  BY product_no 
 		                              ORDER  BY total DESC)o ) 
+		AND
+    		status = 'T'
 		LIMIT  0, 6
     </select>
     
@@ -172,6 +198,7 @@
 		       feature 
 		FROM   product 
 		WHERE  feature = 'T'
+		AND    status = 'T'
 		LIMIT  0,6
     </select>
     

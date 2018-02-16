@@ -14,7 +14,7 @@
 				<div class="col-sm-6 information-entry left-border nopadding">
 					<div class="column-article-entry">
 						<div class="title">Search</div>
-						<a class="description" href="/order/"> 구매 이력 조회 <i class="fa fa-angle-right"></i> <br>
+						<a class="description" href="/member/orderList"> 구매 이력 조회 <i class="fa fa-angle-right"></i> <br>
 						<a class="description" href="/gwish/"> 찜 목록 조회 <i class="fa fa-angle-right"></i> <br>
 					</div>
 				</div>

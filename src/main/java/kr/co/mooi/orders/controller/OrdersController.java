@@ -149,6 +149,21 @@ public class OrdersController {
 		return resultMap;
 	}
 	
+	@RequestMapping(value="/order/{ordersNo}", method=RequestMethod.PUT)
+	@ResponseBody
+	public Map<String, Object> updateStatus(@PathVariable int ordersNo) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		Orders orders = ordersService.select(ordersNo);
+		orders.setStatus(OrderStatus.changeStatus(OrderStatus.valueOf(orders.getStatus())).name());
+		ordersService.updateStatus(orders);
+		
+		resultMap.put("result", "SUCCESS");
+		resultMap.put("status", OrderStatus.valueOf(orders.getStatus()).getName());
+		
+		return resultMap;
+	}
+	
 	@RequestMapping(value="/order/member/{memberNo}", method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> selectByMemberNo(@PathVariable int memberNo) {

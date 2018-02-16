@@ -192,31 +192,7 @@ img {
           class="button style-40" href="#productInfo3">유의 사항</a>
       </div>
 
-      <div class="inline-product-entry">
-        <form id="replyform" method="post" enctype="multipart/form-data">
-              <div class="row">
-                <div class=" col-md-8">
-                  <label>리뷰 작성<span>*</span></label>
-                  <textarea class="simple-field" style="resize: none;"
-                    id="content" name="content"
-                    placeholder="Your message content (required)"></textarea>
-                </div>
-                <div class="col-md-4">
-                  <div style="margin-top: 10%">
-                    <input type="file" id="attachFile" name="attachFile"
-                      accept="image/*">
-                  </div>
-
-                  <div id="targetType" style="margin-top: 10%"></div>
-                  <div id="targetType-hint" class="input hint"></div>
-
-                  <div class="button style-10" style="margin-top: 10%">
-                    리뷰 작성<input type="button" id="reviewBtn" value="">
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
+      
 
       <div id="reviewList"></div>
 

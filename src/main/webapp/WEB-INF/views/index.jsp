@@ -234,33 +234,6 @@
 			</div>
 		</div>
 
-
-		<div class="information-blocks">
-			<div class="row">
-				<div class="information-entry col-md-6">
-					<div class="sale-entry sale-entry-border" style="background: #333;">
-						<div class="sale-price">
-							<img src="img/shipping-icon.png" alt="" />
-						</div>
-						<div class="sale-title">Free UK shipping</div>
-						<div class="sale-description">Lorem ipsum dolor sit amet,
-							consectetur adipisc eiusmod. Lorem ipsum dolor sit amet.</div>
-					</div>
-				</div>
-				<div class="information-entry col-md-6">
-					<div class="sale-entry sale-entry-border"
-						style="background: #901794;">
-						<div class="sale-price">
-							<img src="img/shipping-icon.png" alt="" />
-						</div>
-						<div class="sale-title">Free UK shipping</div>
-						<div class="sale-description">Lorem ipsum dolor sit amet,
-							consectetur adipisc eiusmod. Lorem ipsum dolor sit amet.</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
 		<div class="information-blocks">
 			<div class="row">
 				<div class="col-md-4 information-entry">

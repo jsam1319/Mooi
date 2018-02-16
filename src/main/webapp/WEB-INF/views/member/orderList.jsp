@@ -4,6 +4,15 @@
 <head>
 
 <style>
+.cart-table .content {
+	margin-left : 0px;
+}
+
+.cart-table .column-1 {
+	width : 200px;
+}
+
+
 .cart-table .column-3 {
 	width : 300px;
 }
@@ -62,7 +71,7 @@ z-index : 0;
 		
 		    <div class="orderinfomation-blocks">
 		      <div class="accordeon">
-		        <div class="accordeon-title active">
+		        <div class="accordeon-title">
 		          <h4 class="block-title order-main-heading">주문자 정보</h4>
 		        </div>
 		        <div style="display: block;" class="accordeon-entry">
@@ -167,6 +176,7 @@ z-index : 0;
                     <div class="table-responsive">
                         <table class="cart-table" id="cart">
                             <tr>
+                            	<th class="column-0"> </th>
                                 <th class="column-1">상품 명</th>
                                 <th class="column-2">주문 가격</th>
                                 <th class="column-3">주문 일자</th>
@@ -176,11 +186,11 @@ z-index : 0;
                             
                         </table>
                     </div>
-                    <div class="cart-submit-buttons-box">
+                   <!--  <div class="cart-submit-buttons-box">
                         <a class="button style-15">Continue Shopping</a>
                         <a class="button style-15">Update Bag</a>
-                    </div>
-                    <div class="row">
+                    </div> -->
+<!--                     <div class="row">
                         <div class="col-md-4 information-entry">
                             <h3 class="cart-column-title">Get shipping Estimates</h3>
                             <form>
@@ -221,7 +231,7 @@ z-index : 0;
                             </div>
                         </div>
                     </div>
-                </div>
+ -->                </div>
 
             </div>
 
@@ -260,7 +270,6 @@ z-index : 0;
 	   
 	   $(document).on('click', 'a[name="detail"]', function() {
 		   var ordersNo = $(this).attr("value");
-		   alert(ordersNo);		   
 		   appendDetailEntry(ordersNo);
 	   })
 	   
@@ -314,7 +323,10 @@ z-index : 0;
 		}
 	   
 	   returnStr += "<tr>\n" + 
-					"   <td>\n" + 
+	   				"   <td style=\"text-align : center\"> " +
+	   				"  			<a href='#' class='image'><img class='order-image'\n style=\"width : 80px; height : 80px\" src='/resources/upload/" + products[0].frontImage + "' alt=''></a>\n" + 
+					" </td>" +
+	   				"   <td>\n" + 
 					"       <div class=\"traditional-cart-entry\">\n" + 
 					"           <div class=\"content\">\n" + 
 					"               <div class=\"cell-view\">\n" + 

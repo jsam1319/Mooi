@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
   content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui" />
-  
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="/resources/img/logo/favicon.ico" type="image/x-icon"> 
 <link rel="icon" href="/resources/img/logo/favicon.ico" type="image/x-icon">
   
@@ -30,7 +30,8 @@
 <!-- custom scrollbar -->
 <script src="/resources/js/jquery.mousewheel.js"></script>
 <script src="/resources/js/jquery.jscrollpane.min.js"></script>
-<link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
+
+
 <title><decorator:title default="Mooi (무이)" /></title>
 <decorator:head />
 
@@ -68,8 +69,8 @@ footer.type-2 {
                             <div class="title"><i class="fa fa-phone"></i>Call Service Center <a href="tel:+821098072280"><b>010. 9807. 2280</b></a></div>
                         </div>
                         <div class="socials-box">
-                            <a href="https://www.facebook.com/mooikr/"><i class="fab fa-facebook"></i></a>
-                            <a href="https://www.instagram.com/mooi.kr/"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/mooikr/"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/mooi.kr/"><i class="fa fa-instagram"></i></a>
                         </div>
                         <div class="menu-button responsive-menu-toggle-class"><i class="fas fa-align-justify"></i></div>
                         <div class="clear"></div>
@@ -114,10 +115,10 @@ footer.type-2 {
                             <a class="header-functionality-entry open-search-popup" href="#"><i class="fa fa-search"></i><span>Search</span></a>
 							<c:choose>
 								<c:when test="${login != null}">
-									<a class="header-functionality-entry" href="/member/logout"><i class="fa fa-sign-out"></i><span>Logout</span></a>
+									<a class="header-functionality-entry" href="/member/logout"><i class="fa fa-sign-out""></i><span>Logout</span></a>
 								</c:when>
 								<c:otherwise>
-									<a class="header-functionality-entry" href="/member/loginForm"><i class="fa fa-sign-in-alt"></i><span>Login</span></a>
+									<a class="header-functionality-entry" href="/member/loginForm"><i class="fa fa-sign-in"></i><span>Login</span></a>
 								</c:otherwise>
 							</c:choose>                            
                             
@@ -126,7 +127,7 @@ footer.type-2 {
 									<a class="header-functionality-entry" href="/admin/"><i class="fa fa-unlock"></i><span>Admin</span></a>
 								</c:when>
 								<c:when test="${login >= 1}">
-									<a class="header-functionality-entry" href="/member/mypage"><i class="fa fa-address-book"></i><span>My Page</span></a>
+									<a class="header-functionality-entry" href="/member/mypage"><i class="fa fa-user" aria-hidden="true"></i><span>My Page</span></a>
 								</c:when>
 								<c:otherwise>
 									<a class="header-functionality-entry" href="/member/registForm"><i class="fa fa-user-plus"></i><span>Regist</span></a>
@@ -532,6 +533,8 @@ footer.type-2 {
 <script>
 $(document).ready(function() {
 	$("a[name='menu']").mouseover(function(event) {
+		FontAwesomeConfig = { searchPseudoElements: true };
+		
 		var imgName = $(this).text();
 		$(".submenu_img").attr("src", "/resources/img/menu/" + imgName + ".jpg");
 		console.log(imgName);

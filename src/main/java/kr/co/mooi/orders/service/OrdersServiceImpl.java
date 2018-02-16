@@ -44,5 +44,12 @@ public class OrdersServiceImpl implements OrdersService {
 		return null;
 	}
 
+	@Override
+	public int updateStatus(Orders orders) {
+		// TODO Auto-generated method stub
+		return ordersDao.updateStatus(orders);
+	}
+
+	
 	
 }

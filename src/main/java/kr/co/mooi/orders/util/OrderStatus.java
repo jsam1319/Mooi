@@ -31,4 +31,8 @@ public enum OrderStatus {
 		
 		return OrderStatus.NF;
 	}
+	
+	public String getName() {
+		return statusName;
+	}
 }
