@@ -96,6 +96,28 @@
        	ORDER BY regdate DESC
   	</select>
   	
+  	<select id="selectByNonMember" resultType="Orders" parameterType="Member">
+  		SELECT
+  			orders_no, 
+  			member_no,
+            name,
+            phone,
+            address,
+            remain_addr,
+            DATE_FORMAT(regdate, '%Y년 %m월 %d일 %p %h시 %i분') AS regdate,
+            postcode,
+            price,
+            status,
+            content,
+            orderer_name,
+            orderer_phone
+       	FROM orders
+       	WHERE name = #{name}
+       	AND   phone = #{phone}
+       	AND   member_no = -99
+       	ORDER BY regdate DESC
+  	</select>
+  	
   	<update id="updateStatus" parameterType="Orders">
   		UPDATE orders
   		SET status = #{status}

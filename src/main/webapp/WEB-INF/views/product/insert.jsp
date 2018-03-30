@@ -63,16 +63,21 @@
 	                             			</select>
 	                             			<div class="clear"></div>
 	                             	</div>
+	                             	<div class="col-sm-6">
+	                             		<label>상품 재고<span>*</span></label>
+	                             		<input class="simple-field" type="number" name="stock"/>
+                                        <div class="clear"></div>
+	                             	</div>
                              	</div>
                              	<div class="row">
                              		<div class="col-sm-6">
-                                      	<label>가격(￦) <span>*</span></label>
+                                      	<label>가격(원) <span>*</span></label>
                                         <input class="simple-field" type="number" name="price" required />
                                       	<div class="clear"></div>
                              		</div>
                              		
                              		<div class="col-sm-6">
-                                       	<label>원가(￦) <span>*</span></label>
+                                       	<label>원가(원) <span>*</span></label>
                                         <input class="simple-field" type="number" name="cost" required />
                                       	<div class="clear"></div>
                              		</div>

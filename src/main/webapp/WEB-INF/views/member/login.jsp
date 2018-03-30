@@ -41,7 +41,7 @@
                             <p>아직 회원이 아니세요?</p>
                             <p>회원님들을 위한 다양하고 특별한 혜택이 준비되어 있습니다.</p>
                         </div>
-                        <a class="button style-12" href="/member/regist">REGIST</a>
+                        <a class="button style-12" href="/member/privacy">REGIST</a>
                     </div>
                 </div>
             </div><%-- ./row --%>

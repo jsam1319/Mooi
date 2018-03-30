@@ -2,6 +2,7 @@ package kr.co.mooi.orders.service;
 
 import java.util.List;
 
+import kr.co.mooi.member.domain.Member;
 import kr.co.mooi.orders.domain.Orders;
 
 public interface OrdersService {
@@ -15,6 +16,8 @@ public interface OrdersService {
 	public List<Orders> selectAll();
 	
 	public List<Orders> selectByDate(String start, String end);
+	
+	public List<Orders> selectByNonMember(Member member);
 	
 	public int updateStatus(Orders orders);
 }

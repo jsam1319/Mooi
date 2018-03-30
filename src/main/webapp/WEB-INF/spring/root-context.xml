@@ -16,9 +16,12 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" >
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
 <!-- 		<property name="url" value="jdbc:oracle:thin:@106.242.203.69:7591:XE" />  -->
-	 	<property name="url" value="jdbc:mysql://localhost:3306/mooi?useSSL=false&amp;serverTimezone=UTC"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/mooi?useSSL=false&amp;serverTimezone=UTC"/>
 		<property name="username" value="mooi" />
-		<property name="password" value="mooi" />
+		<property name="password" value="mooi" /> 
+		<!-- <property name="url" value="jdbc:mysql://localhost:3306/mooikr?useSSL=false&amp;serverTimezone=UTC"/>
+		<property name="username" value="mooikr" />
+		<property name="password" value="as590919!" /> -->
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

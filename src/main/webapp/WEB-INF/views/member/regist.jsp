@@ -127,7 +127,7 @@
                            		
                            		<div class="row">
                      	      		<div class="col-sm-12 form-group">
-										<input type="text" class="simple-field" id="remain_addr" name="remain_addr" placeholder="나머지 주소 입력" required>
+										<input type="text" class="simple-field" id="remainAddr" name="remainAddr" placeholder="나머지 주소 입력" required>
 										<span id="guide" style="color: #999" class="red-span"></span>
 									</div>
                            		</div>

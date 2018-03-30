@@ -39,7 +39,6 @@ $(function() {
 		winH = $(window).height();
 		if($('.menu-button').is(':visible')) {
 			_isresponsive = true;
-			console.log("mobile!");
 			$('header').attr("class", "type-3");
 		}
 		else {

@@ -1,6 +1,5 @@
 package kr.co.mooi.orders.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,12 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.mooi.cart.service.CartService;
-import kr.co.mooi.cart.service.CartServiceImpl;
+import kr.co.mooi.member.domain.Member;
 import kr.co.mooi.member.service.MemberService;
 import kr.co.mooi.orderitem.domain.OrderItem;
 import kr.co.mooi.orderitem.service.OrderItemService;
@@ -67,32 +64,50 @@ public class OrdersController {
 			mav.setViewName("/error/404");
 		}
 		
+		System.out.println(WebUtils.getCookie(request, "orderCookie").getValue());
+		
 		return mav;
+	}
+	
+	@RequestMapping(value="/order/nonMemberForm", method=RequestMethod.GET)
+	public String nonMemberListForm() {
+		return "/member/nonMemberOrderList";
 	}
 	
 	@RequestMapping(value="/order/ordersCookie", method=RequestMethod.POST)
 	@ResponseBody
 	public String setOrdersCookie(String ordersData, String cartNos, HttpServletResponse response) {
 		Cookie orderCookie = new Cookie("orderCookie", ordersData);
-		Cookie cartRemoveCookie = new Cookie("cartRemoveCookie", cartNos);
 		orderCookie.setPath("/");
 		orderCookie.setMaxAge(60);
-		cartRemoveCookie.setPath("/");
 		
-		response.addCookie(cartRemoveCookie);
 		response.addCookie(orderCookie);
+		
+		if(cartNos != null) {
+			Cookie cartRemoveCookie = new Cookie("cartRemoveCookie", cartNos);
+			cartRemoveCookie.setPath("/");
+		
+			response.addCookie(cartRemoveCookie);
+		}
 		
 		return "SUCCESS";
 	}
 	
 	
 	@RequestMapping(value="/order", method=RequestMethod.POST)
-	public String insert(Orders orders, String ordersCookie, HttpSession session, HttpServletRequest request) throws NumberFormatException, Exception {
+	public String insert(Orders orders, String ordersCookie, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws NumberFormatException, Exception {
 		ObjectMapper mapper = new ObjectMapper();
+		System.out.println("orderCookie : " + ordersCookie);
 		OrderItem[] orderItems = mapper.readValue(ordersCookie, OrderItem[].class);
-
+		/* 비회원 주문 시 */
+		int memberNo = -99;
+		
+		if(session.getAttribute("login") != null) {
+			memberNo = (int)session.getAttribute("login");
+		}
+		
 		orders.setStatus(OrderStatus.OC.name());
-		orders.setMemberNo((int)session.getAttribute("login"));
+		orders.setMemberNo(memberNo);
 		ordersService.insert(orders);
 		
 		for (OrderItem orderItem : orderItems) {
@@ -108,11 +123,17 @@ public class OrdersController {
 		
 		/* 장바구니에서 주문 했을 시 주문한 상품 장바구니에서 삭제 */
 		Cookie cartRemoveCookie = WebUtils.getCookie(request, "cartRemoveCookie");
-		System.out.println(cartRemoveCookie.getValue());
-		String[] cartNos = mapper.readValue(cartRemoveCookie.getValue(), String[].class);
-		
-		for (String cartNo : cartNos) {
-			cartService.delete(request, Integer.parseInt(cartNo));
+		if(cartRemoveCookie != null) {
+			String[] cartNos = mapper.readValue(cartRemoveCookie.getValue(), String[].class);
+			
+			for (String cartNo : cartNos) {
+				cartService.delete(request, response, Integer.parseInt(cartNo));
+			}
+			
+			cartRemoveCookie.setMaxAge(1);
+			cartRemoveCookie.setPath("/");
+			
+			response.addCookie(cartRemoveCookie);
 		}
 		
 		return "/order/result";
@@ -170,7 +191,29 @@ public class OrdersController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
 		List<Orders> orderList = ordersService.selectByMemberNo(memberNo);
-		System.out.println(orderList);
+		resultMap.put("orders", orderList);
+
+		for (Orders orders : orderList) {
+			List<OrderItem> items = orderItemService.selectByOrdersNo(orders.getOrdersNo());
+			List<Product> products = new ArrayList<Product>();
+			
+			for (OrderItem orderItem : items) {
+				products.add(productService.select(orderItem.getProductNo()));
+			}
+			
+			resultMap.put(String.valueOf(orders.getOrdersNo()),products);				
+		}
+
+		return resultMap;
+	}
+	
+	@RequestMapping(value="/order/nonMember", method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> selectByNonMember(Member member) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		List<Orders> orderList = ordersService.selectByNonMember(member);
+
 		resultMap.put("orders", orderList);
 
 		for (Orders orders : orderList) {

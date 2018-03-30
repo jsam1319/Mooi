@@ -54,12 +54,10 @@ public class CartServiceImpl implements CartService {
 		
 		else {
 			Cookie cartCookie = WebUtils.getCookie(request, "cartCookie");
-			
 			ObjectMapper mapper = new ObjectMapper();
-
+			
 			if(cartCookie != null) {
 				List<Cart> carts = mapper.readValue(cartCookie.getValue(), new TypeReference<List<Cart>>(){});
-				
 				for (Cart cCart : carts) {
 					if(cCart.getProductNo() == cart.getProductNo()) {
 						cCart.setAmount(cCart.getAmount() + cart.getAmount());
@@ -71,9 +69,12 @@ public class CartServiceImpl implements CartService {
 					}
 				}
 				
+				cart.setCartNo(System.identityHashCode(cart));
 				carts.add(cart);
 				
 				cartCookie.setValue(mapper.writeValueAsString(carts));
+				cartCookie.setPath("/");
+				cartCookie.setMaxAge(60 * 60 * 24 * 30);
 				response.addCookie(cartCookie);
 				
 				return 1;
@@ -81,8 +82,9 @@ public class CartServiceImpl implements CartService {
 			
 			else {
 				List<Cart> carts = new ArrayList<Cart>();
+				cart.setCartNo(System.identityHashCode(cart));
 				carts.add(cart);
-				
+
 				Cookie newCartCookie = new Cookie("cartCookie", mapper.writeValueAsString(carts));
 				newCartCookie.setPath("/");
 				
@@ -94,10 +96,36 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public int delete(HttpServletRequest request, int cartNo) throws Exception {
-		return cartDao.delete(cartNo);
-	}
+	public int delete(HttpServletRequest request, HttpServletResponse response, int cartNo) throws Exception {
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("login") != null) {
+			return cartDao.delete(cartNo);
+		}
+		
+		else {
+			Cookie cartCookie = WebUtils.getCookie(request, "cartCookie");
+			ObjectMapper mapper = new ObjectMapper();
 
+			List<Cart> carts = mapper.readValue(cartCookie.getValue(), new TypeReference<List<Cart>>(){});
+			
+			for (int i=0; i<carts.size(); i++) {
+				if(carts.get(i).getCartNo() == cartNo) {
+					carts.remove(i);
+				}
+			}
+				
+			if(carts.size() == 0) cartCookie.setMaxAge(0);
+			
+			cartCookie.setValue(mapper.writeValueAsString(carts));
+			cartCookie.setPath("/");
+			response.addCookie(cartCookie);
+				
+			return 1;
+			
+		}
+	}
+	
 	@Override
 	public int update(HttpServletRequest request, Cart cart) throws Exception {
 		return cartDao.update(cart);

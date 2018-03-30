@@ -8,6 +8,8 @@
 	width: 195px;
 	height: 269px;
 }
+
+
 </style>
 </head>
 
@@ -46,23 +48,21 @@
 
 					<div class="navigation-banner-swiper">
 						<div class="swiper-container" data-autoplay="5000" data-loop="1"
-							data-speed="500" data-center="0" data-slides-per-view="1">
+							data-speed="500" data-center="0" data-slides-per-view="2">
 							<div class="swiper-wrapper">
 								<div class="swiper-slide active" data-val="0">
 									<div class="navigation-banner-wrapper light-text align-1"
 										style="background-image: url(/resources/img/earring.jpg);">
 										<div class="navigation-banner-content">
-											<div class="cell-view">
-												<h2 class="subtitle">New special collection</h2>
+											<!-- <div class="cell-view">
+												<h2 class="subtitle">New Arrive</h2>
 												<h1 class="title">Earrings</h1>
-												<div class="description">Lorem ipsum dolor sit amet,
-													consectetur adipiscing elit, sed do eiusmod tempor
-													incididunt.</div>
+												<div class="description">~~ 컬러풍의 ~~</div>
 												<div class="info">
 													<a class="button style-1" href="#">Shop Now</a> <a
 														class="button style-1" href="#">Features</a>
 												</div>
-											</div>
+											</div> -->
 										</div>
 										<div class="clear"></div>
 									</div>
@@ -71,7 +71,7 @@
 									<div class="navigation-banner-wrapper light-text align-1"
 										style="background-image: url(/resources/img/earring2.jpg);">
 										<div class="navigation-banner-content">
-											<div class="cell-view">
+											<!-- <div class="cell-view">
 												<h2 class="subtitle">New special collection</h2>
 												<h1 class="title">Wedding</h1>
 												<div class="description">Lorem ipsum dolor sit amet,
@@ -81,7 +81,7 @@
 													<a class="button style-1" href="#">Shop Now</a> <a
 														class="button style-1" href="#">Features</a>
 												</div>
-											</div>
+											</div> -->
 										</div>
 										<div class="clear"></div>
 									</div>
@@ -90,7 +90,7 @@
 									<div class="navigation-banner-wrapper light-text align-1"
 										style="background-image: url(/resources/img/earring3.jpg);">
 										<div class="navigation-banner-content">
-											<div class="cell-view">
+											<!-- <div class="cell-view">
 												<h2 class="subtitle">New special collection</h2>
 												<h1 class="title">Earrings</h1>
 												<div class="description">Lorem ipsum dolor sit amet,
@@ -100,7 +100,7 @@
 													<a class="button style-1" href="#">Shop Now</a> <a
 														class="button style-1" href="#">Features</a>
 												</div>
-											</div>
+											</div> -->
 										</div>
 										<div class="clear"></div>
 									</div>
@@ -119,7 +119,7 @@
 		<div class="information-blocks">
 			<div class="tabs-container">
 				<div class="swiper-tabs tabs-switch">
-					<div class="title">Products</div>
+					<div class="title">테마 상품</div>
 					<div class="list">
 						<a class="block-title tab-switcher active">최신 상품</a> <a
 							class="block-title tab-switcher">인기 상품</a> <a
@@ -148,8 +148,8 @@
 														</a>
 													</div>
 												</div>
-												<a class="tag" href="">Men clothing</a> <a class="title"
-													href="/product/detailForm/${item.productNo}">${item.name}</a>
+												<a class="tag" href="/product/listForm/${item.categoryNo}">${item.category}</a> 
+												<a class="title" href="/product/detailForm/${item.productNo}">${item.name}</a>
 												<div class="price">
 													<div class="current"><fmt:formatNumber value="${item.price}" type="currency" currencySymbol="￦"/></div>
 												</div>
@@ -182,8 +182,8 @@
 														</a>
 													</div>
 												</div>
-												<a class="tag" href="">Men clothing</a> <a class="title"
-													href="/product/detailForm/${item.productNo}">${item.name}</a>
+												<a class="tag" href="/product/listForm/${item.categoryNo}">${item.category}</a>
+												<a class="title" href="/product/detailForm/${item.productNo}">${item.name}</a>
 												<div class="price">
 													<div class="current"><fmt:formatNumber value="${item.price}" type="currency" currencySymbol="￦"/></div>
 												</div>
@@ -216,8 +216,8 @@
 														</a>
 													</div>
 												</div>
-												<a class="tag" href="">Men clothing</a> <a class="title"
-													href="/product/detailForm/${item.productNo}">${item.name}</a>
+												<a class="tag" href="/product/listForm/${item.categoryNo}">${item.category}</a>
+												<a class="title" href="/product/detailForm/${item.productNo}">${item.name}</a>
 												<div class="price">
 													<div class="current"><fmt:formatNumber value="${item.price}" type="currency" currencySymbol="￦"/></div>
 												</div>
@@ -234,7 +234,7 @@
 			</div>
 		</div>
 
-		<div class="information-blocks">
+		<%-- <div class="information-blocks">
 			<div class="row">
 				<div class="col-md-4 information-entry">
 					<h3 class="block-title">From The Blog</h3>
@@ -305,7 +305,18 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --%>
+
+<script>
+$(document).ready(function() {
+	if(_ismobile) {
+		$(".swiper-container").attr("data-slides-per-view", "1");
+	}
+	
+})
+
+
+</script>
 
 </body>
 

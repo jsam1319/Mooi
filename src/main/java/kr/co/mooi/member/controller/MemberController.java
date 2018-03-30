@@ -41,9 +41,18 @@ public class MemberController {
 		return "member/login";
 	}
 	
+	@RequestMapping("/member/privacy")
+	public String privacyForm() throws Exception {
+		return "member/privacy";
+	}
+	
 	@RequestMapping("/member/registForm")
-	public String registForm(Model model, HttpSession session) throws Exception {
+	public String registForm(Model model, HttpSession session, HttpServletRequest request) throws Exception {
 		RSAKeySet keySet = new RSAKeySet();
+
+		if(! request.getHeader("Referer").equals("http://mooi.kr/member/privacy")) {
+			return "redirect:/error";
+		}
 		
 		/* 세션에 개인키 저장 */
 		session.setAttribute("RSA_private", keySet.getPrivateKey());

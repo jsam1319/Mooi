@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import kr.co.mooi.member.domain.Member;
 import kr.co.mooi.orders.dao.OrdersDao;
 import kr.co.mooi.orders.domain.Orders;
 
@@ -30,6 +31,13 @@ public class OrdersServiceImpl implements OrdersService {
 	public List<Orders> selectByMemberNo(int memberNo) {
 		// TODO Auto-generated method stub
 		return ordersDao.selectByMemberNo(memberNo);
+	}
+	
+
+	@Override
+	public List<Orders> selectByNonMember(Member member) {
+		// TODO Auto-generated method stub
+		return ordersDao.selectByNonMember(member);
 	}
 
 	@Override

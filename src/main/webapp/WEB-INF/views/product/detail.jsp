@@ -57,11 +57,6 @@ img {
 
   <div class="content-push container">
 
-    <div class="breadcrumb-box">
-      <a href="/">Home</a> <a href="#">Shop</a> <a href="#">T-shirts</a>
-      <a href="#">Careers</a> <a href="#">T-shirt Stampata</a>
-    </div>
-    
   <form action="/order/" method="post" id="orderForm">
     <div class="information-blocks">
       <div class="row">
@@ -176,9 +171,8 @@ img {
     <div class="information-blocks">
     <div class="enterContent-4"></div>
       <div>
-        <a class="button style-40 present" href="#productInfo1">상세 정보</a> <a
-          class="button style-40" href="#productInfo2">상품 리뷰</a> <a
-          class="button style-40" href="#productInfo3">유의 사항</a>
+        <a class="button style-40 present" href="#productInfo1">상세 정보</a> 
+        <a class="button style-40" href="#productInfo2">상품 리뷰</a> 
       </div>
 
       <div class="inline-product-entry">${product.content}</div>
@@ -187,9 +181,8 @@ img {
       
       <div class="enterContent-4"></div>
       <div>
-        <a class="button style-40" href="#productInfo1">상세 정보</a> <a
-          class="button style-40 present" href="#productInfo2">상품 리뷰</a> <a
-          class="button style-40" href="#productInfo3">유의 사항</a>
+        <a class="button style-40" href="#productInfo1">상세 정보</a> 
+        <a class="button style-40 present" href="#productInfo2">상품 리뷰</a>
       </div>
 
       
@@ -271,10 +264,11 @@ $(document).ready(function() {
 		var productNo = $("#productNo").val();
 		var amount = $(".number").html();
 		
-		var cookieObj = {
-				productNo : productNo,
-				amount : amount
-		};
+		var cookieObj = [];
+		cookieObj.push({
+			productNo : productNo,
+			amount : amount
+		});
 		
 		$.ajax({
 			url : "/order/ordersCookie",
@@ -285,6 +279,8 @@ $(document).ready(function() {
 			success : function(data) {
 				if(data == "SUCCESS") {
 					alert("주문 창으로 이동합니다.");
+					
+					$(location).attr('href', "/orderForm");
 				}
 			},
 			error : function(data) {

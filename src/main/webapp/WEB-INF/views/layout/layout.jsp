@@ -11,6 +11,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
   content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+<meta name="description" content="쥬얼리 쇼핑몰 Mooi 입니다!">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="/resources/img/logo/favicon.ico" type="image/x-icon"> 
 <link rel="icon" href="/resources/img/logo/favicon.ico" type="image/x-icon">
@@ -72,7 +73,7 @@ footer.type-2 {
                             <a href="https://www.facebook.com/mooikr/"><i class="fa fa-facebook"></i></a>
                             <a href="https://www.instagram.com/mooi.kr/"><i class="fa fa-instagram"></i></a>
                         </div>
-                        <div class="menu-button responsive-menu-toggle-class"><i class="fas fa-align-justify"></i></div>
+                        <div class="menu-button responsive-menu-toggle-class"><i class="fa fa-align-justify"></i></div>
                         <div class="clear"></div>
                     </div>
 
@@ -82,10 +83,10 @@ footer.type-2 {
                         </div>
 
                         <div class="middle-entry">
-                            <div class="search-box">
+                           <!--  <div class="search-box">
                                 <form>
                                     <div class="search-button">
-                                        <i class="fa fa-search"></i>
+                                        <i class="fa fa-search" style="color : white"></i>
                                         <input type="submit" />
                                     </div>
                                     <div class="search-drop-down">
@@ -108,16 +109,17 @@ footer.type-2 {
                                         <input type="text" value="" placeholder="Search for product" />
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="right-entries">
-                            <a class="header-functionality-entry open-search-popup" href="#"><i class="fa fa-search"></i><span>Search</span></a>
+                            <!-- <a class="header-functionality-entry open-search-popup" href="#"><i class="fa fa-search"></i><span>Search</span></a> -->
 							<c:choose>
 								<c:when test="${login != null}">
 									<a class="header-functionality-entry" href="/member/logout"><i class="fa fa-sign-out""></i><span>Logout</span></a>
 								</c:when>
 								<c:otherwise>
+									<a class="header-functionality-entry" href="/order/nonMemberForm"><i class="fa fa-eye"></i><span>비회원 주문 조회</span></a>
 									<a class="header-functionality-entry" href="/member/loginForm"><i class="fa fa-sign-in"></i><span>Login</span></a>
 								</c:otherwise>
 							</c:choose>                            
@@ -130,7 +132,7 @@ footer.type-2 {
 									<a class="header-functionality-entry" href="/member/mypage"><i class="fa fa-user" aria-hidden="true"></i><span>My Page</span></a>
 								</c:when>
 								<c:otherwise>
-									<a class="header-functionality-entry" href="/member/registForm"><i class="fa fa-user-plus"></i><span>Regist</span></a>
+									<a class="header-functionality-entry" href="/member/privacy"><i class="fa fa-user-plus"></i><span>Regist</span></a>
 								</c:otherwise>
 							</c:choose> 
                             	<a class="header-functionality-entry" href="/cart/listForm"><i class="fa fa-shopping-cart"></i><span>My Cart</span></a>
@@ -180,13 +182,13 @@ footer.type-2 {
                                     </li>
                                 </ul>
 
-                                <ul>
+                               <!--  <ul>
                                     <li><a href="#">Buy this theme</a></li>
                                     <li class="fixed-header-visible">
                                         <a class="fixed-header-square-button" href="/cart/listForm"><i class="fa fa-shopping-cart"></i></a>
                                         <a class="fixed-header-square-button open-search-popup"><i class="fa fa-search"></i></a>
                                     </li>
-                                </ul>
+                                </ul> -->
                                 <div class="clear"></div>
 
                                 <a class="fixed-header-visible additional-header-logo" href="/"><img src="/resources/img/logo/Logo.png" alt=""/></a>
@@ -224,15 +226,7 @@ footer.type-2 {
         <div class="footer-wrapper style-5 style-7" style="margin-top : 50px">
             <footer class="type-2">
                 <div class="position-center">
-                    <img class="footer-logo" src="/resources/img/logo/FooterLogo.png" style="width : 350px; height : 200px; margin-top: 0px"alt="" />
-                    <div class="footer-links">
-                        <a href="#">Site Map</a>
-                        <a href="#">Search</a>
-                        <a href="#">Terms</a>
-                        <a href="#">Advanced Search</a>
-                        <a href="#">Orders and Returns</a>
-                        <a href="#">Contact Us</a>
-                    </div>
+                    <img id="footerLogo" class="footer-logo" src="/resources/img/logo/FooterLogo.png" style="width : 30%; height : 30%; margin-top: 0px"alt="" />
                     <div class="copyright">소재지 : 충북 청주시 상당구 탑동로32번길 23, 삼원빌라 203호 / 회사명 : 무이 / 대표 : 김지선 / 사업자 번호 : 402-28-05336</div>
                     <div class="copyright">통신판매신고번호 : 제 2017-충북청주-1122호 / 개인정보보호책임자 : 김지선 / 고객지원센터 : 010-9807-2280 </div>
                     <div class="copyright">E-mail : <a href="mailto:lnh02262003@naver.com">lnh02262003@naver.com</a> </div>
@@ -530,15 +524,42 @@ footer.type-2 {
             </div>
         </div>
     </div>
+    
+    <div class="fb-customerchat"
+		 page_id="1907644406222485"
+		 logged_in_greeting="안녕하세요 쥬얼리 쇼핑몰 Mooi 입니다!"
+		 logged_out_greeting="안녕하세요 쥬얼리 쇼핑몰 Mooi 입니다!">
+	</div>
+    
 <script>
+
+window.fbAsyncInit = function() {
+  FB.init({
+    appId            : '161739444417263',
+    autoLogAppEvents : true,
+    xfbml            : true,
+    version          : 'v2.12'
+  });
+};
+
+(function(d, s, id){
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement(s); js.id = id;
+   js.src = "https://connect.facebook.net/ko_KR/sdk.js";
+   fjs.parentNode.insertBefore(js, fjs);
+ }(document, 'script', 'facebook-jssdk'));
+
+
+var _ismobile = navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i);
+
+
 $(document).ready(function() {
-	$("a[name='menu']").mouseover(function(event) {
-		FontAwesomeConfig = { searchPseudoElements: true };
-		
-		var imgName = $(this).text();
-		$(".submenu_img").attr("src", "/resources/img/menu/" + imgName + ".jpg");
-		console.log(imgName);
-	})
+	if(_ismobile) {
+		$("#footerLogo").css("width", "50%");
+		$("#footerLogo").css("height", "50%");
+	}
+	
 })
 
 </script>    

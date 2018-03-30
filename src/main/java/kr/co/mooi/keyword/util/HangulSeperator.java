@@ -29,15 +29,21 @@ public class HangulSeperator {
 	
 	public static String seperate(String hangul) {
 		String str = "";
-		
-		
 
 		for(int i=0; i<hangul.length(); i++) {
 			if((int)'ㄱ' <=  hangul.charAt(i) && (int)'ㅎ' >= hangul.charAt(i)) {
 				str = str + Character.toString(hangul.charAt(i));
 				continue;
 			}
-			str = str + charSeperate(hangul.charAt(i));
+			else if((int)'ㅏ' <= hangul.charAt(i) && (int)'ㅣ' >= hangul.charAt(i)) {
+				str = str + charSeperate(hangul.charAt(i));
+			}
+			else if(hangul.charAt(i) == ' ') {
+				continue;
+			}
+			else {
+				str = str + hangul.charAt(i);
+			}
 		}
 		
 		return str;
@@ -143,7 +149,7 @@ public class HangulSeperator {
 				}
 			}
 
-			else {
+			else if((int)'ㅏ' <= sep.charAt(i) && (int)'ㅣ' >= sep.charAt(i)) {
 				if(stack.size() == 1) {
 					if(isStack) {
 						result = result + Character.toString((char)(tempCh + '가'));
@@ -151,8 +157,6 @@ public class HangulSeperator {
 						/* ( (초성 * 21) + 중성 ) * 28 + 종성 */
 						char ch = stack.get(0);
 						stack.clear();
-						
-						
 						
 						tempCh = ((getChoIdx(ch) * 21) + getJungIdx(sep.charAt(i))) * 28;
 					}
@@ -176,13 +180,17 @@ public class HangulSeperator {
 	
 				}
 			}
+			else {
+				result = result + sep.charAt(i);
+			}
 		}
-		if(stack.isEmpty()) {
-			result = result + Character.toString((char)(tempCh + '가'));
-		}
-		
-		else {
-			result = result + Character.toString((char)(tempCh + '가' + getJongIdx(stack.get(0))));
+		if(tempCh != 0) {
+			if(stack.isEmpty()) {
+				result = result + Character.toString((char)(tempCh + '가'));
+			}
+			else {
+				result = result + Character.toString((char)(tempCh + '가' + getJongIdx(stack.get(0))));
+			}
 		}
 		
 		return result;
@@ -200,13 +208,10 @@ public class HangulSeperator {
 		for(int i=0; i<jung.length; i++) {
 			if(jung[i].charAt(0) == ch) return i;
 		}
-		
 		return -1;
 	}
 	
 	private static int getJongIdx(char ch) {
-//		System.out.println("ch : " + ch);
-		
 		for(int i=1; i<jong.length; i++) {
 			if(jong[i].charAt(0) == ch) return i;
 		}

@@ -7,11 +7,13 @@
        <insert id="insert" parameterType="VisitorLog" useGeneratedKeys="true" keyProperty="visitorLogNo">
         INSERT INTO visit_log
             (
-                member_no
+                member_no,
+                ip_addr
             )
             VALUES 
             (
-                #{memberNo}
+                #{memberNo},
+                #{ipAddr}
             )
     </insert>
     

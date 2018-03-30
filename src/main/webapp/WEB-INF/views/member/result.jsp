@@ -16,7 +16,6 @@
                             <p>저희 사이트에 가입해주셔서 진심으로 감사드립니다.</p>
                             <p>행복한 하루되세요 :)</p>
                         </div>
-                        <a href="/member/size" class="button style-12">PLEASE INPUT YOUR SIZE</a>
                     </div>
                 </div>
                 <div class="col-sm-3 information-entry">

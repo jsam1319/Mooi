@@ -143,37 +143,7 @@ $(document).ready(function(){
     		data.push(obj[i].productNo);
     		data.push("<a href='/product/detailForm/" + obj[i].productNo + "'> " + obj[i].name + " </a>");
     		
-    		category = obj[i].categoryNo;
-    		switch(category){
-    			case 0:
-    				data.push("카테고리 미분류");
-    				break;
-    			case 110:
-    				data.push("EARRING");
-    				break;
-    			case 120:
-    				data.push("Jacket");
-    				break;
-    			case 130:
-    				data.push("Dress");
-    				break;
-    			case 140:
-    				data.push("Knit");
-    				break;
-    			case 150:
-    				data.push("SweatShirt");
-    				break;
-    			case 210:
-    				data.push("Skirt");
-    				break;
-    			case 220:
-    				data.push("Short Pants");
-    				break;
-    			case 230:
-    				data.push("Pants");
-    				break;
-    		}
-    		
+    		category = obj[i].category;
     		data.push(obj[i].regdate);
     		data.push(obj[i].price);
     		data.push(obj[i].cost);

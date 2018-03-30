@@ -52,11 +52,11 @@ public class CartController {
 	
 	@RequestMapping(value = "/cart/{cartNo}", method=RequestMethod.DELETE)
 	@ResponseBody
-	public Map<String, Object> delete(HttpServletRequest request, @PathVariable int cartNo) throws Exception {
+	public Map<String, Object> delete(HttpServletRequest request, HttpServletResponse response, @PathVariable int cartNo) throws Exception {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", "FAIL");
 		
-		if(cartService.delete(request, cartNo) > 0) {
+		if(cartService.delete(request, response, cartNo) > 0) {
 			resultMap.put("result", "SUCCESS");
 		}
 		
@@ -92,7 +92,8 @@ public class CartController {
 			
 			carts = cartService.selectByMemberNo(memberNo);
 			
-			
+			resultMap.put("list", carts);
+			resultMap.put("result", "SUCCESS");
 		}
 		
 		/* 비회원일 경우 */
@@ -102,12 +103,12 @@ public class CartController {
 			
 			if(cartCookie != null) {
 				carts = mapper.readValue(cartCookie.getValue(), new TypeReference<List<Cart>>(){});
+				
+				if(carts.size() > 0) {
+					resultMap.put("list", carts);
+					resultMap.put("result", "SUCCESS");
+				}
 			}
-		}
-		
-		if(carts.size() > 0) {
-			resultMap.put("list", carts);
-			resultMap.put("result", "SUCCESS");
 		}
 
 		return resultMap;

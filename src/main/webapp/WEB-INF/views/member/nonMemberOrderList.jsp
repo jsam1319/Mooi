@@ -168,6 +168,15 @@ z-index : 0;
 
                 <div class="information-blocks">
                 	<div class="row">
+                	<div class="form-group">
+                		<div class="col-sm-4">
+                			<input class="form-control" type="text" id="name" placeHolder="주문자 이름 입력">
+                		</div>
+                		<div class="col-sm-4">
+                			<input class="form-control" type="text" id="phone" placeHolder="주문자 전화번호 입력">
+                		</div>
+                		<a class="button style-10" id="submit"> 적용 </a>
+                	</div>
                 	  	<div class="col-sm-12">
                         	<div class="wishlist-header hidden-xs">
                                 <div class="title-1">주문 정보</div>
@@ -268,14 +277,23 @@ z-index : 0;
    
    $(document).ready(function() {
 	   
-	   $.ajax({
-		   url : "/order/member/" + ${login},
-		   dataType : "json",
-		   success : function(data) {
-				addEntry(data);
-				
-		   },
+	   $("#submit").click(function() {
+		   var name = $("#name").val();
+		   var phone = $("#phone").val();
+		   
+		   $.ajax({
+			   url : "/order/nonMember",
+			   data : {
+				   'name' : name,
+				   'phone' : phone
+			   },
+			   dataType : "json",
+			   success : function(data) {
+					addEntry(data);
+			   },
+		   })
 	   })
+	   
 	   
 	   $(document).on('click', 'a[name="detail"]', function() {
 		   var ordersNo = $(this).attr("value");

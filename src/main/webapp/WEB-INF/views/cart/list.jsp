@@ -1,20 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-
+<!-- /* 1907644406222485 */ -->
 <head>
+<style>
+.button.style-10 {
+	padding : 8px 10px;
+}
+
+#grandTotal {
+	font-size : 30px;
+}
+
+
+</style>
 </head>
 
 
-    <div id="content-block">
+    <div class="content-block">
             <div class="content-push">
-
-                <div class="breadcrumb-box">
-                    <a href="#">Home</a>
-                    <a href="#">Shop</a>
-                    <a href="#">Shopping Cart Traditional</a>
+				 <div class="information-blocks">
+                    <div class="row">
+                        <div class="col-sm-9 information-entry" id="cart">
+                            <h3 class="cart-column-title size-1">장바구니 목록</h3>
+                        </div>
+                        <div class="col-sm-3 information-entry">
+                            <h3 class="cart-column-title size-1" style="text-align: center;">선택한 상품 총 가격</h3>
+                            <div class="sidebar-subtotal" style="text-align: center">
+                               <div class="price-data">
+                               		<div class="main" id="grandTotal"></div>
+                               </div>
+                               <a class="button style-10" id="order">선택한 상품 결제하기</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                            
 
-                <div class="information-blocks">
+                <!-- <div class="information-blocks">
                     <div class="table-responsive">
                         <table class="cart-table" id="cart">
                             <tr>
@@ -29,11 +51,11 @@
                         </table>
                     </div>
                     <div class="cart-submit-buttons-box">
-<!--                         <a class="button style-15">Continue Shopping</a>
-                        <a class="button style-15">Update Bag</a> -->
+                        <a class="button style-15">Continue Shopping</a>
+                        <a class="button style-15">Update Bag</a>
                     </div>
                     <div class="row">
-                        <!-- <div class="col-md-4 information-entry">
+                        <div class="col-md-4 information-entry">
                             <h3 class="cart-column-title">Get shipping Estimates</h3>
                             <form>
                                 <label>Country</label>
@@ -49,7 +71,7 @@
                                     <select>
                                         <option>Alabama</option>
                                         <option>Alaska</option>
-                                        <option>Idaho</option>
+                                        <option>Idaho</option>	
                                     </select>
                                 </div>
                                 <label>Zip Code</label>
@@ -64,7 +86,7 @@
                                 <input type="text" value="" placeholder="" class="simple-field size-1">
                                 <div class="button style-16" style="margin-top: 10px;">Apply Coupon<input type="submit"/></div>
                             </form>
-                        </div> -->
+                        </div>
                         <div class="col-md-4 information-entry" style="float: right;">
                             <div class="cart-summary-box">
                                 <div class="grand-total" id="grandTotal">제품 합계 : </div>
@@ -72,7 +94,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
 
@@ -99,6 +121,9 @@
    <script>
    
    $(document).ready(function() {
+	   if(_ismobile) {
+		   $(document).find("a[name='remove']").css("display", "lnline");
+	   }
 	   
 	   $.ajax({
 		   url : "/cart",
@@ -113,6 +138,12 @@
 				}
 				
 				calGrandTotal()
+				
+				if(_ismobile) {
+				   $(document).find('a[name="remove"]').css('display', 'inline');
+	   			}
+				
+				$(document).find(".checkbox-entry").css('margin-top', $(document).find(".content").height()/2 - 10);
 		   },
 	   })
 	   
@@ -141,9 +172,9 @@
 		calGrandTotal();
 	})
 	
-	$(document).on('click', '.remove-button', function() {
+	$(document).on('click', 'a[name="remove"]', function() {
 		var cartNo = $(this).attr("value");
-		var tr = $(this).parent().parent();
+		var tr = $(this).parent().parent().parent().parent();
 		
 		$.ajax({
 			url : "/cart/" + cartNo,
@@ -162,7 +193,7 @@
 		calGrandTotal()
 	})
 	
-	$(document).on('change', '.checkbox-entry input', calGrandTotal)
+	$(document).on('change', '.checkbox-entry input', calGrandTotal);
    })
    
    
@@ -172,14 +203,15 @@
 		
 		for(var i=0; i<checks.length; i++) {
 			if(checks[i].checked) {
-				var tr = $(checks[i]).parent().parent().parent();
-				var price = $(tr).find("input[name='totalPrice']").val();
+				var div = $(checks[i]).parent().parent();
+				var price = $(div).find("input[name='price']").val();
+				var cnt = $(div).find(".number").html();
 				
-				total = total + Number(price);
+				total = total + Number(price) * Number(cnt);
 			}
 		}
 		
-		$("#grandTotal").html("제품합계 : " + numberWithCommas(total) + " 원");
+		$("#grandTotal").html(numberWithCommas(total) + " 원");
 	}
    
    function addEntry(cart) {
@@ -202,11 +234,35 @@
    
    function getEntryStr(product, cart) {
 	   var returnStr = "";
+	   var category = "";
 	   
 	   if(cart.amount > product.stock) cart.amount = product.stock;
 	   
-	   if(product.stock <= 0) {
-		   returnStr += "<tr>\n" + 
+	   category = product.category;
+	   
+	 if(product.stock <= 0) {
+		 
+		 returnStr += 	"<div class=\"traditional-cart-entry style-1\">\n" + 
+						"	<a class=\"image\" href=\"#\"><img alt=\"\" src=\"/resources/upload/" + product.frontImage + "\"></a>\n" +
+						"	<label class='checkbox-entry' style='text-align: center; float : right;'> <input type='checkbox' id='"+ cart.cartNo +"' name='check' disabled/> <span class='check'></span> </label>" + 
+						"	<div class=\"content\">\n" + 
+						"		<div class=\"cell-view\">\n" + 
+						"			<a href=\"/product/listForm/ " + product.categoryNo + "\" class=\"tag\" href=\"#\">"+ category +"</a>\n" + 
+						"			<a href=\"/product/detailForm/" + product.productNo + "\" class=\"title\" href=\"#\">" + product.name + "</a>\n" +
+						"			<input type='hidden' value=" + product.productNo + ">" + 
+						"			<div class=\"inline-description\">"+ product.subName +"</div>\n" + 
+						"			<div class=\"price\">\n" + 
+						"				<div class=\"current\">" + numberWithCommas(product.price) + " 원</div>\n" + 
+						"				<input type='hidden' name='price' value='"+ product.price +"'> " +		
+						"			</div>\n" + 
+						"			<div class=\"quantity-selector detail-info-entry\">\n" + 
+						"       		<label>재고가 부족하여 상품 주문이 불가능합니다.</label>" + 
+						"				<a class=\"button style-10\" value='" + cart.cartNo + "' name='remove'> 삭제 </a>\n" + 
+						"				</div>\n" + 
+						"			</div>\n" + 
+						"		</div>\n" + 
+						"	</div>";
+		   /* returnStr += "<tr>\n" + 
 						" 	<td>  <label class='checkbox-entry' style='text-align: center;'> <input type='checkbox' id='"+ cart.cartNo +"' name='check' disabled/> <span class='check'></span>" +
 			            " </label> </td>"+ 
 						"   <td>\n" + 
@@ -214,7 +270,7 @@
 						"           <a href=\"#\" class=\"image\"><img src=\"/resources/upload/" + product.frontImage + "\" alt=\"\"></a>\n" + 
 						"           <div class=\"content\">\n" + 
 						"               <div class=\"cell-view\">\n" + 
-						"                   <a href=\"/product/listForm/ " + product.categoryNo + "\" class=\"tag\">"+ product.categoryNo +"</a>\n" + 
+						"                   <a href=\"/product/listForm/ " + product.categoryNo + "\" class=\"tag\">"+ category +"</a>\n" + 
 						"                   <a href=\"/product/detailForm/" + product.productNo + "\" class=\"title\">" + product.name + "</a>\n" + 
 						"					<input type='hidden' value=" + product.productNo + ">" +					
 						"                   <div class=\"inline-description\">"+ product.subName +"</div>\n" + 
@@ -230,12 +286,36 @@
 						"   </td>\n" + 
 						"   <td><div class=\"subtotal\">"+ 0 +" 원</div></td>\n" + 
 						"   <td><a class=\"remove-button\" value='" + cart.cartNo + "'><i class=\"fa fa-times\"></i></a></td>\n" + 
-						"</tr>\n";
+						"</tr>\n"; */
 
 	   }
 	   
-	   else {
-		   returnStr += "<tr>\n" + 
+	   else { */
+		 returnStr += 	"<div class=\"traditional-cart-entry style-1\">\n" + 
+						"	<a class=\"image\" href=\"#\"><img alt=\"\" src=\"/resources/upload/" + product.frontImage + "\"></a>\n" +
+						"	<label class='checkbox-entry' style='text-align: center; float : right;'> <input type='checkbox' id='"+ cart.cartNo +"' name='check' checked/> <span class='check'></span> </label>" + 
+						"	<div class=\"content\">\n" + 
+						"		<div class=\"cell-view\">\n" + 
+						"			<a href=\"/product/listForm/ " + product.categoryNo + "\" class=\"tag\" href=\"#\">"+ category +"</a>\n" + 
+						"			<a href=\"/product/detailForm/" + product.productNo + "\" class=\"title\" href=\"#\">" + product.name + "</a>\n" +
+						"			<input type='hidden' value=" + product.productNo + ">" + 
+						"			<div class=\"inline-description\">"+ product.subName +"</div>\n" + 
+						"			<div class=\"price\">\n" + 
+						"				<div class=\"current\">" + numberWithCommas(product.price) + " 원</div>\n" + 
+						"				<input type='hidden' name='price' value='"+ product.price +"'> " +		
+						"			</div>\n" + 
+						"			<div class=\"quantity-selector detail-info-entry\">\n" + 
+						"       		<input type='hidden' name='stock' value='"+ product.stock +"'>" + 
+						"           	<div class=\"entry number-minus\">&nbsp;</div>\n" + 
+						"           	<div class=\"entry number\">"+ cart.amount +"</div>\n" + 
+						"           	<div class=\"entry number-plus\">&nbsp;</div>\n" + 
+						"				<a class=\"button style-10\" value='" + cart.cartNo + "' name='remove'> 삭제 </a>\n" + 
+						"				</div>\n" + 
+						"			</div>\n" + 
+						"		</div>\n" + 
+						"	</div>";
+						
+		 /*   returnStr += "<tr>\n" + 
 						" 	<td>  <label class='checkbox-entry' style='text-align: center;'> <input type='checkbox' id='"+ cart.cartNo +"' checked/> <span class='check'></span>" +
 			            " </label> </td>"+ 
 						"   <td>\n" + 
@@ -243,7 +323,7 @@
 						"           <a href=\"#\" class=\"image\"><img src=\"/resources/upload/" + product.frontImage + "\" alt=\"\"></a>\n" + 
 						"           <div class=\"content\">\n" + 
 						"               <div class=\"cell-view\">\n" + 
-						"                   <a href=\"/product/listForm/ " + product.categoryNo + "\" class=\"tag\">"+ product.categoryNo +"</a>\n" + 
+						"                   <a href=\"/product/listForm/ " + product.categoryNo + "\" class=\"tag\">"+ category +"</a>\n" + 
 						"                   <a href=\"/product/detailForm/" + product.productNo + "\" class=\"title\">" + product.name + "</a>\n" + 
 						"					<input type='hidden' value=" + product.productNo + ">" +					
 						"                   <div class=\"inline-description\">"+ product.subName +"</div>\n" + 
@@ -262,9 +342,9 @@
 						"   </td>\n" + 
 						"   <td><div class=\"subtotal\">"+ numberWithCommas(product.price * cart.amount) +" 원</div> <input type='hidden' name='totalPrice' value='"+ product.price * cart.amount +"'> </td>\n" + 
 						"   <td><a class=\"remove-button\" value='" + cart.cartNo + "'><i class=\"fa fa-times\"></i></a></td>\n" + 
-						"</tr>\n";
+						"</tr>\n"; */
 
-	   }
+	    }
 	   
 	  
 		return returnStr;

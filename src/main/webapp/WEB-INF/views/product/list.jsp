@@ -25,9 +25,6 @@
   <!-- LOADER -->
   <div class="content-push">
 	<div id="loading"><img id="loading-image" src="/resources/img/loading/5.gif" alt="Loading..." /></div>
-    <div class="breadcrumb-box">
-      <a href="/">Home</a> <i class="fas fa-caret-right"></i> <a href="/product/list/110">상품 목록</a>
-    </div>
 
     <div class="information-blocks">
       <div class="row">
@@ -47,15 +44,16 @@
                         <div class="inline-text">Sort by</div>
                         <div class="simple-drop-down">
                           <select id="productOrder">
-                            <option value='newProduct' selected>등록순</option>
+                          	<option> 공사중입니다. </option>
+                           <!--  <option value='newProduct' selected>등록순</option>
                             <option value='endDate'>마감날짜순</option>
                             <option value='deadline'>참여많은순</option>
                             <option value='lowPrice'>낮은가격순</option>
-                            <option value='highPrice'>높은가격순</option>
+                            <option value='highPrice'>높은가격순</option> -->
                           </select>
                         </div>
                       </div>
-                      <div class="entry">
+                      <div class="entry" id="view">
                         <div class="view-button active grid">
                           <i class="fa fa-th"></i>
                         </div>
@@ -102,7 +100,14 @@
 var page = 0;
 
 $(document).ready(function() {
+	var _ismobile = navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i);
+	
 	$('#loading').show();
+	
+	if(_ismobile != null) {
+		$('.shop-grid').removeClass('grid-view').addClass('list-view');
+		$("#view").hide();
+	}
 	
 	getList(0);
 
@@ -110,8 +115,12 @@ $(document).ready(function() {
 })
 
 $("#more").click(function() {
+	$('#loading').show();
+	
 	page = page + 1;
 	getList(page);
+	
+	$('#loading').hide();  
 })
 
 
@@ -121,6 +130,7 @@ function getList(page) {
 	$.ajax({
 		url : "/product/list/" + categoryNo,
 		dataType : "json",
+		async : false,
 		data : {
 			"page" : page
 		},

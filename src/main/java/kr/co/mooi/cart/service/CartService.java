@@ -11,7 +11,7 @@ public interface CartService {
 
 	public int insert(HttpServletRequest request, HttpServletResponse response, Cart cart) throws Exception;
 	
-	public int delete(HttpServletRequest request, int cartNo) throws Exception;
+	public int delete(HttpServletRequest request, HttpServletResponse response, int cartNo) throws Exception;
 	
 	public int update(HttpServletRequest request, Cart cart) throws Exception;
 	
