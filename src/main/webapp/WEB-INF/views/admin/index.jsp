@@ -41,9 +41,8 @@ margin-bottom:10%;
 				</div>
                 <div class="col-sm-6 information-entry left-border nopadding">
                   <div class="column-article-entry">
-                    <a class="title">Q&A</a>
-                    <a class="description" href="/qna/list">상품 질의응답 <i class="fa fa-angle-right"></i></a><br>
-                    <a class="description" href="/after/list">A/S <i class="fa fa-angle-right"></i></a>
+                    <a class="title">디자인</a>
+                    <a class="description" href="/admin/frontImageForm">대문 이미지 변경<i class="fa fa-angle-right"></i></a><br>
                   </div>
                 </div>
 			</div>

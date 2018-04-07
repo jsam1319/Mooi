@@ -32,6 +32,19 @@
        </selectKey>
     </insert>
     
+     <update id="modify" parameterType="Product">
+    	UPDATE product
+    	SET 
+    		name = #{name},
+    		sub_name = #{subName},
+    		price = #{price},
+    		cost = #{cost},
+    		content = #{content},
+    		stock = #{stock}
+    	WHERE
+    		product_no = #{productNo}
+    </update>
+    
     <delete id="delete" parameterType="int">
     	DELETE FROM product
     	WHERE product_no = #{productNo}
@@ -201,6 +214,4 @@
 		AND    status = 'T'
 		LIMIT  0,6
     </select>
-    
-    
 </mapper>

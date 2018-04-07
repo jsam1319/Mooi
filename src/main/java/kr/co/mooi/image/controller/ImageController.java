@@ -25,4 +25,12 @@ public class ImageController {
 		return imageService.uploadImage(request, file);
 	}
 	
+	@RequestMapping(value="/image/frontImage", method=RequestMethod.POST)
+	public String uploadFrontImage(MultipartFile[] frontImage, HttpServletRequest request) throws Exception {
+		if(imageService.uploadFrontImage(request, frontImage).equals("SUCCESS"))
+			return "redirect:/admin/frontImageForm";
+		else 
+			return "error/500";
+	}
+	
 }

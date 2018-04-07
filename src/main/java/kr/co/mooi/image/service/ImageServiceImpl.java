@@ -31,6 +31,21 @@ public class ImageServiceImpl implements ImageService {
 		
 		return fileName;
 	}
-
 	
+	@Override
+	public String uploadFrontImage(HttpServletRequest request ,MultipartFile[] frontImages) throws Exception {
+		String uploadPath = request.getSession().getServletContext().getRealPath("/");
+		String attachPath = "resources/img/";
+		
+		for(int i=1; i<=3; i++) {
+			String fileName = "frontImage" + i + ".jpg";
+			File newFile = new File(uploadPath + attachPath + fileName);
+
+			try(OutputStream out = new FileOutputStream(newFile)) {
+				out.write(frontImages[i-1].getBytes());
+			} 
+		}
+		
+		return "SUCCESS";
+	}
 }

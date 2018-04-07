@@ -11,6 +11,8 @@ public interface ProductDao {
 	
 	public int delete(int productNo);
 	
+	public int modify(Product product);
+	
 	public List<Product> selectByCategory(PageBuilder pageBuilder);
 	
 	public Product select(int productNo);

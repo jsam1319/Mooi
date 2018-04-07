@@ -39,6 +39,11 @@ public class AdminController {
 		return "/admin/orderList";
 	}
 	
+	@RequestMapping("/admin/frontImageForm")
+	public String frontImageForm() {
+		return "/admin/frontImage";
+	}
+	
 	@RequestMapping("/admin/product/featureForm")
 	public ModelAndView featureForm() {
 		ModelAndView mav = new ModelAndView();

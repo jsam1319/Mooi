@@ -40,4 +40,10 @@ public class KeywordServiceImpl implements KeywordService {
 				
 		return keywords;
 	}
+	
+	@Override
+	public void deleteByProductNo(int productNo) {
+		// TODO Auto-generated method stub
+		keywordDao.deleteByProductNo(productNo);
+	}
 }

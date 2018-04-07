@@ -189,18 +189,7 @@ img {
 
       <div id="reviewList"></div>
 
-      <div class="page-selector">
-          <a class="moreView"> <i class="fa fa-angle-down"></i>
-          </a>
-      </div>
 
-      <div id="productInfo3"></div>
-      <div class="enterContent-4"></div>
-      <div>
-        <a class="button style-40" href="#productInfo1">상세 정보</a> <a
-          class="button style-40" href="#productInfo2">상품 리뷰</a> <a
-          class="button style-40 present" href="#productInfo3">유의 사항</a>
-      </div>
     </div>
   </div>
 

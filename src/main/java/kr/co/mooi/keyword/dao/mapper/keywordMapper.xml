@@ -26,4 +26,9 @@
 		FROM keyword
 		WHERE product_no = #{productNo}
 	</select>
+	
+	<delete id="deleteByProductNo" parameterType="int">
+		DELETE FROM keyword
+		WHERE product_no = #{productNo}
+	</delete>
 </mapper>

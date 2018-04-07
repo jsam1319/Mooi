@@ -9,4 +9,6 @@ public interface KeywordService {
 	public int insert(Keyword keyword);
 	
 	public List<Keyword> selectByProductNo(int productNo);
+	
+	public void deleteByProductNo(int productNo);
 }

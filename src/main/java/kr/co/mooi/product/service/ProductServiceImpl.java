@@ -44,6 +44,11 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return productDao.delete(productNo);
 	}
+	
+	@Override
+	public int modify(Product product) {
+		return productDao.modify(product);
+	}
 
 	@Override
 	public List<Product> selectAll() {

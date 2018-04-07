@@ -11,6 +11,8 @@ public interface ProductService {
 	
 	public int delete(int productNo);
 	
+	public int modify(Product product);
+	
 	public List<Product> selectByCategory(PageBuilder pageBuilder);
 	
 	public Product select(int productNo);
@@ -30,6 +32,7 @@ public interface ProductService {
 	public int addFeature(int productNo);
 	
 	public int removeFeature(int productNo);
+	
 
 }
 

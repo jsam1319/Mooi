@@ -31,14 +31,6 @@ float:right;
 </style>
 </head>
 <body class="style-10">
-
-                <div class="breadcrumb-box" id="bread">
-                    <a href="#">Home</a>
-                    <a href="#">Shop</a>
-                    <a href="#">Shopping Cart Traditional</a>
-                    <a class="button style-15" id="goRegister" href="/product/insertForm">상품 등록</a>
-                </div>
-
                 <div class="information-blocks">
                     <div class="table-responsive">
                         <table id="productTable">
@@ -51,6 +43,7 @@ float:right;
                                 <th id="th">가격</th>
                                 <th id="th">원가</th>
                                 <th id="th">재고</th>
+                                <th id="th">상품수정</th>
                                 <th id="th">상품삭제</th>
                             </tr>
                         </thead>
@@ -75,11 +68,18 @@ $(document).ready(function(){
  				
  				autoWidth : true,
  				data : dataSet,
- 				columnDefs: [{
+ 				columnDefs: [
+ 					{
 			    	   	targets:-1,
 			    	   	data:null,
 			            defaultContent: "<div id='hiddenDiv'></div><a class='button style-15' name='remove'>삭제</a>"
-			    }],
+				    },
+				    {
+			    	   	targets:-2,
+			    	   	data:null,
+			            defaultContent: "<div id='hiddenDiv'></div><a class='button style-15' name='modify'>수정</a>"
+			    	}
+			    ],
  				language: {
  			        processing:     "데이터 검색 중",
  			        search:         "검색",
@@ -111,19 +111,30 @@ $(document).ready(function(){
  			}) */
  			
  			$('#productTable tbody').on( 'click', "a[name='remove']", function () {
+ 				var ok = confirm("상품을 삭제하시겠습니까?");
+ 				
+ 				if(ok == true) {
+ 					var tr = $(this).parents('tr');
+ 	 		       	var productNo = table.row( $(this).parents('tr') ).data()[0];
+ 	 		       
+ 	 		      	$.ajax({
+ 	 		    	   url : "/product/" + productNo,
+ 	 		    	   type : "delete",
+ 	 		    	   success : function(data) {
+ 	 		    		   if(data.result == "SUCCESS") {	
+ 	 		    			   alert("상품 삭제가 성공적으로 되었습니다.");
+ 	 		    			   $(tr).remove();
+ 	 		    		   }
+ 	 		    	   }
+ 	 		       	});
+ 				}
+ 		    });
+ 				
+ 			$('#productTable tbody').on( 'click', "a[name='modify']", function () {
  			   	var tr = $(this).parents('tr');
  		       	var productNo = table.row( $(this).parents('tr') ).data()[0];
  		       
- 		      	$.ajax({
- 		    	   url : "/product/" + productNo,
- 		    	   type : "delete",
- 		    	   success : function(data) {
- 		    		   if(data.result == "SUCCESS") {	
- 		    			   alert("상품 삭제가 성공적으로 되었습니다.");
- 		    			   $(tr).remove();
- 		    		   }
- 		    	   }
- 		       	})
+ 		      	location.href = "/product/modifyForm/" + productNo;
  		    } );
  			
  			
@@ -143,7 +154,7 @@ $(document).ready(function(){
     		data.push(obj[i].productNo);
     		data.push("<a href='/product/detailForm/" + obj[i].productNo + "'> " + obj[i].name + " </a>");
     		
-    		category = obj[i].category;
+    		data.push(obj[i].category);
     		data.push(obj[i].regdate);
     		data.push(obj[i].price);
     		data.push(obj[i].cost);

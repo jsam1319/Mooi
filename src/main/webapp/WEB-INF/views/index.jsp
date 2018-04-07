@@ -45,14 +45,13 @@
 					<div class="clear"></div>
 				</div> -->
 				<div class="col-md-12">
-
 					<div class="navigation-banner-swiper">
 						<div class="swiper-container" data-autoplay="5000" data-loop="1"
 							data-speed="500" data-center="0" data-slides-per-view="2">
 							<div class="swiper-wrapper">
 								<div class="swiper-slide active" data-val="0">
 									<div class="navigation-banner-wrapper light-text align-1"
-										style="background-image: url(/resources/img/earring.jpg);">
+										style="background-image: url(/resources/img/frontImage1.jpg);">
 										<div class="navigation-banner-content">
 											<!-- <div class="cell-view">
 												<h2 class="subtitle">New Arrive</h2>
@@ -69,7 +68,7 @@
 								</div>
 								<div class="swiper-slide" data-val="1">
 									<div class="navigation-banner-wrapper light-text align-1"
-										style="background-image: url(/resources/img/earring2.jpg);">
+										style="background-image: url(/resources/img/frontImage2.jpg);">
 										<div class="navigation-banner-content">
 											<!-- <div class="cell-view">
 												<h2 class="subtitle">New special collection</h2>
@@ -88,7 +87,7 @@
 								</div>
 								<div class="swiper-slide" data-val="2">
 									<div class="navigation-banner-wrapper light-text align-1"
-										style="background-image: url(/resources/img/earring3.jpg);">
+										style="background-image: url(/resources/img/frontImage3.jpg);">
 										<div class="navigation-banner-content">
 											<!-- <div class="cell-view">
 												<h2 class="subtitle">New special collection</h2>
@@ -110,7 +109,6 @@
 							<div class="pagination"></div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -141,7 +139,9 @@
 										<div class="paddings-container">
 											<div class="product-slide-entry">
 												<div class="product-image">
-													<img src="/resources/upload/${item.frontImage}" alt="" /> 
+													<a href="/product/detailForm/${item.productNo}">
+														<img src="/resources/upload/${item.frontImage}" alt="" /> 
+													</a>
 													<div class="bottom-line">
 														<a class="bottom-line-a" id="${item.productNo}">
 															<i class="fa fa-shopping-cart"></i> 장바구니에 담기 
@@ -175,7 +175,9 @@
 										<div class="paddings-container">
 											<div class="product-slide-entry">
 												<div class="product-image">
-													<img src="/resources/upload/${item.frontImage}" alt="" /> 
+													<a href="/product/detailForm/${item.productNo}">
+														<img src="/resources/upload/${item.frontImage}" alt="" /> 
+													</a>
 													<div class="bottom-line">
 														<a class="bottom-line-a" id="${item.productNo}">
 															<i class="fa fa-shopping-cart"></i> 장바구니에 담기 

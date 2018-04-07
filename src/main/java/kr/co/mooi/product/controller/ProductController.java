@@ -75,6 +75,26 @@ public class ProductController {
 		return mav;
 	}
 	
+	@RequestMapping("/product/modifyForm/{productNo}")
+	public ModelAndView modifyForm(@PathVariable int productNo) {
+		ModelAndView mav = new ModelAndView();
+		
+		List<Keyword> keywords = keywordService.selectByProductNo(productNo);
+		StringBuilder builder = new StringBuilder();
+		
+		for (Keyword keyword : keywords) {
+			builder.append(keyword.getName());
+			builder.append(",");
+		}
+
+		mav.addObject("keywordString", builder.toString());
+		logger.info(builder.toString());
+		mav.addObject("product", productService.select(productNo));
+		mav.setViewName("product/modify");
+		
+		return mav;
+	}
+	
 	@RequestMapping("/product/detailForm/{productNo}")
 	public ModelAndView detailForm(@PathVariable int productNo) {
 		ModelAndView mav = new ModelAndView();
@@ -99,6 +119,26 @@ public class ProductController {
 		logger.info(productService.insert(product));
 		logger.info(product.getProductNo());
 		
+		String[] keywordNames = keywordString.split(",");
+		
+		for (String keywordName : keywordNames) {
+			Keyword keyword = new Keyword();
+
+			keyword.setProductNo(product.getProductNo());
+			keyword.setName(keywordName);
+			
+			keywordService.insert(keyword);
+		}
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/product/modify", method=RequestMethod.POST)
+	public String modify(Product product, MultipartFile image, HttpServletRequest request, String keywordString) throws Exception {
+		logger.info(product);
+		logger.info(productService.modify(product));
+
+		keywordService.deleteByProductNo(product.getProductNo());
 		String[] keywordNames = keywordString.split(",");
 		
 		for (String keywordName : keywordNames) {
